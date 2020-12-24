@@ -1,11 +1,7 @@
 ---
 title: "Creación y Edición de Código R"
 output:
-  html_document:
-    css: !expr here::here("styles/styles.css")
-    toc: true
-    toc_depth:  3
-    toc_float: true
+  html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -28,7 +24,7 @@ Un _script_ es simplemente un archivo de texto que contiene un conjunto de coman
 
 #### Crear un _script_ R
 
-Puedes abrir un archivo de comandos vacío, o _script file_, haciendo clic en __File__, en el menú principal, y seleccionando __New File__, y __R Script__; alternativamente, puedes abrir el menú de archivos, haciendo clic en la cruz blanca ![](./media/white_cross.jpg){#id .class width=16 height=16px} al extremo izquierdo, arriba, en el panel de RStudio.
+Puedes abrir un archivo de comandos vacío, o _script file_, haciendo clic en __File__, en el menú principal, y seleccionando __New File__, y __R Script__; alternativamente, puedes abrir el menú de archivos, haciendo clic en la cruz blanca __XXX__ al extremo izquierdo, arriba, en el panel de RStudio.
 
 Una vez creado el espacio para códigos, es recomendable guardarlo como archivo __.R__ en el lugar adecuado del directorio, asignándole un nombre corto que indique de que se trata el procedimiento a trabajar; para esto debes hacer clic en la figura del diskette azul, o usar el menú __File__, __Save__.
 
