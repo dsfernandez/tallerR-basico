@@ -6,7 +6,7 @@ navbar:
     - text: "AMBIENTE DE TRABAJO y DATOS"
       menu:
       - text: "Unidad I"
-        href: modulos/unidad-1.html
+        href: modulos/unidad1.html
 output:
   html_document:
     toc: true
