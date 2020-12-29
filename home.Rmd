@@ -1,0 +1,24 @@
+---
+title: "Hola"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Taller Introducción a R, RStudio y R Markdown
+#### UNIVERSIDAD DE PUERTO RICO en HUMACAO
+#### Departamento de Biología
+[ __Denny S. Fernández del Viso__](https://sites.google.com/site/hicindicium/home)
+
+
+## Descripción del taller
+Curso introductorio de estadísticas aplicadas a la biología.  El diseño del taller se basa en el modelo UMT (unidad-módulo-tema):  
+
+## Estructura del Taller
+
+
+## Textos principales:  
+
+

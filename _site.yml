@@ -3,6 +3,9 @@ output_dir: "."
 navbar:
   title: "Taller R Introductorio"
   left:
+    - text: "Hola"
+      icon: fa-home
+      href: home.html
     - text: "AMBIENTE DE TRABAJO y DATOS"
       menu:
       - text: "Unidad I"

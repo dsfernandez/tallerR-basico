@@ -1,5 +1,0 @@
----
-title: "Taller R Introductorio"
-output:
-  html_document
----
