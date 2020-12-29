@@ -1,0 +1,12 @@
+---
+title: "Descripción de la Unidad"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+En esta primera sesión presentaré el ambiente de trabajo en R y en la interfaz RStudio, y los diferentes tipos de archivos, componentes y menús disponibles y su uso.  También revisaremos los tipos de datos y variables que se utilizan, las estructuras de los mismos, y cómo ingresarlos al ambiente de trabajo.
+
+![panel RStudio](media/RStudio.png)
+
+[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)

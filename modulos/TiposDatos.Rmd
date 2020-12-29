@@ -1,0 +1,253 @@
+---
+title: "Tipos de Datos"
+output:
+  html_document:
+    css: !expr here::here("styles/styles.css")
+    toc: true
+    toc_depth:  3
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options("yaml.eval.expr" = TRUE)
+```
+
+# 1.5. Tipos de Datos
+> R trabaja con una gran diversidad de datos.  
+
+## 1.5.1. Matemáticas Básicas y Variables  
+__Al finalizar esta sección podrás usar R para realizar operaciones matemáticas y asignar los resultados a un objeto variable.__  
+
+### Operaciones matemáticas
+> Usando R como una calculadora científica.  
+
+Con R podemos realizar operaciones matemáticas básicas y aplicar funciones matemáticas, igual que una calculadora científica.
+
+Puedes usar la consola o el editor de códigos para realizar las operaciones, y los resultados aparecerán en la consola (en este documento, los resultados que aparecen en la consola están precedidos por ##).\
+
+Las reglas de las operaciones aritméticas son las usuales: paréntesis primero, seguido de exponentes, luego multiplicación y división, y después suma y resta.
+
+```{r}
+# operaciones básicas
+5 + 8
+13 / 5
+# uso de paréntesis
+4 * 6 + 3
+4 * (6 + 3)
+4 * 6^2 + 3
+4 * (6^2 + 3)
+```
+
+R provee un gran número de funciones, aplicables a argumentos numéricos:
+
+```{r}
+# raíz cuadrada
+sqrt(99)
+# sumatoria
+sum(3, 5, 7, 9)
+# funciones trigonométricas
+sin(pi) #pi es una constante del sistema
+```
+\
+[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)  
+
+### Asignación de valores a una variable
+> Hay más de una forma de asignar un valor u objeto a una variable.
+
+Anteriormente vimos por qué es preferible usar __<-__ para asignar valores, funciones u objetos a un nombre de variable.  A continuación otras formas de asignar valores u objetos a variables:
+\
+```{r}
+# la forma común
+equis <- 17
+equis
+# en la otra dirección
+19 -> zeta
+zeta
+# asignación múltiple
+equis <- zeta <- 17
+equis
+zeta
+# utilizando una función: assign
+assign("equis", 17)
+equis
+assign("zeta", 19)
+zeta
+# asignando resultado de una función
+y <- sqrt(25)
+y
+```
+\
+También podemos remover lo asignado a una variable, para liberar memoria o evitar confusión o errores si el nombre se usa en varios procedimientos.
+\
+```{r eval=FALSE, message=FALSE, warning=FALSE}
+# removemos el valor de zeta
+rm(zeta)
+# verificamos el contenido de zeta
+zeta
+```
+
+ ## Error: object 'zeta' not found  
+\
+
+[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)  
+  
+## 1.5.2. Tipos de Datos
+__Al finalizar esta parte reconocerás la diversidad de tipos de datos que se usan en R.__  
+  
+Los cuatro tipos de datos principales de R son:  
+
+* __numéricos:__ incluye _integer_, _numeric_  
+* __caracteres (texto):__ incluye _strings_, _factor_  
+* __tiempo:__ incluye _Date_, _POSIXct_  
+* __lógico:__ _TRUE_, _FALSE_     
+
+Para saber el tipo de datos que contiene una variable, usamos la función _class_.  
+
+```{r}
+num <- 13
+class(num)
+tex <- "búha"
+class(tex)
+```
+
+### Datos numéricos  
+> El tipo de dato más utilizado en R.  
+
+Los datos numéricos son de dos clases principales:  
+
+* _numeric_: que en otros lenguajes aparecen como _float_ o _double_.  Pueden contener valores enteros y decimales, positivos y negativos, incluyendo 0.  
+* _integer_: sin valores decimales; se pueden asignar a una variable colocando la letra __L__ al final del número.  
+```{r}
+# el resultado de una operación matemática regular es numérico:
+div <- 13 / 7
+div
+class(div)
+# asignando un entero a una variable:
+ent <- 13L
+ent
+class(ent)
+# las operaciones matemáticas con enteros no necesariamente producen enteros:
+ent_num <- 13L / 7L
+ent_num
+class(ent_num)
+```
+\
+[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)  
+
+### Datos en texto  
+> Importantes en estadísticas como factores.  
+
+El tipo de datos en caracteres o texto tiene dos formas de manejarse:  
+
+*   _character_: es la forma básica de este tipo de dato.  
+*   _factor_: es una forma especial, en la que los caracteres son usados como un tipo especial de variable nominal (niveles).
+
+```{r}
+# asignar texto a variable:
+caract <- "uprh"
+caract
+class(caract)
+# crear factor:
+fact <- factor("uprh")
+fact # el contenido aparece sin " "
+class(fact)
+```
+  
+Con la función __nchar__ podemos medir la 'longitud' (_length_) del contenido de una variable con dato en texto (o numérica).
+```{r}
+nchar(caract)
+nchar(123456)
+```
+\
+
+[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)   
+  
+
+### Datos de tiempo
+> Fechas y horas  
+
+Las operaciones con datos de tiempo, fechas u horas, es siempre complicado en cualquier lenguaje de programación (y hasta en Excel).  Dos clases de datos que se usan en R son:  
+
+* _Date:_ almacena el número de días desde el 1 de enero de 1970 (día 0).  Se crea con la función __as.Date__.  
+
+* _POSIXct:_ almacena el número de segundos desde el 1 de enero de 1970.  Se crea con la función __as.POSIXct__.  
+```{r}
+# una fecha reciente:
+hoy <- as.Date("2020-08-11")
+hoy
+class(hoy)
+# para ver la cantidad de días:
+as.numeric(hoy)
+# una fecha antes de 1970:
+luna <- as.Date("1969-07-20")
+as.numeric(luna)
+```
+  
+Es muy conveniente para conocer la diferencia en días entre dos fechas.
+```{r}
+# días desde la llegada a la luna:
+dias_luna <- hoy - luna
+dias_luna
+```
+\  
+
+Usamos de manera similar POSIXct.
+```{r}
+# tiempo hasta hoy
+tiempo_hoy <- as.POSIXct("2020-08-05 15:00")
+as.numeric(tiempo_hoy)
+# diferencias en minutos y segundos:
+difer <- as.POSIXct("2020-08-05 14:55:00") - as.POSIXct("2020-08-05 14:53:23")
+difer
+```
+\
+
+[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)  
+\
+
+### Datos lógicos  
+> Principalmente resultado de expresiones lógicas.  
+
+Tienen dos valores: __TRUE__ o __FALSE__; tienen también valor numérico: __1__ o __0__.
+```{r}
+# pueden asignarse a variables:
+verdad <- TRUE
+falso <- FALSE
+# clase de variable lógica:
+class(verdad)
+# valor numérico
+as.numeric(falso)
+# operaciones entre datos lógicos:
+verdad * falso
+```
+  
+El resultado de expresiones lógicas es un dato lógico.
+```{r}
+# resultado de una comparación numérica
+comparar <- 2 == 3
+class(comparar)
+comparar
+# otra comparación
+menor_que <- 2 < 3
+menor_que
+# comparación de caracteres
+comp_texto <- "dato" == "data"
+comp_texto
+```  
+\
+[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)  
+\
+
+__Referencias__
+
+Lander, J. P. (2017). _R for everyone: Advanced analytics and graphics_ (Second edition). Addison-Wesley, Boston, MA.  
+
+
+
+
+
+
+
+
+

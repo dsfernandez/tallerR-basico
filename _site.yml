@@ -1,0 +1,14 @@
+name: "Taller R Introductorio"
+output_dir: "."
+navbar:
+  title: "Taller R Introductorio"
+  left:
+    - text: "AMBIENTE DE TRABAJO y DATOS"
+      menu:
+      - text: "Unidad I"
+        href: modulos/unidad-1.html
+output:
+  html_document:
+    toc: true
+    toc_float: true
+
