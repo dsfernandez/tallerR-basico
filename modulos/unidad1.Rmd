@@ -9,4 +9,5 @@ En esta primera sesión presentaré el ambiente de trabajo en R y en la interfaz
 
 ![panel RStudio](media/RStudio.png)
 
+\
 [  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)
