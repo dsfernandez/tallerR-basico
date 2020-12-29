@@ -2,4 +2,4 @@
 title: "Taller R Introductorio"
 ---
 
-![](./modulos/media/R.jpg)
+![www.PrintActivities.com](./modulos/media/R.jpg)
