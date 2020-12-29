@@ -1,5 +1,5 @@
 ---
 title: "Taller R Introductorio"
-output:
-  html_document
 ---
+
+![](./modulos/media/R.jpg)
