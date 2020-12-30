@@ -1,0 +1,11 @@
+/* Whole document: */
+body{
+  font-family: Helvetica;
+  font-size: 14pt;
+}
+code.r{
+  font-size: 14pt;
+}
+pre {
+  font-size: 14pt
+}
