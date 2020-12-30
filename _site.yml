@@ -10,6 +10,10 @@ navbar:
       menu:
       - text: "Unidad I"
         href: modulos/unidad1.html
+      - text: "R y RStudio"
+        href: modulos/R-RStudio.html
+      - text: "Componentes de RStudio"
+        href: modulos/CompRStudio.html
 output:
   html_document:
     highlight: textmate
