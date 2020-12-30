@@ -36,7 +36,7 @@ Beckerman, A. P., & Petchey, O. L. (2012). Getting Started with R.  An Introduct
 
 Venables, W. N., Smith, D. M., & R Core Team. (2017). An Introduction to R. http://colinfay.me/intro-to-r/
 
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)
 
 *** 
 
@@ -56,7 +56,8 @@ __Referencias__
 
 RStudio. (n.d.). Retrieved July 17, 2020, from https://rstudio.com/products/rstudio/
 
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)
+\
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)
 
 ***  
 
@@ -75,6 +76,7 @@ Para problemas con la instalación o descarga de R y RStudio puede buscar inform
 
 *** 
 
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)
+\
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)
 
 
