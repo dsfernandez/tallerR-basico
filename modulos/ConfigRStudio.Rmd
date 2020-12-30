@@ -36,11 +36,13 @@ Luego de crear su carpeta de trabajo, puede guardar en ella sus archivos de trab
 
 Luego de abrir nuevamente el programa, en la ventana de Files debe aparecer la dirección de tu directorio de trabajo, y ahora todos los archivos que guarden estarán en esa carpeta y cada vez que vuelvan a abrir RStudio los encontrarán allí.
 
-El siguiente video muestra los pasos anteriores, pero deben tomar en cuenta las diferencias que hay de acuerdo a la computadora y sistema operativo que estén utilizando (en mi caso es una MacBookPro con macOS Mojave).\  
+El siguiente video muestra los pasos anteriores, pero deben tomar en cuenta las diferencias que hay de acuerdo a la computadora y sistema operativo que estén utilizando (en mi caso es una MacBookPro con macOS Mojave).
+
+\  
 
 <iframe width="640" height="456" frameborder="0" scrolling="no" src="https://screencast-o-matic.com/embed?sc=cYiOqLEaVB&amp;v=6&amp;ff=1&amp;title=0&amp;controls=1" allowfullscreen="true"></iframe>  
 
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)  
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)  
 
 ***  
 
@@ -61,7 +63,7 @@ Una vez que hayas creado un nuevo proyecto R, puedes crear inmediatamente carpet
 
 <iframe width=640 height=399 frameborder="0" scrolling="no" src="https://screencast-o-matic.com/embed?sc=cYjDr6GHSL&v=6&ff=1&title=0&controls=1" allowfullscreen="true"></iframe>
 
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)  
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)  
 
 *** 
 
@@ -97,7 +99,7 @@ Con el menú de __Packages__, puede realizar las funciones anteriores y otras re
 
 <iframe width=640 height=408 frameborder="0" scrolling="no" src="https://screencast-o-matic.com/embed?sc=cYjDr4GJeG&v=6&ff=1&title=0&controls=1" allowfullscreen="true"></iframe>\
 
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)  
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)  
 
 
 
