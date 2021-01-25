@@ -16,6 +16,8 @@ navbar:
         href: modulos/CompRStudio.html
       - text: "Configuración de RStudio"
         href: modulos/ConfigRStudio.html
+      - text: "Archivos de códigos R"
+        href: modulos/CodigoR.html
 output:
   html_document:
     highlight: textmate

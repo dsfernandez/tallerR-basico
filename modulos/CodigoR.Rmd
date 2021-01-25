@@ -1,7 +1,11 @@
 ---
-title: "Creación y Edición de Código R"
+title: "Creación de Archivos y Edición de Código R"
 output:
-  html_document
+  html_document:
+    css: !expr here::here("styles/styles.css")
+    toc: true
+    toc_depth:  3
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
@@ -9,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 options("yaml.eval.expr" = TRUE)
 ```
 
-# 1.4. Creación y Edición de Código R  
+# 1.4. Creación de Archivos y Edición de Código R  
 > En RStudio se pueden crear archivos de diversos formatos.  
 
 ## 1.4.1. Archivo de edición de código R (.R)  
@@ -24,19 +28,25 @@ Un _script_ es simplemente un archivo de texto que contiene un conjunto de coman
 
 #### Crear un _script_ R
 
-Puedes abrir un archivo de comandos vacío, o _script file_, haciendo clic en __File__, en el menú principal, y seleccionando __New File__, y __R Script__; alternativamente, puedes abrir el menú de archivos, haciendo clic en la cruz blanca __XXX__ al extremo izquierdo, arriba, en el panel de RStudio.
+Puedes abrir un archivo de comandos vacío, o _script file_, haciendo clic en __File__, en el menú principal, y seleccionando __New File__, y __R Script__; alternativamente, puedes abrir el menú de archivos, haciendo clic en la cruz blanca ![](media/white-cross-green-circle.jpg){width=4%} al extremo izquierdo, arriba, en el panel de RStudio.
 
 Una vez creado el espacio para códigos, es recomendable guardarlo como archivo __.R__ en el lugar adecuado del directorio, asignándole un nombre corto que indique de que se trata el procedimiento a trabajar; para esto debes hacer clic en la figura del diskette azul, o usar el menú __File__, __Save__.
+
+\
+
+<iframe width=720 height=600 frameborder="0" scrolling="no" src="https://screencast-o-matic.com/player/crVT2F9dLa?ff=1&controls=1" allowfullscreen="true"></iframe>
+
+\
 
 __Referencias__   
 R scripts. (n.d.). Retrieved July 29, 2020, from http://mercury.webster.edu/aleshunas/R_learning_infrastructure/R%20scripts.html  
 
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)  
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)  
 
 ***  
 
-### Gramática del lenguaje R  
-> Algunas reglas de escritura de códigos R.
+## 1.4.2. Gramática del lenguaje R   
+__Al terminar esta sección conocerás algunas de las reglas para escribir códigos en R__
 
 Escribir códigos en un lenguaje de programación como R, requiere seguir ciertas reglas 'gramaticales', como en cualquier otro lenguaje, para poder lograr una comunicación efectiva, con consistencia y buen entendimiento entre las partes.  En el caso de un lenguaje de programación, aunque generalmente el número de 'palabras' es menor, pero por ser la comunicación mediada por una máquina, esta no posee, hasta ahora, la flexibilidad de los seres humanos que permite entender palabras mal escrita o incompletas, o variaciones en el orden de las mismas.  
 
@@ -44,15 +54,17 @@ Aunque muchos de los códigos que estarán utilizando en los cursos y proyectos 
 
 #### Algunas normas de estilo en la escritura de códigos R  
 
-Vamos a empezar con algunas definiciones de términos.  En R, un __objeto__ es cualquier cosa que se puede asignar a una variable (en general: un nombre).  Esto incluye constantes, estructuras de datos, gráficas, funciones.  Todo objeto tiene un _mode_, que describe cómo se guarda el objeto, y una _class_, que indica cómo lo van a manejar las __funciones__.  Estas últimas contienen __argumentos__, que debemos definir para obtener los resultados esperados, aunque usualmente traen argumentos por defecto ( _default_).
+Vamos a empezar con algunas definiciones de términos.  En R, un __objeto__ es cualquier cosa que se puede asignar a una __variable__.  Esto incluye constantes, estructuras de datos, gráficas, funciones.  Todo objeto tiene un _mode_, que describe cómo se guarda el objeto, y una _class_, que indica cómo lo van a manejar las __funciones__.  
 
-__El símbolo #__ se utiliza para iniciar la escritura de texto, que no funcionará como código en el momento de ser procesado.  Es muy importante para documentar los códigos que se utilizan:
+Las __funciones__ contienen __argumentos__, que debemos definir para obtener los resultados esperados, aunque usualmente traen argumentos por defecto ( _default_).
+
+__El símbolo #__ se utiliza para iniciar la escritura de texto, que no funcionará como código en el momento de ser procesado.  Es muy importante esta escritura, para documentar los códigos que se utilizan:
 ```{r eval=FALSE}
 # este es un ejemplo de su uso
 mean(c(3,5,7,4)) # la función mean calcula la media de un conjunto de números
 ```
 
-__Nombre de objetos:__ el nombre de los objetos a los que se asignan valores, resultados de funciones, et c., no es recomendable que sean de las funciones del sistema (mean, list, c, sd, et c.).  Hay una lista de nombres reservados que no se pueden usar; para verlas puedes escribir __?reserved__ en la consola.  
+__Nombre de variables:__ el nombre de las variables a las que se asignan valores, resultados de funciones, gráficas, et c., no es recomendable que sean de las funciones del sistema (mean, list, c, sd, et c.).  Hay una lista de nombres reservados que no se pueden usar; para verlas puedes escribir __?reserved__ en la consola.  
 
 Usar nombres con minúsculas ayuda a evitar errores al escribirlos varias veces.  Es recomendable usar abreviaturas que ayuden a recordar su significado, y si hay una serie de objetos similares o con nombres compuestos, utilizar la línea de subrayar ( _underscore_):
 
@@ -100,12 +112,12 @@ R Tutorial—Learn R Programming. (n.d.). DataMentor. Retrieved July 29, 2020, f
 
 Style guide · Advanced R. (n.d.). Retrieved July 29, 2020, from http://adv-r.had.co.nz/Style.html\  
 
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)   
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)   
 
 ***  
 
-#### Correr códigos R
-> Obteniendo resultados con los códigos.  
+## 1.4.3. Correr códigos R  
+__Al finalizar esta sección podrás obtener resultados al correr códigos R__ 
 
 Una vez que tenemos listo un archivo R Script, podemos obtener los resultados de lo que esperamos haga el mismo, esto es 'correr' el código.  En RStudio podemos hacerlo de diversas formas, cada una con su aplicación a diversos fines.  
 
@@ -128,26 +140,29 @@ R Tutorial—Learn R Programming. (n.d.). DataMentor. Retrieved July 29, 2020, f
 __* histograma__\  
 
 En este ejercicio les mostraré como en R se pueden hacer cálculos y visualizaciones aparentemente complicadas, con muy pocas líneas de códigos.  
-Usarán el siguiente archivo R Script: [ejercicio-script.R](https://raw.githubusercontent.com/dsfernandez/tallerRbasico/master/ejercicio-script.R)
+Usarán el siguiente archivo R Script: [ejercicio-script.R](https://raw.githubusercontent.com/dsfernandez/tallerR-basico/master/ejercicio-script.R)
 
 __* area triángulo__\ 
 
 Les toca a ustedes escribir su primer (o repasar) programa en R.  Abre y guarda un archivo R Script con un nombre relacionado a la actividad a realizar. 
 
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)  
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)  
 
 ***  
 
-### 1.4.2. Otros archivos en R Studio  
-__Al terminar esta sección podrás identificar y crear al menos dos nuevos tipos de archivos en R Studio__  
+### 1.4.4. Otros archivos en R Studio  
+__Al terminar esta sección podrás identificar al menos dos nuevos tipos de archivos en R Studio__  
 
-Al hacer clic en el ícono de la cruz blanca, extremo izquierdo, arriba, aparece un menú de diferentes tipos de archivos que se pueden crear en RStudio, además de R Script.  En este taller estaremos trabajando con tres de ellos:  
+Al hacer clic en el ícono de la cruz blanca, extremo izquierdo, arriba, aparece un menú de diferentes tipos de archivos que se pueden crear en RStudio, además de R Script.  
+
+![](./media/archivos-rstudio.png)
+
+En este taller estaremos trabajando con dos de ellos:  
 
 - archivos de texto, __Text File__  
-- documento __R Markdown__, y  
-- presentación, __R Presentation__\
+- documento __R Markdown__
 
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)
 
 
 
