@@ -20,6 +20,8 @@ navbar:
         href: modulos/CodigoR.html
       - text: "Operaciones básicas con R"
         href: modulos/OperacionesR.html
+      - text: "Tipos de Datos"
+        href: modulos/TiposDatos.html
 output:
   html_document:
     highlight: textmate

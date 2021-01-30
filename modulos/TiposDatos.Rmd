@@ -13,86 +13,10 @@ knitr::opts_chunk$set(echo = TRUE)
 options("yaml.eval.expr" = TRUE)
 ```
 
-# 1.5. Tipos de Datos
+# 1.6. Tipos de Datos
 > R trabaja con una gran diversidad de datos.  
-
-## 1.5.1. Matemáticas Básicas y Variables  
-__Al finalizar esta sección podrás usar R para realizar operaciones matemáticas y asignar los resultados a un objeto variable.__  
-
-### Operaciones matemáticas
-> Usando R como una calculadora científica.  
-
-Con R podemos realizar operaciones matemáticas básicas y aplicar funciones matemáticas, igual que una calculadora científica.
-
-Puedes usar la consola o el editor de códigos para realizar las operaciones, y los resultados aparecerán en la consola (en este documento, los resultados que aparecen en la consola están precedidos por ##).\
-
-Las reglas de las operaciones aritméticas son las usuales: paréntesis primero, seguido de exponentes, luego multiplicación y división, y después suma y resta.
-
-```{r}
-# operaciones básicas
-5 + 8
-13 / 5
-# uso de paréntesis
-4 * 6 + 3
-4 * (6 + 3)
-4 * 6^2 + 3
-4 * (6^2 + 3)
-```
-
-R provee un gran número de funciones, aplicables a argumentos numéricos:
-
-```{r}
-# raíz cuadrada
-sqrt(99)
-# sumatoria
-sum(3, 5, 7, 9)
-# funciones trigonométricas
-sin(pi) #pi es una constante del sistema
-```
-\
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)  
-
-### Asignación de valores a una variable
-> Hay más de una forma de asignar un valor u objeto a una variable.
-
-Anteriormente vimos por qué es preferible usar __<-__ para asignar valores, funciones u objetos a un nombre de variable.  A continuación otras formas de asignar valores u objetos a variables:
-\
-```{r}
-# la forma común
-equis <- 17
-equis
-# en la otra dirección
-19 -> zeta
-zeta
-# asignación múltiple
-equis <- zeta <- 17
-equis
-zeta
-# utilizando una función: assign
-assign("equis", 17)
-equis
-assign("zeta", 19)
-zeta
-# asignando resultado de una función
-y <- sqrt(25)
-y
-```
-\
-También podemos remover lo asignado a una variable, para liberar memoria o evitar confusión o errores si el nombre se usa en varios procedimientos.
-\
-```{r eval=FALSE, message=FALSE, warning=FALSE}
-# removemos el valor de zeta
-rm(zeta)
-# verificamos el contenido de zeta
-zeta
-```
-
- ## Error: object 'zeta' not found  
-\
-
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)  
   
-## 1.5.2. Tipos de Datos
+## 1.6.1. Tipos de Datos
 __Al finalizar esta parte reconocerás la diversidad de tipos de datos que se usan en R.__  
   
 Los cuatro tipos de datos principales de R son:  
@@ -133,7 +57,7 @@ ent_num
 class(ent_num)
 ```
 \
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)  
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)  
 
 ### Datos en texto  
 > Importantes en estadísticas como factores.  
@@ -161,20 +85,20 @@ nchar(123456)
 ```
 \
 
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)   
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)   
   
 
 ### Datos de tiempo
 > Fechas y horas  
 
-Las operaciones con datos de tiempo, fechas u horas, es siempre complicado en cualquier lenguaje de programación (y hasta en Excel).  Dos clases de datos que se usan en R son:  
+Las operaciones con datos de tiempo, fechas u horas, son siempre complicadas en cualquier lenguaje de programación (y hasta en Excel).  Dos clases de datos que se usan en R son:  
 
 * _Date:_ almacena el número de días desde el 1 de enero de 1970 (día 0).  Se crea con la función __as.Date__.  
 
 * _POSIXct:_ almacena el número de segundos desde el 1 de enero de 1970.  Se crea con la función __as.POSIXct__.  
 ```{r}
 # una fecha reciente:
-hoy <- as.Date("2020-08-11")
+hoy <- as.Date("2021-02-06")
 hoy
 class(hoy)
 # para ver la cantidad de días:
@@ -190,20 +114,21 @@ Es muy conveniente para conocer la diferencia en días entre dos fechas.
 dias_luna <- hoy - luna
 dias_luna
 ```
+
 \  
 
 Usamos de manera similar POSIXct.
 ```{r}
 # tiempo hasta hoy
-tiempo_hoy <- as.POSIXct("2020-08-05 15:00")
+tiempo_hoy <- as.POSIXct("2021-02-06 13:00")
 as.numeric(tiempo_hoy)
 # diferencias en minutos y segundos:
-difer <- as.POSIXct("2020-08-05 14:55:00") - as.POSIXct("2020-08-05 14:53:23")
+difer <- as.POSIXct("2021-02-06 14:55:00") - as.POSIXct("2021-02-06 14:53:23")
 difer
 ```
 \
 
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)  
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)  
 \
 
 ### Datos lógicos  
@@ -236,7 +161,7 @@ comp_texto <- "dato" == "data"
 comp_texto
 ```  
 \
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)  
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)  
 \
 
 __Referencias__
