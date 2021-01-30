@@ -141,3 +141,86 @@ R Built-in Functions - javatpoint [WWW Document], n.d. . www.javatpoint.com. URL
 
 [  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)
 
+***  
+
+## 1.5.3. Asignación de los resultados de operaciones o funciones a una variable (objeto)  
+__Al finalizar esta sección podrás asignar los resultados de operaciones o funciones matemáticas o lógicas a un nombre de objeto (variable)__  
+
+Al igual que en una calculadora científica los resultados de operaciones matemáticas y funciones se pueden guardar en memorias, utilizando R podemos asignar esos resultados a nombres de objetos o variables con diferentes tipos de datos y estructuras que estudiaremos en otras secciones.  
+
+### Asignación de valores a una variable
+> Hay más de una forma de asignar un valor u objeto a una variable.  
+
+Trabajando con la consola vimos como usar __<-__ para asignar valores, funciones u objetos a un nombre de variable.  Cuando escribimos códigos de R en el editor de RStudio usamos preferiblemente el mismo procedimiento, aunque hay otras alternativas.  
+```{r asig-vari}
+# la forma común
+equis <- 17
+equis
+# en la otra dirección
+19 -> zeta
+zeta
+# usando igual
+igual = 17
+igual
+# asignación múltiple
+equis <- zeta <- 17
+equis
+zeta
+# utilizando una función: assign
+assign("equis", 17)
+equis
+assign("zeta", 19)
+zeta
+# asignando resultado de una función
+y <- sqrt(25)
+y
+# removiendo el contenido de una variable
+rm(zeta)
+```
+
+Si ahora buscamos el contenido de __zeta__ obtenemos el siguiente mensaje:  
+
+zeta  
+<span style="color:red">Error: object 'zeta' not found</span>  
+
+Podemos también asignar texto o resultados de comparaciones a una variable.  
+```{r asig-text}
+# texto a una variable
+nombre <- "Aquiles"
+nombre
+# existen funciones para texto
+num_caract <- nchar(nombre)
+num_caract
+# resultado de comparaciones
+compara <- 3 < 7
+compara
+```
+
+
+### Operaciones con las variables  
+> Podemos realizar diversos tipos de operaciones con las variables  
+
+Es recomendable darle a los objetos nombrados como variables, nombres que reflejen su contenido; es preferible que estén abreviados y pueden ser nombres compuestos unidos por la raya por debajo (_underscore_).  No usar letras mayúsculas ayuda a evitar errores ortográficos al escribir los códigos.
+
+```{r oper-vari}
+# cálculo del coeficiente de variación desviación_estándar/media
+media <- mean(3.1, 4.5, 5.3, 2.7)
+desv_esta <- sd(c(3.1, 4.5, 5.3, 2.7))
+coef_vari <- desv_esta/media
+coef_vari
+# podemos expresarlo como porcentaje sin tener que cambiar el nombre
+coef_vari <- coef_vari*100
+coef_vari
+# resultado de comparación de variables
+a <- 23
+b <- 17
+compara <- a <= b
+compara
+```
+
+\
+
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)   
+
+***  
+

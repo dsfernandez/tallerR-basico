@@ -1726,6 +1726,93 @@ R Built-in Functions - javatpoint [WWW Document], n.d. . www.javatpoint.com. URL
 <p><br />
 </p>
 <p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
+</div>
+</div>
+<div id="asignación-de-los-resultados-de-operaciones-o-funciones-a-una-variable-objeto" class="section level2">
+<h2>1.5.3. Asignación de los resultados de operaciones o funciones a una variable (objeto)</h2>
+<p><strong>Al finalizar esta sección podrás asignar los resultados de operaciones o funciones matemáticas o lógicas a un nombre de objeto (variable)</strong></p>
+<p>Al igual que en una calculadora científica los resultados de operaciones matemáticas y funciones se pueden guardar en memorias, utilizando R podemos asignar esos resultados a nombres de objetos o variables con diferentes tipos de datos y estructuras que estudiaremos en otras secciones.</p>
+<div id="asignación-de-valores-a-una-variable" class="section level3">
+<h3>Asignación de valores a una variable</h3>
+<blockquote>
+<p>Hay más de una forma de asignar un valor u objeto a una variable.</p>
+</blockquote>
+<p>Trabajando con la consola vimos como usar <strong>&lt;-</strong> para asignar valores, funciones u objetos a un nombre de variable. Cuando escribimos códigos de R en el editor de RStudio usamos preferiblemente el mismo procedimiento, aunque hay otras alternativas.</p>
+<pre class="r"><code># la forma común
+equis &lt;- 17
+equis</code></pre>
+<pre><code>## [1] 17</code></pre>
+<pre class="r"><code># en la otra dirección
+19 -&gt; zeta
+zeta</code></pre>
+<pre><code>## [1] 19</code></pre>
+<pre class="r"><code># usando igual
+igual = 17
+igual</code></pre>
+<pre><code>## [1] 17</code></pre>
+<pre class="r"><code># asignación múltiple
+equis &lt;- zeta &lt;- 17
+equis</code></pre>
+<pre><code>## [1] 17</code></pre>
+<pre class="r"><code>zeta</code></pre>
+<pre><code>## [1] 17</code></pre>
+<pre class="r"><code># utilizando una función: assign
+assign(&quot;equis&quot;, 17)
+equis</code></pre>
+<pre><code>## [1] 17</code></pre>
+<pre class="r"><code>assign(&quot;zeta&quot;, 19)
+zeta</code></pre>
+<pre><code>## [1] 19</code></pre>
+<pre class="r"><code># asignando resultado de una función
+y &lt;- sqrt(25)
+y</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code># removiendo el contenido de una variable
+rm(zeta)</code></pre>
+<p>Si ahora buscamos el contenido de <strong>zeta</strong> obtenemos el siguiente mensaje:</p>
+<p>zeta<br />
+<span style="color:red">Error: object ‘zeta’ not found</span></p>
+<p>Podemos también asignar texto o resultados de comparaciones a una variable.</p>
+<pre class="r"><code># texto a una variable
+nombre &lt;- &quot;Aquiles&quot;
+nombre</code></pre>
+<pre><code>## [1] &quot;Aquiles&quot;</code></pre>
+<pre class="r"><code># existen funciones para texto
+num_caract &lt;- nchar(nombre)
+num_caract</code></pre>
+<pre><code>## [1] 7</code></pre>
+<pre class="r"><code># resultado de comparaciones
+compara &lt;- 3 &lt; 7
+compara</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="operaciones-con-las-variables" class="section level3">
+<h3>Operaciones con las variables</h3>
+<blockquote>
+<p>Podemos realizar diversos tipos de operaciones con las variables</p>
+</blockquote>
+<p>Es recomendable darle a los objetos nombrados como variables, nombres que reflejen su contenido; es preferible que estén abreviados y pueden ser nombres compuestos unidos por la raya por debajo (<em>underscore</em>). No usar letras mayúsculas ayuda a evitar errores ortográficos al escribir los códigos.</p>
+<pre class="r"><code># cálculo del coeficiente de variación desviación_estándar/media
+media &lt;- mean(3.1, 4.5, 5.3, 2.7)
+desv_esta &lt;- sd(c(3.1, 4.5, 5.3, 2.7))
+coef_vari &lt;- desv_esta/media
+coef_vari</code></pre>
+<pre><code>## [1] 0.3906646</code></pre>
+<pre class="r"><code># podemos expresarlo como porcentaje sin tener que cambiar el nombre
+coef_vari &lt;- coef_vari*100
+coef_vari</code></pre>
+<pre><code>## [1] 39.06646</code></pre>
+<pre class="r"><code># resultado de comparación de variables
+a &lt;- 23
+b &lt;- 17
+compara &lt;- a &lt;= b
+compara</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<p><br />
+</p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
 </div>
 </div>
 </div>
