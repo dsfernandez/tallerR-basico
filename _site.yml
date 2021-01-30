@@ -18,6 +18,8 @@ navbar:
         href: modulos/ConfigRStudio.html
       - text: "Archivos de códigos R"
         href: modulos/CodigoR.html
+      - text: "Operaciones básicas con R"
+        href: modulos/OperacionesR.html
 output:
   html_document:
     highlight: textmate

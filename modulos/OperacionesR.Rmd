@@ -1,0 +1,143 @@
+---
+title: "Operaciones Básicas con R"
+output:
+  html_document:
+    css: !expr here::here("styles/styles.css")
+    toc: true
+    toc_depth:  3
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options("yaml.eval.expr" = TRUE)
+```
+
+# 1.5. Operaciones Básicas con R  
+> R provee la operaciones matemáticas y funciones de una calculadora científica  
+
+## 1.5.1. Operadores aritméticos y otros  
+__Al finalizar esta sección podrás utilizar los principales operadores aritméticos y relacionales__  
+
+R tiene muchos operadores para realizar diferentes __operaciones matemáticas y lógicas.__  Los operadores en R se pueden clasificar principalmente en las siguientes categorías:  
+
+* __operadores aritmético__  
+* __operadores relacionales__  
+* __operadores lógicos__  
+* __operadores de asignación__  
+
+### Operadores aritméticos de R  
+A continuación puedes observar ejemplos de algunos operadores y los resultados que producen.  Los números (o variables) pueden in junto a los operadores (a+b, 5*16), pero en estos y otros ejemplos se separan para visualizarlos con mayor claridad y también ayuda a evitar e identificar errores con más facilidad.
+```{r oper-arit}
+# suma +
+5 + 16
+# resta -
+5 - 16
+# multiplicación *
+5 * 16
+# división /
+5 / 16
+# parte entera de división %/%
+16 %/% 5
+# módulo o residuo de una división %%
+16 %% 5
+# elevar a potencia ^
+16 ^ 5
+# notación científica e
+1.33e4 # equivalente a 1.33*10^4
+```
+
+### Operadores relacionales  
+Los operadores relacionales se utilizan para comparar valores y nos indican si el resultado de la comparación es verdadero (__TRUE__) o falso (__FALSE__). A continuación una lista de operadores relacionales disponibles en R, con un ejemplo.  
+```{r oper-rela}
+# menor que <
+5 < 16
+# mayor que >
+5 > 16
+# menor que o igual a <=
+5 <= 16
+# mayor que o igual a >=
+5 >= 16
+# igual a ==
+5 == 16
+# no igual a !=
+5 != 16
+# comparando notaciones
+1.33e4 == 1.33 * 10^4
+```
+
+## Otros operadores de R  
+Existen otro operadores para operaciones lógicas, de pertenencia y asignación que trabajan con objetos de R (vectores, matrices) y que estaremos utilizando cuando estudiemos esas estructuras de datos. 
+
+\  
+
+__Referencias__  
+R Operators, 2019. Learn By Example. URL https://www.learnbyexample.org/r-operators/ (accessed 1.30.21).
+
+
+\
+
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)
+
+***  
+
+## 1.5.2. Funciones matemáticas y estadísticas  
+__Al finalizar esta sección podrás utilizar algunas funciones matemáticas y estadísticas existentes en R__  
+
+R permite construir funciones de todo tipo, como veremos más adelante, pero además posee funciones matemáticas y estadísticas incluidas en la instalación básica.  Luego veremos que los paquetes instalados en R también poseen sus propias funciones.  
+
+### Funciones matemáticas  
+En R, deseamos utilizar algo más que operadores básicos. R contiene un conjunto completo de funciones que también encontrarás en una calculadora técnica. Todas estas funciones están __vectorizadas__, por lo que puedes usarlas en vectores completos (más de un valor), como veremos más adelante.  Las funciones también se pueden aplicar a operaciones matemáticas o lógicas. 
+```{r func-mate}
+# valor absoluto abs(x)
+abs(5-16)
+# redondeo de un valor round(x, digits=n), 
+# n número de dígitos decimales deseados; si no se indica, n = 0
+round(1.33)
+round(1.33, digits = 1)
+# raíz cuadrada sqrt(x)
+sqrt(15)
+# logaritmo log(x, base = n); n es la base del logaritmo
+# si no se indica n, es el logaritmo natural base e
+log(4, base = 2)
+log(4)
+# logaritmo base 10 log10(x)
+log10(4)
+# exponencial de e exp(x); equivalente a e^x
+exp(1)
+# funciones trigonométricas: cos(x), sin(x), tan(x)
+# x es el ángulo en radianes r
+# para convertir grados (d) a radianes: r = d*pi/180
+cos(pi/3)
+cos(60*pi/180)
+```
+
+### Funciones estadísticas  
+Una de las principales aplicaciones de R es el análisis estadístico, por lo cual encontrarás una gran diversidad de funciones estadísticas en la instalación básica de R, más aquellas creadas en los paquetes estadísticos de R.  Al igual que las otras funciones en R, estas son vectorizadas, por lo cual se aplican a conjuntos de números, sean estos vectores, matrices y otras estructuras de datos.  
+```{r func-esta}
+# tamaño de la muestra length(x); funciona con vectores
+length(c(3.1, 4.5, 5.3, 2.7)) # c() produce un vector
+# media (o su estimador en una muestra) mean(x)
+mean(3.1, 4.5, 5.3, 2.7)
+# desviación estándar sd(x); funciona con vectores
+sd(c(3.1, 4.5, 5.3, 2.7))
+# mediana median(x)
+median(3.1, 4.5, 5.3, 2.7)
+# rango o ámbito de los valores
+range(3.1, 4.5, 5.3, 2.7)
+# sumatoria o suma de los valores sum(x)
+sum(3.1, 4.5, 5.3, 2.7)
+# mínimo valor min(x)
+min(3.1, 4.5, 5.3, 2.7)
+# máximo valor max(x)
+max(3.1, 4.5, 5.3, 2.7)
+```
+
+__Referencias__  
+R Built-in Functions - javatpoint [WWW Document], n.d. . www.javatpoint.com. URL https://www.javatpoint.com/r-built-in-functions (accessed 1.30.21).
+
+
+\
+
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)
+
