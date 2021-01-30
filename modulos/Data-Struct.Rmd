@@ -13,15 +13,15 @@ knitr::opts_chunk$set(echo = TRUE)
 options("yaml.eval.expr" = TRUE)
 ```
 
-# 1.6. Estructuras de Datos  
+# 1.7. Estructuras de Datos  
 > Diversas estructuras de datos para diferentes usos y paquetes del sistema.  
 
 \
 
-![Estructuras de Datos](./media/data-estruct.jpg)  
+![Estructuras de Datos](./media/data-estruct.png)  
 \
 
-## 1.6.1. Vectores  
+## 1.7.1. Vectores  
 __Al completar esta sección podrás crear vectores y manipular los datos contenidos en ellos.__  
 
 Un vector es un arreglo unidimensional que puede contener datos numéricos, textuales, y lógicos.  Para construirlos se utiliza la función de construcción __c__.  
@@ -76,10 +76,11 @@ vec.sum * vec.su
 ```
 \
 
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)   
-\
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)   
 
-## 1.6.2. Matrices  
+***  
+
+## 1.7.2. Matrices  
 __Al terminar esta sección podrás construir matrices a partir de vectores.__  
 
 Una matriz es un arreglo en dos dimensiones, que contiene una sola clase de datos (numérico, caracter, o lógico).  Las matrices se construyen con la función __matrix__.
@@ -110,9 +111,10 @@ new.matrix1
 new.matrix2 <- mtx.diabetes[c(1,4),c(1,3)]
 new.matrix2
 ```
-\
 
-## 1.6.3. _Data frames_  
+***  
+
+## 1.7.3. _Data frames_  
 __Al finalizar esta sección producirás y manipularás _data frames_.__  
 
 Un _data frame_ es un tipo de matriz, en la cual las columnas pueden ser de distintas clases de datos (numéricos, texto, lógicos).  Es la estructura de datos de uso común en R. Se crean utilizando la función __data.frame__, usualmente a partir de vectores, o importando datos, como veremos más adelante.  
@@ -150,10 +152,11 @@ select.df2
 Una estructura de uso más reciente, es la que se conoce como _tibble_, muy parecida a un _data.frame_ pero con algunas peculiaridades que la hacen más práctica para el manejo de datos.
 \
 
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)   
-\
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)   
 
-## 1.6.4. Listas  
+***  
+
+## 1.7.4. Listas  
 __Al finalizar esta sección conocerás la estructura de una lista y cómo extraer datos de ella.__  
 
 Una lista es una colección ordenada de diversos objetos (vectores, matrices, data.frames, arreglos, otras listas).  Es la estructura de datos más compleja usada en R, y muchas funciones estadísticas producen resultados en forma de listas, de las cuales se pueden extraer resultados específicos.  Se crean usando la función __list__, y para seleccionar objetos o valores específicos, se utilizan corchetes dobles, __[[...]]__.  
@@ -181,6 +184,9 @@ matriz
 ```
 \
 
+***  
+
+
 __Referencias__  
 
 Kabacoff, R. I. (2015). _R in Action: Data analysis and graphics with R_ (Second Edition). Manning, Shelter Island, NY.
@@ -188,7 +194,7 @@ Kabacoff, R. I. (2015). _R in Action: Data analysis and graphics with R_ (Second
 Lander, J. P. (2017). _R for everyone: Advanced analytics and graphics_ (Second edition). Addison-Wesley, Boston, MA.
 \
 
-[  __Home__](https://dsfernandez.github.io/tallerRbasico/index.html)   
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)   
 \
 
 

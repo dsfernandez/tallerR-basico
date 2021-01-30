@@ -22,6 +22,8 @@ navbar:
         href: modulos/OperacionesR.html
       - text: "Tipos de Datos"
         href: modulos/TiposDatos.html
+      - text: "Estructuras de Datos"
+        href: modulos/Data-Struct.html
 output:
   html_document:
     highlight: textmate
