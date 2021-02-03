@@ -1,0 +1,108 @@
+---
+title: "Manejo de Datos"
+output:
+  html_document:
+    css: !expr here::here("styles/styles.css")
+    toc: true
+    toc_depth:  3
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options("yaml.eval.expr" = TRUE)
+```
+
+# 2.1. Manejo de Datos  
+> RStudio provee una gran diversidad de recursos para el manejo y transformación de los datos  
+
+Los archivos que obtenemos de una base de datos o que generamos en nuestras investigaciones, usualmente contienen más datos de los que necesitamos para una exploración, visualización o análisis estadístico; en estos casos podemos __seleccionar__ aquellos casos y/o variables que deseamos usando procedimientos de RStudio. 
+En muchos casos, los datos requieren __transformaciones__, para cambiar unidades o escala.
+Otras manipulaciones que muchas veces queremos realizar, incluyen: __eliminación de valores__ incorrectos, __cambio de formato o estructura__ de los datos.
+
+## 2.1.1. Manejo de datos usando _dplyr_ y _tidyr_  
+__Al finalizar esta sección podrás realizar diversas manipulaciones de los datos usando los paquetes _dplyr_ y _tidyr_ __  
+
+> Seleccionando columnas y filtrando filas  
+
+Usaremos el archivo de datos de muertes asociadas a COVID-19 en los Estados Unidos, obtenido del CDC (ver módulo anterior, tema 1.8.6), __coviddata.csv__.  Vamos a eliminar columnas que no nos interesan: _Data as of_, _Start Date_ y _Footnote_.  Usaremos las funciones __select__ y __filter__.
+```{r select-filter, message=FALSE, warning=FALSE}
+## activar paquetes a usar
+library(readr)
+library(dplyr)
+## importar los datos a una variable
+# usaremos un lector de datos .csv diferente, en readr
+# crea un tibble, forma especial de data.frame
+# produce una lista de las columnas y su tipo de dato
+covid_19 <- read_csv("data/coviddata.csv")
+str(covid_19)
+# usaremos select para seleccionar las columnas que queremos
+# son más las que queremos: - para eliminar las que no queremos
+covid_select <- select(covid_19, -"Data as of", -"Start Date", -Footnote)
+str(covid_select)
+# usaremos filter para quedarnos con los datos de Puerto Rico
+covid_filter <- filter(covid_select, State == "Puerto Rico")
+str(covid_filter)
+```
+\
+
+> Uso de _'pipes'_  
+
+En el ejemplo anterior vemos que para llegar al objeto final, __covid_filter__, tuvimos que crear un paso intermedio, __covid_select__.  En este caso no es muy importante, pero cuando se hacen múltiples manipulaciones y transformaciones, puede ser engorroso y fuente de errores.  Una alternativa es usar lo que se conocen como _'pipes'_ para conectar los procedimientos y que los datos fluyan como en una tubería (_pipe_).  El conector que se usa es: __%>%__; se puede generar usando: __control + shift + M__ (en MacOS).
+```{r pipes}
+# creamos un nuevo objeto con los datos seleccionados y filtrados
+# el archivo original covid_19 no se modifica
+covid_PR <- covid_19 %>% 
+  select(-"Data as of", -"Start Date", -Footnote) %>% 
+  filter(State == "Puerto Rico")
+str(covid_PR)
+```
+\
+
+> Cambio de nombres de las columnas  
+
+Tenemos nombres de las columnas que son muy largos, y nos pueden crear errores en los análisis.  Vamos a usar otra función de __dplyr__, llamada __rename__.
+```{r rename}
+# producimos un nuevo tibble con los nuevos nombres
+covid_PR_1 <- covid_PR %>% 
+  rename(date = "End Date", state = State, sex = Sex, age = "Age group", c_deaths = "COVID-19 Deaths", t_deaths = "Total Deaths", p_deaths = "Pneumonia Deaths", pc_deaths = "Pneumonia and COVID-19 Deaths", i_deaths = "Influenza Deaths", pic_deaths = "Pneumonia, Influenza, or COVID-19 Deaths")
+str(covid_PR_1)
+```
+\
+
+> Transformación de datos  
+
+Vamos ahora a crear una nueva columna con el porcentaje de muertes por CoviD-19 del total de muertes a la fecha.  Usaremos la función __mutate__.
+```{r mutate}
+# realizamos los cambios sobre el mismo tibble
+covid_PR_1 <- covid_PR_1 %>%
+  mutate(porc_ct = (c_deaths / t_deaths) * 100)
+str(covid_PR_1)
+```
+\
+
+> Rearreglando datos para producir una tabla  
+
+De nuestro _tibble_ podemos extraer algunos de los datos y rearreglarlos en forma de una tabla.  Para esto usaremos una función del paquete __tidyr__: __spread__.  Queremos extraer los datos de muertes por CoviD-19 (__c_deaths__) por sexo (__sex__) y grupo de edad (__age__).  Antes debemos seleccionar las columnas de las cuales nos interesa obtener la información.
+```{r spread}
+# activar tidyr
+library(tidyr)
+# uso de spread luego de select
+covid_sex <- covid_PR_1 %>%
+  select(sex, age, c_deaths) %>% 
+  spread(key = sex, value = c_deaths) %>% 
+  select(-"All Sexes", -Unknown) # usamos select para eliminar columnas que no nos dan información
+covid_sex
+```
+\
+
+> Guardar los resultados de las manipulaciones en un archivo externo  
+
+Una vez realizados los procedimientos anteriores, podemos estar interesado/as en usar el _tibble_ final en un análisis en otro proyecto o en otro programa.  Usando la función __write_csv__ podemos crear un archivo __.csv__.
+```{r write}
+# vamos a guardar en un archivo el tibble covid_sex
+write_csv(covid_sex, file = "data/covid-sex.csv")
+```
+
+
+

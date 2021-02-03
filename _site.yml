@@ -26,6 +26,10 @@ navbar:
         href: modulos/Data-Struct.html
       - text: "Entrada de Datos"
         href: modulos/DataIntro.html
+    - text: "PROCEDIMIENTOS"
+      menu:
+      - text: "Manejo de Datos"
+        href: modulos/manejo-datos.html
 output:
   html_document:
     highlight: textmate
