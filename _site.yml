@@ -30,7 +30,7 @@ navbar:
       menu:
       - text: "Manejo de Datos"
         href: modulos/manejo-datos.html
-      - text: "Creación de Funciones"
+      - text: "Creación y Uso de Funciones"
         href: modulos/funciones.html
 output:
   html_document:

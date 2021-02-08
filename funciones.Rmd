@@ -10,6 +10,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+options("yaml.eval.expr" = TRUE)
 ```
 
 # 2.2. Creación de Funciones  
