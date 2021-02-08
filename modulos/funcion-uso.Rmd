@@ -2,6 +2,7 @@
 title: "Creación de Funciones"
 output:
   html_document:
+    css:  !expr here::here("styles/styles.css")
     toc: true
     toc_depth:  3
     toc_float: true
@@ -9,6 +10,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+options("yaml.eval.expr" = TRUE)
 ```
 
 # 2.2. Creación de Funciones  
