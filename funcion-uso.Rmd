@@ -2,7 +2,7 @@
 title: "Creación de Funciones"
 output:
   html_document:
-    css: "styles/styles.css"
+    css: !expr here::here("styles/styles.css")
     toc: true
     toc_depth:  3
     toc_float: true
