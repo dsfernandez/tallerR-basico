@@ -11,7 +11,7 @@
 
 
 
-<title>Taller R Introductorio</title>
+<title>Creación de Funciones</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -81,6 +84,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
 
 
 
@@ -261,6 +265,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -268,6 +335,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -354,18 +431,128 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Taller R Introductorio</h1>
+<h1 class="title toc-ignore">Creación de Funciones</h1>
 
 </div>
 
 
-<div class="figure">
-<img src="modulos/media/R.jpg" alt="" />
-<p class="caption">www.PrintActivities.com</p>
+<div id="creación-de-funciones" class="section level1">
+<h1>2.2. Creación de Funciones</h1>
+<p>Si tenemos que repetir un código varias veces, es probable que estemos necesitando crear una función. En R hay una forma conveniente de crearla, y es lo que estaremos haciendo en este módulo.</p>
+<div id="construcción-de-una-función" class="section level2">
+<h2>2.2.1. Construcción de una Función</h2>
+<p><strong>Al finalizar esta sección podrás crear tus propias funciones</strong></p>
+<p>La estructura básica de una función es la siguiente:</p>
+<blockquote>
+<p>NOMBRE &lt;- function(arg_1, arg_2, …) {<br />
+CUERPO DE LA FUNCIÓN<br />
+}</p>
+</blockquote>
+<p>Dónde:</p>
+<ul>
+<li>el nombre es cualquiera aceptable en la gramática de R,<br />
+</li>
+<li><strong>function(…)</strong> es el comando R para crear una función,<br />
+</li>
+<li><em>arg</em> son argumentos opcionales para indicar los grupos de datos a los que se aplicará la función (puede indicarse con una <strong>x</strong>),<br />
+</li>
+<li>en el cuerpo de la función se indican las operaciones y funciones del sistema que se aplicarán a los datos y también se indica que ocurrirá con el resultado, usando por ejemplo <strong>return</strong>.</li>
+</ul>
+<div id="función-aplicada-a-uno-o-más-valores-de-entrada" class="section level3">
+<h3>Función aplicada a uno o más valores de entrada</h3>
+<p>Los datos para los argumentos de una función pueden ser individuales o un objeto R. A continuación veremos el caso de entrada de un valor y un vector, como argumento para la función.</p>
+<pre class="r"><code># crear función F_to_C con argumento temperatura en grados Fahrenheit
+# calcula grados Celsius (centígrados)
+F_to_C &lt;- function(temp_F) {
+  temp_C &lt;- (temp_F - 32) * 5 / 9
+  return(temp_C)
+}
+# entrada de grados Fahrenheit
+F_to_C(212)</code></pre>
+<pre><code>## [1] 100</code></pre>
+<pre class="r"><code># entrada de varios datos en vector
+gf &lt;- c(-40, 32, 80, 104, 212)
+gc &lt;- F_to_C(gf)</code></pre>
+<p>Temperatura en ºC: -40, 0, 26.6666667, 40, 100</p>
+</div>
+<div id="entrada-manual-de-datos" class="section level3">
+<h3>Entrada manual de datos</h3>
+<p>Es posible detener el procesamiento de una función, para que pida la entrada de su argumento. La función <strong>readline</strong> permite detener el procesamiento y esperar por la entrada de un dato; la entrada se realiza en la consola, y el procesamiento continúa.</p>
+<pre class="r"><code>F_to_C_manual &lt;- function() {
+  temp_F &lt;- as.numeric(readline(prompt=&quot;Temperatura en F: &quot;))
+  temp_C &lt;- (temp_F - 32) * 5 / 9
+  return(temp_C)
+}</code></pre>
+<p>Si ahora escribimos:</p>
+<p><strong>F_to_C_manual( )</strong></p>
+<p>en la consola, nos aparecerá el siguiente mensaje:</p>
+<p><strong>Temperatura en F: </strong></p>
+<p>Luego de entrar un valor, digamos 212, obtenemos:</p>
+<p><strong>[1] 100</strong></p>
+<p><br />
+</p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+</div>
+</div>
+<div id="aplicación-de-funciones-usando-sapply-y-aggregate" class="section level2">
+<h2>2.2.2. Aplicación de Funciones Usando <em>sapply</em> y <em>aggregate</em></h2>
+<p><strong>Al finalizar esta sección podrás aplicar una función a diversos objetos y agrupar por categorías</strong></p>
+<div id="usando-función-con-sapply-en-un-data.frame-o-matriz" class="section level3">
+<h3>Usando función con <em>sapply</em> en un data.frame o matriz</h3>
+<p>Una función puede requerir más de un argumento para obtener el resultado. Vamos a usar una función que requiere dos argumentos (masa y altura) y aplicarla a un <em>data.frame</em> con los datos individuales. Para aplicar la función al data.frame, utilizaremos la función <strong>sapply</strong>. El ejemplo consistirá en el cálculo del índice masa corporal (<em>BMI</em>).</p>
+<pre class="r"><code># crear la función BMI para el cálculo del índice de masa corporal
+BMI &lt;- function(m,a) {
+  bmi &lt;- m/a^2
+  res &lt;- list(bmi=bmi)
+  return(res)
+}
+# crear un data.frame a partir de dos vectores
+# datos de masa corporal, en kg
+masa &lt;- c(60, 58, 66, 69)
+# datos de altura, en m
+alt &lt;- c(1.65, 1.68, 1.8, 1.60)
+# data.frame
+datos &lt;- data.frame(masa,alt)
+# aplicar función BMI con sapply
+rBMI &lt;- sapply(datos, FUN = BMI, datos$alt)
+# extraer los resultados de BMI y redondear
+rBMI &lt;- round(as.vector(rBMI[[1]]),1)</code></pre>
+<p>BMI de los individuos: 22, 20.5, 20.4, 27<br />
+ </p>
+</div>
+<div id="usando-función-con-aggregate-en-un-data.frame" class="section level3">
+<h3>Usando función con <em>aggregate</em> en un data.frame</h3>
+<p>La función <strong>aggregate</strong> añade otra funcionalidad a la aplicación de una función: se pueden separar los datos en grupos, mediante el parámetro <strong>by</strong>. Vamos a crear una función que calcula algunos estadísticos: tamaño de la muestra, promedio, mediana, y desviación estándar. Los datos son de niveles de Ca plasmático, en ratas macho y hembras, tratadas o no con estrógeno.</p>
+<pre class="r"><code># leemos los datos de un archivo externo .csv
+ca_rata &lt;- read.csv(&quot;modulos/data/calcio-ratas.csv&quot;)
+# creamos la función &#39;stats&#39;
+stats &lt;- function(x){
+  m &lt;- mean(x)
+  md &lt;- median(x)
+  n &lt;- length(x)
+  s &lt;- sd(x)
+  return(c(n=n, Media=m, Mediana=md, DS=s))
+}
+# utilizamos aggregate para aplicar la función, por sexo y tratamiento
+aggdata &lt;- aggregate(ca_rata$caplasma, 
+                     by = list(ca_rata$sexo,ca_rata$hormona),
+                     FUN = stats)
+# agregamos nombres a las columnas
+aggdata &lt;- setNames(aggdata, c(&quot;Sexo&quot;,&quot;Hormona&quot;,&quot;&quot;))
+aggdata</code></pre>
+<pre><code>##     Sexo Hormona         n     Media   Mediana        DS
+## 1 hembra      no  5.000000 14.880000 15.800000  4.136061
+## 2  macho      no  5.000000 12.120000 10.900000  4.247588
+## 3 hembra      si  5.000000 32.520000 32.300000  4.670867
+## 4  macho      si  5.000000 27.780000 27.800000  4.287423</code></pre>
+</div>
+</div>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -398,6 +585,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

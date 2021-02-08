@@ -1581,9 +1581,8 @@ div.tocify {
 <div id="manejo-de-datos-usando-dplyr-y-tidyr" class="section level2">
 <h2>2.1.1. Manejo de datos usando <em>dplyr</em> y <em>tidyr</em></h2>
 <p><strong>Al finalizar esta sección podrás realizar diversas manipulaciones de los datos usando los paquetes <em>dplyr</em> y <em>tidyr</em> </strong></p>
-<blockquote>
-<p><strong>Seleccionando columnas y filtrando filas</strong></p>
-</blockquote>
+<div id="seleccionando-columnas-y-filtrando-filas" class="section level3">
+<h3>Seleccionando columnas y filtrando filas</h3>
 <p>Usaremos el archivo de datos de muertes asociadas a COVID-19 en los Estados Unidos, obtenido del CDC (ver módulo anterior, tema 1.8.6), <strong>coviddata.csv</strong>. Vamos a eliminar columnas que no nos interesan: <em>Data as of</em>, <em>Start Date</em> y <em>Footnote</em>. Usaremos las funciones <strong>select</strong> y <strong>filter</strong>.</p>
 <pre class="r"><code>## activar paquetes a usar
 library(readr)
@@ -1655,9 +1654,9 @@ str(covid_filter)</code></pre>
 ##  $ Pneumonia, Influenza, or COVID-19 Deaths: num [1:49] 4522 2475 0 NA NA ...</code></pre>
 <p><br />
 </p>
-<blockquote>
-<p><strong>Uso de <em>‘pipes’</em> </strong></p>
-</blockquote>
+</div>
+<div id="uso-de-pipes" class="section level3">
+<h3>Uso de <em>‘pipes’</em></h3>
 <p>En el ejemplo anterior vemos que para llegar al objeto final, <strong>covid_filter</strong>, tuvimos que crear un paso intermedio, <strong>covid_select</strong>. En este caso no es muy importante, pero cuando se hacen múltiples manipulaciones y transformaciones, puede ser engorroso y fuente de errores. Una alternativa es usar lo que se conocen como <em>‘pipes’</em> para conectar los procedimientos y que los datos fluyan como en una tubería (<em>pipe</em>). El conector que se usa es: <strong>%&gt;%</strong>; se puede generar usando: <strong>control + shift + M</strong> (en MacOS).</p>
 <pre class="r"><code># creamos un nuevo objeto con los datos seleccionados y filtrados
 # el archivo original covid_19 no se modifica
@@ -1676,11 +1675,11 @@ str(covid_PR)</code></pre>
 ##  $ Pneumonia and COVID-19 Deaths           : num [1:49] 984 583 0 NA 0 0 NA NA NA 43 ...
 ##  $ Influenza Deaths                        : num [1:49] 93 38 0 NA NA 0 0 NA NA NA ...
 ##  $ Pneumonia, Influenza, or COVID-19 Deaths: num [1:49] 4522 2475 0 NA NA ...</code></pre>
-<p><br />
-</p>
-<blockquote>
-<p><strong>Cambio de nombres de las columnas</strong></p>
-</blockquote>
+<p> </p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+</div>
+<div id="cambio-de-nombres-de-las-columnas" class="section level3">
+<h3>Cambio de nombres de las columnas</h3>
 <p>Tenemos nombres de las columnas que son muy largos, y nos pueden crear errores en los análisis. Vamos a usar otra función de <strong>dplyr</strong>, llamada <strong>rename</strong>.</p>
 <pre class="r"><code># producimos un nuevo tibble con los nuevos nombres
 covid_PR_1 &lt;- covid_PR %&gt;% 
@@ -1699,9 +1698,9 @@ str(covid_PR_1)</code></pre>
 ##  $ pic_deaths: num [1:49] 4522 2475 0 NA NA ...</code></pre>
 <p><br />
 </p>
-<blockquote>
-<p><strong>Transformación de datos</strong></p>
-</blockquote>
+</div>
+<div id="transformación-de-datos" class="section level3">
+<h3>Transformación de datos</h3>
 <p>Vamos ahora a crear una nueva columna con el porcentaje de muertes por CoviD-19 del total de muertes a la fecha. Usaremos la función <strong>mutate</strong>.</p>
 <pre class="r"><code># realizamos los cambios sobre el mismo tibble
 covid_PR_1 &lt;- covid_PR_1 %&gt;%
@@ -1721,9 +1720,9 @@ str(covid_PR_1)</code></pre>
 ##  $ porc_ct   : num [1:49] 5.19 5.63 0 NA 0 ...</code></pre>
 <p><br />
 </p>
-<blockquote>
-<p><strong>Rearreglando datos para producir una tabla</strong></p>
-</blockquote>
+</div>
+<div id="rearreglando-datos-para-producir-una-tabla" class="section level3">
+<h3>Rearreglando datos para producir una tabla</h3>
 <p>De nuestro <em>tibble</em> podemos extraer algunos de los datos y rearreglarlos en forma de una tabla. Para esto usaremos una función del paquete <strong>tidyr</strong>: <strong>spread</strong>. Queremos extraer los datos de muertes por CoviD-19 (<strong>c_deaths</strong>) por sexo (<strong>sex</strong>) y grupo de edad (<strong>age</strong>). Antes debemos seleccionar las columnas de las cuales nos interesa obtener la información.</p>
 <pre class="r"><code># activar tidyr
 library(tidyr)
@@ -1754,12 +1753,15 @@ covid_sex</code></pre>
 ## 16 Under 1 year           0     0</code></pre>
 <p><br />
 </p>
-<blockquote>
-<p><strong>Guardar los resultados de las manipulaciones en un archivo externo</strong></p>
-</blockquote>
+</div>
+<div id="guardar-los-resultados-de-las-manipulaciones-en-un-archivo-externo" class="section level3">
+<h3>Guardar los resultados de las manipulaciones en un archivo externo</h3>
 <p>Una vez realizados los procedimientos anteriores, podemos estar interesado/as en usar el <em>tibble</em> final en un análisis en otro proyecto o en otro programa. Usando la función <strong>write_csv</strong> podemos crear un archivo <strong>.csv</strong>.</p>
 <pre class="r"><code># vamos a guardar en un archivo el tibble covid_sex
 write_csv(covid_sex, file = &quot;data/covid-sex.csv&quot;)</code></pre>
+<p> </p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+</div>
 </div>
 </div>
 

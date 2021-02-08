@@ -23,7 +23,7 @@ Otras manipulaciones que muchas veces queremos realizar, incluyen: __eliminació
 ## 2.1.1. Manejo de datos usando _dplyr_ y _tidyr_  
 __Al finalizar esta sección podrás realizar diversas manipulaciones de los datos usando los paquetes _dplyr_ y _tidyr_ __  
 
-> __Seleccionando columnas y filtrando filas__  
+### Seleccionando columnas y filtrando filas  
 
 Usaremos el archivo de datos de muertes asociadas a COVID-19 en los Estados Unidos, obtenido del CDC (ver módulo anterior, tema 1.8.6), __coviddata.csv__.  Vamos a eliminar columnas que no nos interesan: _Data as of_, _Start Date_ y _Footnote_.  Usaremos las funciones __select__ y __filter__.
 ```{r select-filter, message=FALSE, warning=FALSE}
@@ -46,7 +46,7 @@ str(covid_filter)
 ```
 \
 
-> __Uso de _'pipes'_ __    
+### Uso de _'pipes'_    
 
 En el ejemplo anterior vemos que para llegar al objeto final, __covid_filter__, tuvimos que crear un paso intermedio, __covid_select__.  En este caso no es muy importante, pero cuando se hacen múltiples manipulaciones y transformaciones, puede ser engorroso y fuente de errores.  Una alternativa es usar lo que se conocen como _'pipes'_ para conectar los procedimientos y que los datos fluyan como en una tubería (_pipe_).  El conector que se usa es: __%>%__; se puede generar usando: __control + shift + M__ (en MacOS).
 ```{r pipes}
@@ -57,9 +57,11 @@ covid_PR <- covid_19 %>%
   filter(State == "Puerto Rico")
 str(covid_PR)
 ```
-\
+\  
 
-> __Cambio de nombres de las columnas__  
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html) 
+
+### Cambio de nombres de las columnas   
 
 Tenemos nombres de las columnas que son muy largos, y nos pueden crear errores en los análisis.  Vamos a usar otra función de __dplyr__, llamada __rename__.
 ```{r rename}
@@ -70,7 +72,7 @@ str(covid_PR_1)
 ```
 \
 
-> __Transformación de datos__  
+### Transformación de datos    
 
 Vamos ahora a crear una nueva columna con el porcentaje de muertes por CoviD-19 del total de muertes a la fecha.  Usaremos la función __mutate__.
 ```{r mutate}
@@ -81,7 +83,7 @@ str(covid_PR_1)
 ```
 \
 
-> __Rearreglando datos para producir una tabla__  
+### Rearreglando datos para producir una tabla  
 
 De nuestro _tibble_ podemos extraer algunos de los datos y rearreglarlos en forma de una tabla.  Para esto usaremos una función del paquete __tidyr__: __spread__.  Queremos extraer los datos de muertes por CoviD-19 (__c_deaths__) por sexo (__sex__) y grupo de edad (__age__).  Antes debemos seleccionar las columnas de las cuales nos interesa obtener la información.
 ```{r spread}
@@ -96,13 +98,18 @@ covid_sex
 ```
 \
 
-> __Guardar los resultados de las manipulaciones en un archivo externo__  
+### Guardar los resultados de las manipulaciones en un archivo externo    
 
 Una vez realizados los procedimientos anteriores, podemos estar interesado/as en usar el _tibble_ final en un análisis en otro proyecto o en otro programa.  Usando la función __write_csv__ podemos crear un archivo __.csv__.
 ```{r write}
 # vamos a guardar en un archivo el tibble covid_sex
 write_csv(covid_sex, file = "data/covid-sex.csv")
 ```
+
+\  
+
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html) 
+
 
 
 
