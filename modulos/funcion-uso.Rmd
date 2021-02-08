@@ -113,7 +113,7 @@ BMI de los individuos:  `r rBMI`
 La función __aggregate__ añade otra funcionalidad a la aplicación de una función: se pueden separar los datos en grupos, mediante el parámetro __by__.  Vamos a crear una función que calcula algunos estadísticos: tamaño de la muestra, promedio, mediana, y desviación estándar.  Los datos son de niveles de Ca plasmático, en ratas macho y hembras, tratadas o no con estrógeno.  
 ```{r aggregate}
 # leemos los datos de un archivo externo .csv
-ca_rata <- read.csv("modulos/data/calcio-ratas.csv")
+ca_rata <- read.csv("data/calcio-ratas.csv")
 # creamos la función 'stats'
 stats <- function(x){
   m <- mean(x)
