@@ -32,6 +32,8 @@ navbar:
         href: modulos/manejo-datos.html
       - text: "Creación y Uso de Funciones"
         href: modulos/funcion-uso.html
+      - text: "Controles del Flujo"
+        href: modulos/controles.html
 output:
   html_document:
     highlight: textmate
