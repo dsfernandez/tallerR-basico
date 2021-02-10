@@ -39,4 +39,63 @@ for (i in ID)
   }
 }
 
+## tablas
+library(kableExtra)
+covidPR <- read.csv("modulos/data/covid-sex.csv")
+kbl(covidPR, caption = "Table 1. CoviD-19 deaths by sex and age groups") %>%
+  kable_styling("striped", full_width = F) %>%
+  add_header_above(c("", "Sex" = 2))
 
+## estad descrpt
+
+
+# leer los datos de archivo externo
+ca_ratas <- read.csv("modulos/data/calcio-ratas.csv")
+# activar paquete doBy para aplicar función por grupos
+library(doBy)
+descriptivas <- summaryBy(caplasma ~ list(hormona,sexo), 
+                          data = ca_ratas,
+                          FUN = function(x) {
+                            c(media = mean(x), 
+                              var = var(x), 
+                              de = sd(x), 
+                              es = sd(x)/sqrt(length(x)), 
+                              CV = (sd(x)/mean(x))*100) })
+# creación de tabla con kableExtra
+kbl(descriptivas, caption = "Table 2. Niveles de calcio plasmático en ratas hembra y macho tratadas con estrógeno o no", 
+    col.names = c("Hormona", "Sexo", "Media", "Varianza", "Desv. Estándar", "Error Estándar", "CV %"),
+    digits = c(2,2,2,2,2)) %>%
+  kable_classic(full_width = T) %>%
+  add_header_above(c("Tratamientos" = 2, "Estadísticos Ca-plasma, mg/dl" = 5))
+  
+  
+## gt
+library(gt)
+gt(descriptivas) %>%
+  tab_header(
+    title = "Table 2. Niveles de calcio plasmático en ratas hembra y macho tratadas con estrógeno o no",
+    subtitle = "Cálculos mediante función en doBy"
+  ) %>%
+  cols_label(
+    hormona = html("Hormona"),
+    sexo = html("Sexo"),
+    caplasma.media = html("Media"),
+    caplasma.var = html("Varianza"),
+    caplasma.de = html("Desv. Estándar"),
+    caplasma.es = html("Error Estándar"),
+    caplasma.CV = html("Coef. Var. %")
+  ) %>%
+  tab_spanner(
+    label = "Tratamientos",
+    columns = vars(hormona, sexo)
+  ) %>%
+  tab_spanner(
+    label = "Estadísticos",
+    columns = vars(caplasma.media, caplasma.var, caplasma.de, caplasma.es, caplasma.CV)
+  ) %>%
+  fmt_number(
+    columns = vars(caplasma.media, caplasma.var, caplasma.de, caplasma.es, caplasma.CV),
+    decimals = 2
+  )
+  
+  

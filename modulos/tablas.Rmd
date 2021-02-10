@@ -1,0 +1,110 @@
+---
+title: "Tablas de Resultados"
+output:
+  html_document:
+    css: !expr here::here("styles/styles.css")
+    toc: true
+    toc_depth:  3
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options("yaml.eval.expr" = TRUE)
+```
+
+# 2.4. Tablas de Resultados  
+
+En secciones anteriores, los resultados aparecen tabulados en un formato básico, poco apropiados para una publicación final.  En esta sección estaremos utilizando paquetes que permiten la construcción de tablas con más flexibilidad y resultados más elegantes.  
+
+Hay al menos una docena de paquetes especializados para crear tablas; estaremos trabajando con dos de ellos: [kableExtra](https://haozhu233.github.io/kableExtra/) y [gt](https://gt.rstudio.com/). A continuación otros más:
+
+* [formattable](https://renkun-ken.github.io/formattable/)  
+* [DT](https://rstudio.github.io/DT/)  
+* [reactable](https://glin.github.io/reactable/)  
+* [flextable](https://davidgohel.github.io/flextable/)  
+
+
+## 2.4.1. Tablas de Resultados usando __kableExtra__  
+__Al finalizar esta sección podrás construir tablas de resultados en diversos formatos, usando el paquete kableExtra__  
+
+El paquete __kableExtra__ provee diversos formatos de tablas y funciones para modificarlas.  A continuación, tres formatos diferentes con los mismos datos.
+```{r}
+library(kableExtra)
+covidPR <- read.csv("data/covid-sex.csv")
+# formato básico
+kbl(covidPR, caption = "Table 1. CoviD-19 deaths by sex and age groups.  Data up to January 23, 2021")
+# formato kable_classic
+kbl(covidPR, caption = "Table 1. CoviD-19 deaths by sex and age groups.  Data up to January 23, 2021") %>%
+  kable_classic("striped", full_width = F) %>%
+  add_header_above(c("", "Sex" = 2))
+# formato kable_styling
+kbl(covidPR, caption = "Table 1. CoviD-19 deaths by sex and age groups.  Data up to January 23, 2021") %>%
+  kable_styling("striped", full_width = F) %>%
+  add_header_above(c("", "Sex" = 2))
+```
+
+Cuando una tabla requiere más ajustes y modificaciones, __kableExtra__ puede resultar un poco confuso para trabajar.
+
+```{r}
+# leer los datos de archivo externo
+ca_ratas <- read.csv("data/calcio-ratas.csv")
+# activar paquete doBy para aplicar función por grupos
+library(doBy)
+descriptivas <- summaryBy(caplasma ~ list(hormona,sexo), 
+                          data = ca_ratas,
+                          FUN = function(x) {
+                            c(media = mean(x), 
+                              var = var(x), 
+                              de = sd(x), 
+                              es = sd(x)/sqrt(length(x)), 
+                              CV = (sd(x)/mean(x))*100) })
+# resultados sin formato
+descriptivas
+# creación de tabla con kableExtra
+kbl(descriptivas, caption = "Table 2. Niveles de calcio plasmático en ratas hembras y machos tratadas con estrógeno o no. n = 5", 
+    col.names = c("Hormona", "Sexo", "Media", "Varianza", "Desv. Estándar", "Error Estándar", "CV %"),
+    digits = c(2,2,2,2,2)) %>%
+  kable_classic(full_width = T) %>%
+  add_header_above(c("Tratamientos" = 2, "Estadísticos Ca-plasma, mg/dl" = 5))
+```
+
+\
+
+***
+
+## 2.4.2. Tablas de Resultados usando __gt__  
+__Al finalizar esta sección podrás construir tablas de resultados en diversos formatos, usando el paquete gt__    
+
+Este paquete provee las funcionalidades de __kableExtra__, pero se aplican de una manera más organizada.
+```{r}
+library(gt)
+gt(descriptivas) %>%
+  tab_header(
+    title = "Table 2. Niveles de calcio plasmático en ratas hembra y macho tratadas con estrógeno o no",
+    subtitle = "Cálculos mediante función en doBy, n = 5"
+  ) %>%
+  cols_label(
+    hormona = html("Hormona"),
+    sexo = html("Sexo"),
+    caplasma.media = html("Media"),
+    caplasma.var = html("Varianza"),
+    caplasma.de = html("Desv. Estándar"),
+    caplasma.es = html("Error Estándar"),
+    caplasma.CV = html("Coef. Var. %")
+  ) %>%
+  tab_spanner(
+    label = "Tratamientos",
+    columns = vars(hormona, sexo)
+  ) %>%
+  tab_spanner(
+    label = "Estadísticos",
+    columns = vars(caplasma.media, caplasma.var, caplasma.de, caplasma.es, caplasma.CV)
+  ) %>%
+  fmt_number(
+    columns = vars(caplasma.media, caplasma.var, caplasma.de, caplasma.es, caplasma.CV),
+    decimals = 2
+  )
+```
+
+

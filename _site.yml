@@ -34,6 +34,8 @@ navbar:
         href: modulos/funcion-uso.html
       - text: "Controles del Flujo"
         href: modulos/controles.html
+      - text: "Tablas de Resultados"
+        href: modulos/tablas.html
 output:
   html_document:
     highlight: textmate
