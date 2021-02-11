@@ -271,7 +271,7 @@ __Figura 4g__  Cuartiles (primero, mediana y tercero), percentilas +/- DIC y med
 
 > __Histograma con distribución normal__  
 
-```{r histg}
+```{r histg, message=FALSE, warning=FALSE}
 library(tidyverse)
 ## histograma con curva de densidad normal
 # cálculo de media y desviación estándar
