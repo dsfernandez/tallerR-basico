@@ -181,6 +181,10 @@ for (i in ID)
 Entrada
 ```
 
+#### __Referencias__  
+
+R if...else Statement (With Examples), 2017. . DataMentor. URL https://www.datamentor.io/r-programming/if-else-statement/ (accessed 2.8.21).
+
 
 \
 

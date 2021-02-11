@@ -98,4 +98,75 @@ gt(descriptivas) %>%
     decimals = 2
   )
   
-  
+# graficas
+
+# cargar datos al sistema
+covid_aussie <- read.csv("modulos/data/CoviD-19 Australia.csv")
+# cambiar NA por 0 en hospitalizados
+covid_aussie$hospitalizados[is.na(covid_aussie$hospitalizados)] <- 0
+new_date2 <- as.Date(covid_aussie$date, "%d-%b")
+
+
+
+
+# construir gráfica base con primera Y
+plot(new_date2, covid_aussie$contagiados,
+     type = "l", 
+     frame = FALSE, 
+     pch = 12, 
+     col = "red", 
+     xlab = "x", 
+     ylab = "y")
+# Añadir segunda Y
+lines(new_date2, covid_aussie$hospitalizados, 
+      pch = 12, 
+      col = "blue", 
+      type = "l", 
+      lty = 2)
+# Añadir leyenda
+legend("topleft", legend=c("Contagiados", "Hospitalizados"),
+       col=c("red", "blue"), 
+       lty = 1:2, 
+       cex=0.8)
+
+## bar plot
+
+
+
+barCenters <- barplot(height = descriptivas$caplasma.media,
+                      names.arg = c("NO-H/F", "NO-H/M", "SI-H/F", "SI-H/M"),
+                      ylim = c(0, 40),
+                      cex.names = 0.75,
+                      xlab = "Tratamientos",
+                      ylab = "Ca-plasma, mg/dl",
+                      border = "black",
+                      col = "tan",
+                      axes = TRUE)
+segments(barCenters, descriptivas$caplasma.media - descriptivas$caplasma.es, barCenters,
+         descriptivas$caplasma.media + descriptivas$caplasma.es, lwd = 1.5)
+
+
+# boxplot
+
+triglicerido <- read.csv("modulos/data/triglicerido.csv")
+x <- triglicerido$trigliceridos
+boxplot(x,
+        xlab = "Triglicéridos, mg/dl",
+        ylab = "",
+        col = "orange",
+        border = "brown",
+        horizontal = FALSE
+)
+points(mean(x), col="blue")
+
+
+# histograma
+
+hist(x, 
+     xlab="Triglicéridos, mg/dl",
+     ylab = "Frecuencia",
+     border="blue", 
+     col="green",
+     xlim=c(0, 200),
+     las=1, 
+     breaks=8)

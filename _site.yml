@@ -36,6 +36,8 @@ navbar:
         href: modulos/controles.html
       - text: "Tablas de Resultados"
         href: modulos/tablas.html
+      - text: "Gráficas"
+        href: modulos/graficas.html
 output:
   html_document:
     highlight: textmate
