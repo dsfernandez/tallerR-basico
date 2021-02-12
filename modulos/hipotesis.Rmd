@@ -1,0 +1,43 @@
+---
+title: "Pruebas de Hipótesis"
+output:
+  html_document:
+    css: !expr here::here("styles/styles.css")
+    toc: true
+    toc_depth:  3
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options("yaml.eval.expr" = TRUE)
+```
+
+# 2.6. Pruebas de Hipótesis  
+
+Un principio fundamental de la investigación científica y la adquisición de datos por medio de observaciones y experimentos, es que debemos realizar pruebas estadísticas, no para probar si los datos validan nuestra hipótesi, sino para probar la hipótesis nula que invalida la nuestra.  En esta sección utilizarán algunas pruebas de hipótesis de uso común:  
+
+* hipótesis sobre la media de una o dos muestras  
+* hipótesis sobre la independencia de variables categóricas  
+* hipótesis sobre el efecto de factores o tratamientos  
+* hipótesis sobre la relación entre dos variables  
+
+## 2.6.1. Prueba de Hipótesis sobre la Diferencia entre Dos Muestras  
+__Al finalizar esta sección podrás realizar una prueba _t_ e interpretarla__  
+
+
+
+## 2.6.2. Prueba de Hipótesis sobre la Independencia entre Dos Variables Categóricas  
+__Al finalizar esta sección podrás realizar una prueba de chi-cuadrado e interpretarla__  
+
+
+
+## 2.6.3. Prueba de Hipótesis sobre las Diferencias entre Varias Muestras (Análisis de Varianza) 
+__Al finalizar esta sección podrás realizar un análisis de varianza de un factor (_One Way ANOVA_) e interpretarlo__  
+
+
+## 2.6.4. Prueba de Hipótesis sobre la Relación entre dos Variables (Análisis de Regresión)
+__Al finalizar esta sección podrás realizar una análisis de regresión lineal simple e interpretarlo__  
+
+
+

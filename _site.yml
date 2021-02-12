@@ -38,6 +38,8 @@ navbar:
         href: modulos/tablas.html
       - text: "Gráficas"
         href: modulos/graficas.html
+      - text: "Pruebas de Hipótesis"
+        href: modulos/hipotesis.html
 output:
   html_document:
     highlight: textmate
