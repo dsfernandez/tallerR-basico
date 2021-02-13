@@ -170,3 +170,14 @@ hist(x,
      xlim=c(0, 200),
      las=1, 
      breaks=8)
+
+## prueba t
+
+#datos
+drogaA <- c(8.8,8.4,7.9,8.7,9.1,9.6)
+drogaB <- c(9.9,9.0,11.1,9.6,8.7,10.4,9.5)
+
+#prueba
+
+pruebat <- t.test(drogaA,drogaB)
+pruebat
