@@ -84,7 +84,7 @@ h6 {
 }
 </style>
 
-<link rel="stylesheet" href="/Users/dsfernandez/Documents/GitHub/tallerR-basico/styles/styles.css" type="text/css" />
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
 
 
 
@@ -500,10 +500,50 @@ div.tocify {
 <p><img src="modulos/media/documento-rmd-partes.jpg" /></p>
 <p>Un <strong>documento R Markdown</strong> contiene tres elementos principales:</p>
 <blockquote>
-<p>El encabezado <strong>YAML</strong> controla la configuración general del documento R Markdown.<br />
+<p>El encabezado <strong>YAML</strong> o <strong>metadata</strong> controla la configuración general del documento R Markdown.<br />
 Los <strong>“chunks”</strong> de código R (también pueden incluirse otros lenguajes) permiten incluir códigos dentro del documento, que corren de manera independiente y controlable.<br />
 El <strong>área de edición</strong> de texto, imágenes, videos, tablas, enlaces, ecuaciones, et c. </p>
 </blockquote>
+<p><br />
+</p>
+</div>
+<div id="metadata-yaml" class="section level3">
+<h3>Metadata YAML</h3>
+<p>La metadata para R Markdown se puede escribir al principio de un documento, comenzando y terminando con tres guiones <strong>- - -</strong>, respectivamente. Los metadatos YAML suelen constar de pares etiqueta-valor separados por dos puntos (:). Es importante la indentación:</p>
+<p>Las siguientes instrucciones jerarquizadas, no funcionan si se escriben así:</p>
+<div class="line-block">output:<br />
+html_document:<br />
+toc: yes</div>
+<p><br />
+Para que funcionen deben escribirse:</p>
+<div class="line-block">output:<br />
+   html_document:<br />
+     toc: yes</div>
+<p> </p>
+<blockquote>
+<p>Título del documento</p>
+</blockquote>
+<p>Las etiquetas <strong>title:</strong>, <strong>author:</strong> y <strong>date:</strong> sirven para crear un título del documento con un nombre del documento, nombre del autor y la fecha de creación.</p>
+<blockquote>
+<p>Documento final</p>
+</blockquote>
+<p>El documento final a producir puede indicarse con la etiqueta <strong>output:</strong>, y entre toros podemos crear:</p>
+<ul>
+<li>página HTML para la web: <strong>html_document</strong><br />
+</li>
+<li>documento Word: <strong>word_document</strong><br />
+</li>
+<li>documento PDF: <strong>pdf_document</strong></li>
+</ul>
+<blockquote>
+<p>Opciones para los documentos finales</p>
+</blockquote>
+<p>Dentro de cada etiqueta de documento se pueden incluir otras sub-etiquetas que determinan opciones de formato del documento, como:</p>
+<ul>
+<li><strong>css:</strong> para usar un archivo de comandos CSS que sirve para indicar tipo de letra, tamaño, colores, et c., en el documento final HTML,<br />
+</li>
+<li><strong>toc:</strong> para producir una tabla de contenido.</li>
+</ul>
 </div>
 </div>
 </div>

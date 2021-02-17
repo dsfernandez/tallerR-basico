@@ -2,7 +2,7 @@
 title: "Documento R Markdown"
 output:
   html_document:
-    css: !expr here::here("styles/styles.css")
+    css: "styles/styles.css"
     toc: true
     toc_depth:  3
     toc_float: true
@@ -10,7 +10,6 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-options("yaml.eval.expr" = TRUE)
 ```
 
 # 3.1.Documento R Markdown  
@@ -61,9 +60,51 @@ El documento que se abre tiene esta forma, usualmente:
 
 Un __documento R Markdown__ contiene tres elementos principales:  
 
-> El encabezado __YAML__ controla la configuración general del documento R Markdown.  
+> El encabezado __YAML__ o __metadata__ controla la configuración general del documento R Markdown.  
 > Los __"chunks"__ de código R (también pueden incluirse otros lenguajes) permiten incluir códigos dentro del documento, que corren de manera independiente y controlable.  
 > El __área de edición__ de texto, imágenes, videos, tablas, enlaces, ecuaciones, et c.  
+
+\
+
+### Metadata YAML  
+
+La metadata para R Markdown se puede escribir al principio de un documento, comenzando y terminando con tres guiones __- - -__, respectivamente. Los metadatos YAML suelen constar de pares etiqueta-valor separados por dos puntos (:).  Es importante la indentación:  
+
+Las siguientes instrucciones jerarquizadas, no funcionan si se escriben así:  
+
+| output:  
+| html_document:  
+| toc: yes    
+\
+Para que funcionen deben escribirse:  
+
+| output:   
+|    html_document:  
+|      toc: yes  
+\  
+
+> Título del documento  
+
+Las etiquetas __title:__, __author:__ y __date:__ sirven para crear un título del documento con un nombre del documento, nombre del autor y la fecha de creación.  
+
+> Documento final  
+
+El documento final a producir puede indicarse con la etiqueta __output:__, y entre toros podemos crear:  
+
+* página HTML para la web: __html_document__  
+* documento Word: __word_document__  
+* documento PDF: __pdf_document__  
+
+> Opciones para los documentos finales  
+
+Dentro de cada etiqueta de documento se pueden incluir otras sub-etiquetas que determinan opciones de formato del documento, como:  
+
+*  __css:__ para usar un archivo de comandos CSS que sirve para indicar tipo de letra, tamaño, colores, et c., en el documento final HTML,    
+*  __toc:__ para producir una tabla de contenido.  
+
+
+
+
 
 
 
