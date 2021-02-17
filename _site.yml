@@ -40,6 +40,10 @@ navbar:
         href: modulos/graficas.html
       - text: "Pruebas de Hipótesis"
         href: modulos/hipotesis.html
+    - text: "R Markdown"
+      menu:
+      - text: "Documento R Markdown"
+        href: documento-rmd.html
 output:
   html_document:
     highlight: textmate

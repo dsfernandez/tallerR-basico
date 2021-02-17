@@ -11,7 +11,7 @@
 
 
 
-<title>Hola</title>
+<title>Documento R Markdown</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -81,6 +84,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="/Users/dsfernandez/Documents/GitHub/tallerR-basico/styles/styles.css" type="text/css" />
 
 
 
@@ -261,6 +265,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -268,6 +335,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -378,34 +455,63 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Hola</h1>
+<h1 class="title toc-ignore">Documento R Markdown</h1>
 
 </div>
 
 
-<div id="taller-introducción-a-r-rstudio-y-r-markdown" class="section level1">
-<h1>Taller Introducción a R, RStudio y R Markdown</h1>
-<div id="universidad-de-puerto-rico-en-humacao" class="section level4">
-<h4>UNIVERSIDAD DE PUERTO RICO en HUMACAO</h4>
+<div id="documento-r-markdown" class="section level1">
+<h1>3.1.Documento R Markdown</h1>
+<p>Tan importante como realizar el análisis de datos de una investigación, también lo es comunicar los resultados a una audiencia, y recibir reconocimiento y comentarios sobre los mismos. En RStudio tenemos una manera de hacer todo lo anterior, utilizando documentos <strong>R Markdown</strong>.</p>
+<div id="archivo-r-markdown-en-rstudio" class="section level2">
+<h2>3.1.1. Archivo R Markdown en RStudio</h2>
+<p><strong>Al finalizar esta sección podras crear y preparar el formato general de un documento R Markdown</strong></p>
+<div id="preparación-para-documento-r-markdown" class="section level3">
+<h3>Preparación para documento R Markdown</h3>
+<p>Primero, comprueba si tienes instalado el paquete <strong>rmarkdown</strong>; para ello, busca en el menú de <strong>Packages</strong> (<em>User Library</em>). Si no lo tienes, puedes instalarlo de la manera usual, con <strong>Install</strong>, o usando la consola: <strong>install.packages(‘rmarkdown’)</strong>.</p>
+<blockquote>
+<p><strong>Documentos PDF</strong></p>
+</blockquote>
+<p>Para generar documentos PDF es necesario tener instalado <strong>LaTex</strong> en la computadora, o usar <strong>TinyTex</strong> con el paquete <strong>tinytex</strong>.</p>
+<blockquote>
+<p><strong>Documentos Word</strong></p>
+</blockquote>
+<p>Requiere tener una licencia autorizada de Word.</p>
+<p><br />
+</p>
 </div>
-<div id="departamento-de-biología" class="section level4">
-<h4>Departamento de Biología</h4>
-<p><a href="https://sites.google.com/site/hicindicium/home"><strong>Denny S. Fernández del Viso</strong></a></p>
+<div id="abrir-documento-r-markdown" class="section level3">
+<h3>Abrir documento R Markdown</h3>
+<p>Para crear un documento de R Markdown, usa el menú de la esquina superior izquierda, del panel de RStudio:</p>
+<p> </p>
+<p><img src="modulos/media/archivos-rstudio.png" /></p>
+<p><br />
+</p>
+<p>Se abrirá una ventana (si no tienes instalado <strong>rmarkdown</strong> te aparecerá un mensaje):</p>
+<p><br />
+</p>
+<p><img src="modulos/media/rmarkdown-ventana.png" /></p>
+<p><br />
+</p>
+<p>en la que puedes poner un título de lo que vas a trabajar en el documento y pulsar <strong>OK</strong>.</p>
+<p>El documento que se abre tiene esta forma, usualmente:</p>
+<p><br />
+</p>
+<p><img src="modulos/media/documento-rmd-partes.jpg" /></p>
+<p>Un <strong>documento R Markdown</strong> contiene tres elementos principales:</p>
+<blockquote>
+<p>El encabezado <strong>YAML</strong> controla la configuración general del documento R Markdown.<br />
+Los <strong>“chunks”</strong> de código R (también pueden incluirse otros lenguajes) permiten incluir códigos dentro del documento, que corren de manera independiente y controlable.<br />
+El <strong>área de edición</strong> de texto, imágenes, videos, tablas, enlaces, ecuaciones, et c. </p>
+</blockquote>
 </div>
-<div id="descripción-del-taller" class="section level2">
-<h2>Descripción del taller</h2>
-<p>Curso introductorio de estadísticas aplicadas a la biología. El diseño del taller se basa en el modelo UMT (unidad-módulo-tema):</p>
-</div>
-<div id="estructura-del-taller" class="section level2">
-<h2>Estructura del Taller</h2>
-</div>
-<div id="textos-principales" class="section level2">
-<h2>Textos principales:</h2>
 </div>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -438,6 +544,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

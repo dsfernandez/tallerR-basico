@@ -18,3 +18,8 @@ mode(frec)
 # correr script desde File
 source("prepa1.R")
 
+BMI <- function(m,a) {
+  bmi <- m/a^2
+  res <- list(bmi=bmi)
+  return(res)
+}

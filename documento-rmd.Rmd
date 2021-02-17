@@ -1,0 +1,70 @@
+---
+title: "Documento R Markdown"
+output:
+  html_document:
+    css: !expr here::here("styles/styles.css")
+    toc: true
+    toc_depth:  3
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options("yaml.eval.expr" = TRUE)
+```
+
+# 3.1.Documento R Markdown  
+Tan importante como realizar el análisis de datos de una investigación, también lo es comunicar los resultados a una audiencia, y recibir reconocimiento y comentarios sobre los mismos.  En RStudio tenemos una manera de hacer todo lo anterior, utilizando documentos __R Markdown__.  
+
+## 3.1.1. Archivo R Markdown en RStudio  
+__Al finalizar esta sección podras crear y preparar el formato general de un documento R Markdown__  
+
+### Preparación para documento R Markdown  
+
+Primero, comprueba si tienes instalado el paquete __rmarkdown__; para ello, busca en el menú de __Packages__ (_User Library_).  Si no lo tienes, puedes instalarlo de la manera usual, con __Install__, o usando la consola: __install.packages('rmarkdown')__.  
+
+> __Documentos PDF__  
+
+Para generar documentos PDF es necesario tener instalado __LaTex__ en la computadora, o usar __TinyTex__ con el paquete __tinytex__.  
+
+> __Documentos Word__  
+ 
+Requiere tener una licencia autorizada de Word.  
+
+\
+
+### Abrir documento R Markdown  
+
+Para crear un documento de R Markdown, usa el menú de la esquina superior izquierda, del panel de RStudio:  
+
+\ 
+
+![](modulos/media/archivos-rstudio.png)  
+
+\
+
+Se abrirá una ventana (si no tienes instalado __rmarkdown__ te aparecerá un mensaje):  
+
+\
+
+![](modulos/media/rmarkdown-ventana.png)
+
+\
+
+en la que puedes poner un título de lo que vas a trabajar en el documento y pulsar __OK__.
+
+El documento que se abre tiene esta forma, usualmente:  
+
+\
+
+![](modulos/media/documento-rmd-partes.jpg)
+
+Un __documento R Markdown__ contiene tres elementos principales:  
+
+> El encabezado __YAML__ controla la configuración general del documento R Markdown.  
+> Los __"chunks"__ de código R (también pueden incluirse otros lenguajes) permiten incluir códigos dentro del documento, que corren de manera independiente y controlable.  
+> El __área de edición__ de texto, imágenes, videos, tablas, enlaces, ecuaciones, et c.  
+
+
+
+
