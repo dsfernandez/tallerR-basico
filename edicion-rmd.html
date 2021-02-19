@@ -11,7 +11,7 @@
 
 
 
-<title>Hola</title>
+<title>Edición en R Markdown</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -81,6 +84,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
 
 
 
@@ -261,6 +265,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -268,6 +335,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -381,34 +458,141 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Hola</h1>
+<h1 class="title toc-ignore">Edición en R Markdown</h1>
 
 </div>
 
 
-<div id="taller-introducción-a-r-rstudio-y-r-markdown" class="section level1">
-<h1>Taller Introducción a R, RStudio y R Markdown</h1>
-<div id="universidad-de-puerto-rico-en-humacao" class="section level4">
-<h4>UNIVERSIDAD DE PUERTO RICO en HUMACAO</h4>
+<div id="edición-de-documento-r-markdown" class="section level1">
+<h1>3.2. Edición de Documento R Markdown</h1>
+<p>El documento que escribimos en RStudio eventualmente será procesado para producir un documento en formato final (HTML. Word, PDF) utilizando el programa <strong>pandoc</strong>, incluido en la instalación de RStudio. Pandoc transforma diferentes códigos e instrucciones de formato, que escribimos en el documento original R Markdown, por lo tanto debemos conocer algunas de esas instrucciones para obtener el documento que queremos.</p>
+<div id="control-y-edición-del-texto-del-documento" class="section level2">
+<h2>3.2.1. Control y edición del texto del documento</h2>
+<p><strong>Al finalizar esta sección podrás incluir y editar texto y ecuaciones para tu publicación final</strong></p>
+<p>Al escribir texto, debes dar dos espacios al final de un párrafo, para separarlo del siguiente.</p>
+<blockquote>
+<p>Títulos</p>
+</blockquote>
+<p>Para títulos de párrafos y secciones podemos controlar el tamaño del texto usando <strong>#</strong>; uno produce el máximo tamaño, dos un poco más pequeño, y así sucesivamente hasta seis:</p>
+<pre><code># Título
+## Subtítulo
+### Sección
+#### Subsección  </code></pre>
 </div>
-<div id="departamento-de-biología" class="section level4">
-<h4>Departamento de Biología</h4>
-<p><a href="https://sites.google.com/site/hicindicium/home"><strong>Denny S. Fernández del Viso</strong></a></p>
 </div>
-<div id="descripción-del-taller" class="section level2">
-<h2>Descripción del taller</h2>
-<p>Curso introductorio de estadísticas aplicadas a la biología. El diseño del taller se basa en el modelo UMT (unidad-módulo-tema):</p>
+<div id="título" class="section level1">
+<h1>Título</h1>
+<div id="subtítulo" class="section level2">
+<h2>Subtítulo</h2>
+<div id="sección" class="section level3">
+<h3>Sección</h3>
+<div id="subsección" class="section level4">
+<h4>Subsección</h4>
+<blockquote>
+<p>Resaltado (<em>bold</em>) e itálica</p>
+</blockquote>
+<p>Para resaltar se puede usar <code>__resaltado__</code> o <code>**resaltado**</code>:</p>
+<p><strong>resaltado</strong><br />
+<strong>resaltado</strong></p>
+<p>Para itálica se puede usar <code>_itálica_</code> o <code>*itálica*</code>:</p>
+<p><em>itálica</em><br />
+<em>itálica</em></p>
+<blockquote>
+<p>Ecuaciones</p>
+</blockquote>
+<p>R Markdown acepta el lenguaje <a href="https://www.rpi.edu/dept/arc/docs/latex/latex-intro.pdf">LaTex</a> para escribir terminología matemática y ecuaciones. Estas pueden aparecer aisladas y centradas, usando <strong>$$</strong>:</p>
+<p><code>$$\frac{dN}{dt} = r_{max}N(1 - \frac{N}{K})$$</code></p>
+<p><span class="math display">\[\frac{dN}{dt} = r_{max}N(1 - \frac{N}{K})\]</span></p>
+<p><code>$$\hat Y = \alpha + \beta*X + \gamma*X^2$$</code></p>
+<p><span class="math display">\[\hat Y = \alpha + \beta*X + \gamma*X^2\]</span></p>
+<p>También pueden introducirse en el texto, usando un <strong>$</strong>:</p>
+<p><code>El nivel de significancia es $\alfa = 0.05$, para esta prueba.</code></p>
+<p>El nivel de significancia es <span class="math inline">\(\alpha = 0.05\)</span>, para esta prueba.</p>
+<blockquote>
+<p>Listas indentadas (<em>bullets</em>)</p>
+</blockquote>
+<p>Para crear una lista indentada (<em>bulleted list</em>) de tres niveles usamos <strong>* </strong>, <strong>+ </strong> y <strong>– </strong>, con la tecla de <em>tab</em> para indentar; al final de cada línea debemos dar dos espacios:</p>
+<pre><code>* lista no numerada  
+[tab]  + sub-item 1
+[tab]  + sub-item 2
+[tab][tab] - sub-sub-item   </code></pre>
+<ul>
+<li>lista no numerada
+<ul>
+<li>sub-item 1<br />
+</li>
+<li>sub-item 2
+<ul>
+<li>sub-sub-item</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>En el caso de una lista numerada:</p>
+<pre><code>1. lista numerada  
+[tab]  i) sub-item 1
+[tab]  ii) sub-item 2
+[tab][tab] A. sub-sub-item  </code></pre>
+<ol style="list-style-type: decimal">
+<li>lista numerada<br />
+</li>
+</ol>
+<ol style="list-style-type: lower-roman">
+<li>sub-item 1<br />
+</li>
+<li>sub-item 2<br />
+A. sub-sub-item</li>
+</ol>
 </div>
-<div id="estructura-del-taller" class="section level2">
-<h2>Estructura del Taller</h2>
 </div>
-<div id="textos-principales" class="section level2">
-<h2>Textos principales:</h2>
+</div>
+<div id="inserción-y-edición-de-enlaces-e-imágenes-en-el-documento" class="section level2">
+<h2>3.2.2. Inserción y edición de enlaces e imágenes en el documento</h2>
+<p><strong>Al finalizar esta sección podrás incluir y editar enlaces e imágenes para tu publicación final</strong></p>
+<div id="enlaces-a-páginas-de-la-web" class="section level3">
+<h3>Enlaces a páginas de la <em>web</em></h3>
+<p>Dentro del documento R Markdown podemos incluir una línea de comando que creará un enlace a un sitio de la <em>web</em>, con el nombre que desees o el enlace exacto.</p>
+<blockquote>
+<p>Enlace original</p>
+</blockquote>
+<p><code>&lt;https://rstudio.com/&gt;</code></p>
+<p><a href="https://rstudio.com/" class="uri">https://rstudio.com/</a></p>
+<blockquote>
+<p>Enlace con nombre</p>
+</blockquote>
+<p><code>[RStudio](https://rstudio.com/)</code></p>
+<p><a href="https://rstudio.com/">RStudio</a><br />
+<br />
+</p>
+</div>
+<div id="inserción-de-imágenes" class="section level3">
+<h3>Inserción de imágenes</h3>
+<p>Para insertar una imágen, que se encuentra en el directorio de trabajo, usamos el siguiente código:</p>
+<p><code>![Micro-Animal](modulos/media/micro-animal.jpg)</code></p>
+<div class="figure">
+<img src="modulos/media/micro-animal.jpg" alt="" />
+<p class="caption">Micro-Animal</p>
+</div>
+<p>El nombre de la imagen se puede eliminar, pero deben quedar los corchetes: <strong>[] </strong>.<br />
+</p>
+<blockquote>
+<p>El tamaño de la imagen se puede editar:</p>
+</blockquote>
+<p><code>![](modulos/media/micro-animal.jpg){width=50px}</code></p>
+<p><img src="modulos/media/micro-animal.jpg" width="50" /></p>
+<p>También se puede usar:</p>
+<p><code>![Micro-Animal](modulos/media/micro-animal.jpg){width=50%}</code></p>
+<div class="figure">
+<img src="modulos/media/micro-animal.jpg" style="width:50.0%" alt="" />
+<p class="caption">Micro-Animal</p>
+</div>
+</div>
 </div>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -441,6 +625,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
