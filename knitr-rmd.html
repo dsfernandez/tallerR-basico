@@ -11,7 +11,7 @@
 
 
 
-<title>Taller R Introductorio</title>
+<title>Producción de Documento</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -81,6 +84,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
 
 
 
@@ -261,6 +265,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -268,6 +335,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -387,18 +464,58 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Taller R Introductorio</h1>
+<h1 class="title toc-ignore">Producción de Documento</h1>
 
 </div>
 
 
+<div id="producción-de-documento-en-formato-de-publicación" class="section level1">
+<h1>3.4. Producción de Documento en Formato de Publicación</h1>
+<p>Puedes usar un solo archivo R Markdown tanto para guardar y ejecutar código, como para generar informes de alta calidad que se puedan compartir con tu audiencia. Los documentos de R Markdown son completamente reproducibles y admiten docenas de formatos de salida estáticos y dinámicos.</p>
+<p>El proceso detrás de la transformación del archivo .Rmd a documentos finales de diversos formatos y estilos, es uno complejo, por los pasos y paquetes y programas que requiere (<strong>rmarkdown</strong>, <strong>knitr</strong>, <strong>Pandoc</strong>), pero RStudio, y R Markdown simplifican ese proceso, en lo que alguien ha descrito como “arte de magia”:<br />
+<br />
+</p>
 <div class="figure">
-<img src="modulos/media/R.jpg" alt="" />
-<p class="caption">www.PrintActivities.com</p>
+<img src="modulos/media/rmarkdown_wizards.png" alt="" />
+<p class="caption">dibujo por Allison Horst</p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="uso-de-r-markdown-para-producir-documentos" class="section level1">
+<h1>3.4.1. Uso de R Markdown para Producir Documentos</h1>
+<p><strong>Al finalizar esta sección podrás producir documentos finales en al menos tres formatos</strong></p>
+<div id="usando-el-menú-knit" class="section level3">
+<h3>Usando el menú <strong>Knit</strong></h3>
+<p>El paso de un documento R Markdown (.Rmd) a un documento en formato HTML, Word o PDF se realiza de manera directa en RStudio usando el menú <strong>Knit</strong>:<br />
+<br />
+</p>
+<p><img src="modulos/media/knit-menu.png" /></p>
+<p><br />
+</p>
+</div>
+<div id="usando-la-consola" class="section level3">
+<h3>Usando la consola</h3>
+<p>El procedimiento se puede realizar en la consola usando el siguiente comando y formato:</p>
+<blockquote>
+<p><strong>rmarkdown::render(‘archivo.Rmd’, ‘FORMATO_document’)</strong></p>
+</blockquote>
+<p>donde <em>FORMATO</em> puede ser <strong>html</strong>, <strong>word</strong>, o <strong>pdf</strong>.</p>
+<p> </p>
+</div>
+<div id="ajustes-y-controles-del-documento-de-salida" class="section level3">
+<h3>Ajustes y controles del documento de salida</h3>
+<p>El siguiente menú provee diversas formas de modificar el documento de salida y la manera de visualizar el mismo:<br />
+<br />
+</p>
+<p><img src="modulos/media/output-menu.png" /></p>
+</div>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -431,6 +548,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
