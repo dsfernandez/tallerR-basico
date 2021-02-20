@@ -13,12 +13,157 @@ knitr::opts_chunk$set(echo = TRUE)
 [ __Denny S. Fernández del Viso__](https://sites.google.com/site/hicindicium/home)
 
 
-## Descripción del taller
-Curso introductorio de estadísticas aplicadas a la biología.  El diseño del taller se basa en el modelo UMT (unidad-módulo-tema):  
+## Contenido del taller
+Taller introductorio a R Studio y R Markdown.  El diseño del taller se basa en el modelo UMT (unidad-módulo-tema): 
 
-## Estructura del Taller
+### Ambiente de Trabajo - Datos  
+#### R y RStudio  
+_Describir las características de R y al menos dos de sus ventajas._  
+_Descargar e instalar las últimas versiones de R y Rstudio._  
+_Obtener una cuenta y trabajar en RStudio Cloud._  
 
+* R
+* RStudio
+* Instalaciones
+* RStudio Cloud  
 
-## Textos principales:  
+#### Componentes de RStudio    
+_Reconocer y activar las cuatro ventanas principales de RStudio._  
+_Escribir y correr comandos y funciones en la consola de R._  
+
+* Ventanas  
+* Consola R  
+
+#### Configuración de RStudio    
+_Crear y editar un directorio de trabajo._  
+_Crear y organizar proyectos._  
+_Localizar, descargar, instalar y activar paquetes R._  
+
+* Directorio  
+* Proyecto  
+* Paquetes  
+
+#### Archivos de códigos R  
+_Crear, escribir, editar y correr un archivo en código R._  
+_Conocer al menos otros dos tipos de archivos en R Studio._  
+
+* Archivo R Script
+* Gramática R
+* Correr códigos
+* Otros tipos de archivos
+
+#### Operaciones básicas con R  
+_Usar R para realizar operaciones matemáticas y asignar los resultados a un objeto (variable)._  
+
+* Operadores aritméticos y otros
+* Funciones matemáticas y estadísticas
+* Asignar resultados de operaciones o funciones a variables  
+
+#### Tipos de datos  
+_Reconocer la diversidad de tipos de datos que se usan en R._  
+
+* Numéricos
+* Texto
+* Lógicos  
+
+#### Estructuras de datos  
+_Crear vectores y manipular los datos contenidos en ellos._  
+_Construir matrices a partir de vectores._  
+_Producir y manipular ’data frames’._  
+_Conocer la estructura de una lista y cómo extraer datos de ella._  
+
+* Vectores
+* Matrices
+* ‘Data frame’
+* Listas  
+
+#### Entrada de datos  
+_Entrar y editar datos usando un editor del sistema._  
+_Importar datos de documentos en formato .csv y similares._  
+_Importar datos de hojas de cálculo, como Excel._  
+_Cargar al sistema datos que se encuentran encapsulados en paquetes._  
+
+* Manual
+* Datos en paquetes
+* Archivos del sistema
+* Archivos de texto delimitado
+* Hojas de cálculo
+* Importar datos de la web  
+
+### Procedimientos  
+#### Manejo básico de datos  
+_Organizar y transformar datos utilizando procedimientos de R básico y de paquetes como ‘dplyr’._  
+
+* Uso de dplyr y ‘pipes’  
+
+#### Creación de funciones en R  
+_Crear funciones y aplicarlas a grupos de datos._  
+
+* Construcción de una función
+* Uso de sapply y aggregate con una función  
+
+#### Controles for if-else  
+_Utilizar controles para la aplicación de funciones._  
+
+* Expresiones con if...else
+* Expresiones con bucles for y while  
+
+#### Tablas  
+_Crear tablas de resultados de calidad para publicaciones._  
+
+* Paquete kableExtra
+* Paquete gt  
+
+#### Gráficas  
+_Construir y modificar gráficas utilizando R básico y el paquete ggplot2._  
+
+* Gráficas básicas (barras, histograma)  
+* Gráficas con ggplot2 (barras, histograma)  
+
+#### Pruebas de hipótesis   
+_Realizar al menos dos tipos de pruebas de hipótesis, con variables categóricas y continuas, y mostrar resultados en tablas._  
+_Cálcular los estadísticos de modelos de análisis de varianza y regresión lineal simple._  
+_Construir gráficas para los modelos anteriores._  
+
+* Prueba t para la media de dos muestras
+* Prueba de asociación chi-cuadrado
+* Cálculos de los estadísticos de modelos de análisis de varianza y regresión lineal simple.
+* Comparación de múltiples tratamientos con ANOVA (gráfica Box&Whisker)  
+* Relación entre variable respuesta y variable predictora (gráfica de puntos y línea de regresión)  
+
+### R Markdown  
+#### El documento R Markdown  
+_Crear documento R Markdown._  
+_Editar la sección YAML._  
+
+* Archivo R Markdown en RStudio  
+
+#### Edición en R Markdown  
+_Editar texto, enlaces e imágenes en R Markdown_  
+
+* Introducir texto y editarlo
+* Introducir enlaces e imágenes  
+
+#### Códigos R en R Markdown  
+_Introducir y correr códigos R en un documento R Markdown._  
+
+* Creación de chunk
+* Formato del chunk
+* Opciones para correr chunks
+
+#### Uso de Knit
+_Producir documentos HTML, Word y PDF a partir de R Markdown._  
+
+* Uso de Knit para producir documentos en diferentes formatos
+
+\
+
+## Libros de Referencia  
+
+Kabacoff, R.I., 2015. R in Action: data analysis and graphics with R, Second Edition. ed. Manning, Shelter Island, NY.  
+
+Lander, J.P., 2017. R for everyone: advanced analytics and graphics, Second edition. ed, The Addison Wesley data and anlytics series. Addison-Wesley, Boston.  
+
+Wickham, H., Grolemund, G., 2016. R for data science: import, tidy, transform, visualize, and model data, First edition. ed. O’Reilly, Sebastopol, CA.  
 
 
