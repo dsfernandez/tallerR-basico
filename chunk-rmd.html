@@ -11,7 +11,7 @@
 
 
 
-<title>Taller R Introductorio</title>
+<title>Códigos R en R Markdown</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -81,6 +84,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
 
 
 
@@ -261,6 +265,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -268,6 +335,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -384,18 +461,69 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Taller R Introductorio</h1>
+<h1 class="title toc-ignore">Códigos R en R Markdown</h1>
 
 </div>
 
 
-<div class="figure">
-<img src="modulos/media/R.jpg" alt="" />
-<p class="caption">www.PrintActivities.com</p>
+<div id="códigos-r-en-documento-r-markdown" class="section level1">
+<h1>3.3. Códigos R en Documento R Markdown</h1>
+<p>Con el paquete <strong>rmarkdown</strong> puedes crear documentos de análisis dinámicos que combinan código, comandos interpretables (como figuras) y texto redactado. Cuando se interpreta un archivo .Rmd, R Markdown ejecutará cada fragmento de código y colocará los resultados debajo del fragmento de código en su informe final.</p>
+<p>Los fragmentos de códigos que se incluyen en el documento base .Rmd, deben incluirse en secciones especiales del documento, que se denominan <strong><em>chunks</em> </strong>. En este taller solo tratamos los <em>chunks</em> de R, pero pueden incluirse otros lenguajes como Python.</p>
+<div id="creación-de-un-chunk-de-código-r" class="section level2">
+<h2>3.3.1. Creación de un <em>chunk</em> de código R</h2>
+<p><strong>Al finalizar esta sección podrás crear tus propias secciones de código R (<em>chunks</em>), en un documento R Markdown</strong></p>
+<p>Puedes insertar un fragmento de código R usando la barra de herramientas RStudio (el botón <strong>Insert</strong>) o el atajo de teclado <em>Ctrl + Alt + I</em> (<em>Cmd + Opción + I</em> en macOS).<br />
+<br />
+</p>
+<p><img src="modulos/media/insert-chunkR.png" /><br />
+  ### Partes de un <em>chunk</em></p>
+<p>Un <em>chunk</em> está delimitado por tres acentos graves (<strong>``` </strong>), al inicio y final del mismo.<br />
+<br />
+</p>
+<p><img src="modulos/media/chunk.png" /><br />
+ </p>
+<p>Además de los indicadores de inicio y fin, el <em>chunk</em> posee otros componentes:</p>
+<ul>
+<li>un área de <strong>opciones de control</strong> mediante comandos, que van dentro de <strong>{r “aquí van opciones de control”}</strong>.<br />
+</li>
+<li>tres <strong>íconos para control manual</strong> del <em>chunk</em>: indicar opciones de los productos del <em>chunk</em>; correr <em>chunks</em> anteriores; correr el <em>chunk</em>.<br />
+</li>
+<li>área del <strong>código R</strong>. que se puede correr por línea o secciones con el menú <strong>Run</strong> en la barra de herramientas del documento.</li>
+</ul>
+<p>El código R que se escriba o copie al área de código del <em>chunk</em> sigue las mismas reglas y formato del código escrito en un archivo de código regular (R Script).</p>
+<p><br />
+</p>
+</div>
+<div id="correr-y-controlar-la-salida-de-un-chunk." class="section level2">
+<h2>3.3.2. Correr y Controlar la Salida de un <em>chunk</em>.</h2>
+<p><strong>Al finalizar esta sección podrás correr de diferentes maneras y controlar la salida de un <em>chunk</em> de R</strong></p>
+<div id="correr-el-código-total-o-parcialmente" class="section level3">
+<h3>Correr el código total o parcialmente</h3>
+<p>Para correr todo el código contenido en el <em>chunk</em> puedes usar la cabeza de flecha verde (parte superior derecha del <em>chunk</em>). Para correr solo una parte del código, puedes marcar el código a correr y usar el menú <strong>Run</strong>, en la barra de herramientas del documento R Markdown. Este menú también tiene otras opciones para correr el código.<br />
+<br />
+</p>
+<p><img src="modulos/media/run-chunk.png" /></p>
+<p><br />
+</p>
+</div>
+<div id="controles-de-salidas-o-producción-del-chunk" class="section level3">
+<h3>Controles de salidas o producción del <em>chunk</em></h3>
+<p>El comportamiento y producción de resultados y mensajes del <em>chunk</em> puede controlarse mediante opciones escritas en la zona entre llaves (<strong>{r “opciones”}</strong>) o usando el menú del ícono de engranaje del <em>chunk</em>:<br />
+<br />
+</p>
+<p><img src="modulos/media/control-chunk.png" /></p>
+<p><br />
+</p>
+<p>Aquí se puede controlar si aparecen mensajes o avisos de los paquetes, si se quiere que el código aparezca en la salida o sólo el resultado.</p>
+</div>
+</div>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -428,6 +556,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

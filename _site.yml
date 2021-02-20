@@ -46,6 +46,8 @@ navbar:
         href: documento-rmd.html
       - text: "Edición en R Markdown"
         href: edicion-rmd.html
+      - text: "Códigos R en R Markdown"
+        href: chunk-rmd.html
 output:
   html_document:
     highlight: textmate
