@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Creación de Archivos y Edición de Código R</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Taller R Introductorio</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="home.html">
+    <span class="fa fa-home"></span>
+     
+    Hola
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    AMBIENTE DE TRABAJO y DATOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="unidad1.html">Unidad I</a>
+    </li>
+    <li>
+      <a href="R-RStudio.html">R y RStudio</a>
+    </li>
+    <li>
+      <a href="CompRStudio.html">Componentes de RStudio</a>
+    </li>
+    <li>
+      <a href="ConfigRStudio.html">Configuración de RStudio</a>
+    </li>
+    <li>
+      <a href="CodigoR.html">Archivos de códigos R</a>
+    </li>
+    <li>
+      <a href="OperacionesR.html">Operaciones básicas con R</a>
+    </li>
+    <li>
+      <a href="TiposDatos.html">Tipos de Datos</a>
+    </li>
+    <li>
+      <a href="Data-Struct.html">Estructuras de Datos</a>
+    </li>
+    <li>
+      <a href="DataIntro.html">Entrada de Datos</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    PROCEDIMIENTOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="manejo-datos.html">Manejo de Datos</a>
+    </li>
+    <li>
+      <a href="funcion-uso.html">Creación y Uso de Funciones</a>
+    </li>
+    <li>
+      <a href="controles.html">Controles del Flujo</a>
+    </li>
+    <li>
+      <a href="tablas.html">Tablas de Resultados</a>
+    </li>
+    <li>
+      <a href="graficas.html">Gráficas</a>
+    </li>
+    <li>
+      <a href="hipotesis.html">Pruebas de Hipótesis</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    R Markdown
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="documento-rmd.html">Documento R Markdown</a>
+    </li>
+    <li>
+      <a href="edicion-rmd.html">Edición en R Markdown</a>
+    </li>
+    <li>
+      <a href="chunk-rmd.html">Códigos R en R Markdown</a>
+    </li>
+    <li>
+      <a href="knitr-rmd.html">Producción de Documento</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Creación de Archivos y Edición de Código R</h1>
+
+</div>
+
+
+<div id="creación-de-archivos-y-edición-de-código-r" class="section level1">
+<h1>1.4. Creación de Archivos y Edición de Código R</h1>
+<blockquote>
+<p>En RStudio se pueden crear archivos de diversos formatos.</p>
+</blockquote>
+<div id="archivo-de-edición-de-código-r-.r" class="section level2">
+<h2>1.4.1. Archivo de edición de código R (.R)</h2>
+<p><strong>Al final de esta sección podrás crear un archivo y escribir en él algún código R, que podrás correr ( <em>Run</em>) y obtener resultados.</strong></p>
+<div id="r-script-el-archivo-de-edición-de-códigos-r" class="section level3">
+<h3>R Script: el archivo de edición de códigos R</h3>
+<blockquote>
+<p>La forma más común de escribir, editar, guardar y correr códigos de R.</p>
+</blockquote>
+<p>Ingresar y ejecutar tu código en la línea de comando R en la consola, es efectivo y simple. Sin embargo, esta técnica tiene sus limitaciones; cada vez que desees ejecutar un conjunto de comandos, debes volver a ingresarlos en la línea de comandos. Los comandos complejos están potencialmente sujetos a errores tipográficos, lo que requiere que se vuelvan a ingresar correctamente. Repetir un conjunto de operaciones requiere volver a ingresar el flujo de código. Afortunadamente, R y RStudio proporcionan un método para mitigar estos problemas, y los <em>scripts</em> de R son la solución.</p>
+<p>Un <em>script</em> es simplemente un archivo de texto que contiene un conjunto de comandos y comentarios. El <em>script</em> se puede guardar y usar más tarde para volver a ejecutar los comandos guardados. El <em>script</em> también se puede editar para que puedas ejecutar una versión modificada de los comandos.</p>
+<div id="crear-un-script-r" class="section level4">
+<h4>Crear un <em>script</em> R</h4>
+<p>Puedes abrir un archivo de comandos vacío, o <em>script file</em>, haciendo clic en <strong>File</strong>, en el menú principal, y seleccionando <strong>New File</strong>, y <strong>R Script</strong>; alternativamente, puedes abrir el menú de archivos, haciendo clic en la cruz blanca <img src="media/white-cross-green-circle.jpg" style="width:4.0%" /> al extremo izquierdo, arriba, en el panel de RStudio.</p>
+<p>Una vez creado el espacio para códigos, es recomendable guardarlo como archivo <strong>.R</strong> en el lugar adecuado del directorio, asignándole un nombre corto que indique de que se trata el procedimiento a trabajar; para esto debes hacer clic en la figura del diskette azul, o usar el menú <strong>File</strong>, <strong>Save</strong>.</p>
+<p><br />
+</p>
+<iframe width="720" height="600" frameborder="0" scrolling="no" src="https://screencast-o-matic.com/player/crVT2F9dLa?ff=1&amp;controls=1" allowfullscreen="true">
+</iframe>
+<p><br />
+</p>
+<p><strong>Referencias</strong><br />
+R scripts. (n.d.). Retrieved July 29, 2020, from <a href="http://mercury.webster.edu/aleshunas/R_learning_infrastructure/R%20scripts.html" class="uri">http://mercury.webster.edu/aleshunas/R_learning_infrastructure/R%20scripts.html</a></p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
+</div>
+</div>
+</div>
+<div id="gramática-del-lenguaje-r" class="section level2">
+<h2>1.4.2. Gramática del lenguaje R</h2>
+<p><strong>Al terminar esta sección conocerás algunas de las reglas para escribir códigos en R</strong></p>
+<p>Escribir códigos en un lenguaje de programación como R, requiere seguir ciertas reglas ‘gramaticales’, como en cualquier otro lenguaje, para poder lograr una comunicación efectiva, con consistencia y buen entendimiento entre las partes. En el caso de un lenguaje de programación, aunque generalmente el número de ‘palabras’ es menor, pero por ser la comunicación mediada por una máquina, esta no posee, hasta ahora, la flexibilidad de los seres humanos que permite entender palabras mal escrita o incompletas, o variaciones en el orden de las mismas.</p>
+<p>Aunque muchos de los códigos que estarán utilizando en los cursos y proyectos podrán copiarlos, es recomendable que escriban algunas líneas de código cortas por su cuenta, para familiarizarce y ejercitarse en la escritura de códigos, ya que siempre deberán realizar edición de los códigos, para adaptarlos a sus datos y procedimientos.</p>
+<div id="algunas-normas-de-estilo-en-la-escritura-de-códigos-r" class="section level4">
+<h4>Algunas normas de estilo en la escritura de códigos R</h4>
+<p>Vamos a empezar con algunas definiciones de términos. En R, un <strong>objeto</strong> es cualquier cosa que se puede asignar a una <strong>variable</strong>. Esto incluye constantes, estructuras de datos, gráficas, funciones. Todo objeto tiene un <em>mode</em>, que describe cómo se guarda el objeto, y una <em>class</em>, que indica cómo lo van a manejar las <strong>funciones</strong>.</p>
+<p>Las <strong>funciones</strong> contienen <strong>argumentos</strong>, que debemos definir para obtener los resultados esperados, aunque usualmente traen argumentos por defecto ( <em>default</em>).</p>
+<p><strong>El símbolo #</strong> se utiliza para iniciar la escritura de texto, que no funcionará como código en el momento de ser procesado. Es muy importante esta escritura, para documentar los códigos que se utilizan:</p>
+<pre class="r"><code># este es un ejemplo de su uso
+mean(c(3,5,7,4)) # la función mean calcula la media de un conjunto de números</code></pre>
+<p><strong>Nombre de variables:</strong> el nombre de las variables a las que se asignan valores, resultados de funciones, gráficas, et c., no es recomendable que sean de las funciones del sistema (mean, list, c, sd, et c.). Hay una lista de nombres reservados que no se pueden usar; para verlas puedes escribir <strong>?reserved</strong> en la consola.</p>
+<p>Usar nombres con minúsculas ayuda a evitar errores al escribirlos varias veces. Es recomendable usar abreviaturas que ayuden a recordar su significado, y si hay una serie de objetos similares o con nombres compuestos, utilizar la línea de subrayar ( <em>underscore</em>):</p>
+<pre class="r"><code># uso indebido de nombre:
+mean &lt;- mean(c(3,5,7,4))
+# nombre adecuado:
+media &lt;- mean(c(3,5,7,4))
+# nombre abreviado
+rect &lt;- ancho * largo
+# mejor
+area_rectang &lt;- ancho * largo
+# si tenemos varios cálculos repetidos
+area_rectang_1 &lt;- ancho_1 * largo_1
+area_rectang_2 &lt;- ancho_2 * largo_2</code></pre>
+<p><strong>Argumentos de funciones:</strong> es recomendable dejar espacios entre los operadores (+, *, /, -, =), dentro de los argumentos de las funciones. Dejar un espacio después de coma, pero nunca antes.</p>
+<pre class="r"><code># bien
+desv_estandar &lt;- sd(c(3, 5, 6, 7), na.rm = TRUE)
+# mal
+desv_estandar&lt;-sd(c(3,5,6,7),na.rm=TRUE)</code></pre>
+<p><strong>Tamaño de las líneas de código:</strong> para evitar confusión y errores se debe evitar escribir líneas de código muy largas, preferiblemente deben tener menos de 80 caracteres. Si una línea de código es muy larga se puede cortar, luego de una coma preferiblemente, usando la tecla de nueva línea: <em>return</em> o <em>enter</em>. Automáticamente el editor indenta las nuevas líneas.</p>
+<pre class="r"><code># corte de línea de código larga.
+# muy larga y confusa:
+plot(X, Y, main = &quot;A plot&quot;, xlab = &quot;X Values&quot;, ylab = &quot;Response&quot;, lty = 1, pch = 5, cex = .75)
+# mejor:
+plot(X, Y, main = &quot;A plot&quot;,
+     xlab = &quot;X Values&quot;,
+     ylab = &quot;Response&quot;,
+     lty = 1, pch = 5, cex = .75)</code></pre>
+<p><strong>Nombre de archivos:</strong> para nombrar los archivos <em>script</em> de R, recomiendo nombres cortos o abreviados relacionados al procedimiento; si es necesaria más de una palabra, separarlas por guión: <strong>area-rectangulo.R</strong> (la extensión .R la pone automáticamente el sistema).</p>
+<p><strong>Referencias</strong></p>
+<p>R Tutorial—Learn R Programming. (n.d.). DataMentor. Retrieved July 29, 2020, from <a href="https://www.datamentor.io/r-programming/\" class="uri">https://www.datamentor.io/r-programming/\</a></p>
+<p>Style guide · Advanced R. (n.d.). Retrieved July 29, 2020, from <a href="http://adv-r.had.co.nz/Style.html\" class="uri">http://adv-r.had.co.nz/Style.html\</a></p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
+</div>
+</div>
+<div id="correr-códigos-r" class="section level2">
+<h2>1.4.3. Correr códigos R</h2>
+<p><strong>Al finalizar esta sección podrás obtener resultados al correr códigos R</strong></p>
+<p>Una vez que tenemos listo un archivo R Script, podemos obtener los resultados de lo que esperamos haga el mismo, esto es ‘correr’ el código. En RStudio podemos hacerlo de diversas formas, cada una con su aplicación a diversos fines.</p>
+<ul>
+<li><p><strong>Usando Run:</strong> teniendo abierto el archivo R Script, podemos colocar el cursor al final de la línea de código que deseamos correr, o seleccionamos con el cursor un grupo de líneas de código, luego usamos <strong>Run</strong> (parte superior de la ventana del editor) o <strong>command + return</strong> en MacOS o su equivalente en Windows.</p></li>
+<li><p><strong>Usando Source:</strong> con el archivo R Script abierto en la ventana de edición, hacemos clic en <strong>Source</strong> (parte de arriba de la ventana de edición), y todas las líneas de código corren, deteniéndose solamente si el programa requiere alguna entrada de datos.</p></li>
+<li><p><strong>Usando el comando source:</strong> con el archivo R Script abierto o cerrado, escribimos el comando <strong>source(“nombre-del-archivo”)</strong>, si este se encuentra en el directorio de trabajo, y el programa correrá igual que en el caso anterior.</p></li>
+</ul>
+<p><strong>Referencias</strong></p>
+<p>How to run the code. (n.d.). Retrieved August 2, 2020, from <a href="http://www.rexamples.com/8/How%20to%20run%20the%20code\" class="uri">http://www.rexamples.com/8/How%20to%20run%20the%20code\</a></p>
+<p>R Tutorial—Learn R Programming. (n.d.). DataMentor. Retrieved July 29, 2020, from <a href="https://www.datamentor.io/r-programming/\" class="uri">https://www.datamentor.io/r-programming/\</a></p>
+<hr />
+<div id="ejercicios" class="section level5">
+<h5>EJERCICIOS</h5>
+<p><strong>* histograma</strong> </p>
+<p>En este ejercicio les mostraré como en R se pueden hacer cálculos y visualizaciones aparentemente complicadas, con muy pocas líneas de códigos.<br />
+Usarán el siguiente archivo R Script: <a href="https://raw.githubusercontent.com/dsfernandez/tallerR-basico/master/ejercicio-script.R">ejercicio-script.R</a></p>
+<p><strong>* area triángulo</strong> </p>
+<p>Les toca a ustedes escribir su primer (o repasar) programa en R. Abre y guarda un archivo R Script con un nombre relacionado a la actividad a realizar.</p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
+</div>
+<div id="otros-archivos-en-r-studio" class="section level3">
+<h3>1.4.4. Otros archivos en R Studio</h3>
+<p><strong>Al terminar esta sección podrás identificar al menos dos nuevos tipos de archivos en R Studio</strong></p>
+<p>Al hacer clic en el ícono de la cruz blanca, extremo izquierdo, arriba, aparece un menú de diferentes tipos de archivos que se pueden crear en RStudio, además de R Script.</p>
+<p><img src="media/archivos-rstudio.png" /></p>
+<p>En este taller estaremos trabajando con dos de ellos:</p>
+<ul>
+<li>archivos de texto, <strong>Text File</strong><br />
+</li>
+<li>documento <strong>R Markdown</strong></li>
+</ul>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

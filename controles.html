@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Controles del Flujo</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Taller R Introductorio</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="home.html">
+    <span class="fa fa-home"></span>
+     
+    Hola
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    AMBIENTE DE TRABAJO y DATOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="unidad1.html">Unidad I</a>
+    </li>
+    <li>
+      <a href="R-RStudio.html">R y RStudio</a>
+    </li>
+    <li>
+      <a href="CompRStudio.html">Componentes de RStudio</a>
+    </li>
+    <li>
+      <a href="ConfigRStudio.html">Configuración de RStudio</a>
+    </li>
+    <li>
+      <a href="CodigoR.html">Archivos de códigos R</a>
+    </li>
+    <li>
+      <a href="OperacionesR.html">Operaciones básicas con R</a>
+    </li>
+    <li>
+      <a href="TiposDatos.html">Tipos de Datos</a>
+    </li>
+    <li>
+      <a href="Data-Struct.html">Estructuras de Datos</a>
+    </li>
+    <li>
+      <a href="DataIntro.html">Entrada de Datos</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    PROCEDIMIENTOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="manejo-datos.html">Manejo de Datos</a>
+    </li>
+    <li>
+      <a href="funcion-uso.html">Creación y Uso de Funciones</a>
+    </li>
+    <li>
+      <a href="controles.html">Controles del Flujo</a>
+    </li>
+    <li>
+      <a href="tablas.html">Tablas de Resultados</a>
+    </li>
+    <li>
+      <a href="graficas.html">Gráficas</a>
+    </li>
+    <li>
+      <a href="hipotesis.html">Pruebas de Hipótesis</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    R Markdown
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="documento-rmd.html">Documento R Markdown</a>
+    </li>
+    <li>
+      <a href="edicion-rmd.html">Edición en R Markdown</a>
+    </li>
+    <li>
+      <a href="chunk-rmd.html">Códigos R en R Markdown</a>
+    </li>
+    <li>
+      <a href="knitr-rmd.html">Producción de Documento</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Controles del Flujo</h1>
+
+</div>
+
+
+<div id="controles-del-flujo" class="section level1">
+<h1>2.3. Controles del Flujo</h1>
+<p>Las <strong>expresiones de control</strong> (<em>control statements</em>) son expresiones que se utilizan para controlar la ejecución y el flujo del programa según las condiciones proporcionadas en las expresiones. Estas estructuras se utilizan para tomar una decisión después de evaluar la variable.</p>
+<div id="las-expresiones-con-ifelse" class="section level2">
+<h2>2.3.1 Las expresiones con <strong>if…else</strong></h2>
+<p><strong>Al finalizar esta sección podrás utilizar la expresión <em>if…else</em> para determinar la ruta en la aplicación de un código</strong></p>
+<div id="la-expresión-if" class="section level3">
+<h3>La expresión <strong>if</strong></h3>
+<p>La sintaxis de esta expresión es:</p>
+<blockquote>
+<p><strong>if</strong>(prueba o condición) {<br />
+expresión de control o acción<br />
+}</p>
+</blockquote>
+<p><img src="media/r-if-statement.jpg" /><br />
+A continuación, un ejemplo del uso de <strong>if</strong>:</p>
+<pre class="r"><code># dato a probar
+nx &lt;- 7
+# probar si el número es positivo
+if(nx &gt; 0){
+print(&quot;Número Positivo&quot;)
+}</code></pre>
+<pre><code>## [1] &quot;Número Positivo&quot;</code></pre>
+<p><strong>nx</strong> puede ser el resultado de un cálculo anterior y con el <strong>if</strong> se le hace una prueba.</p>
+</div>
+<div id="la-expresión-ifelse" class="section level3">
+<h3>La expresión <strong>if…else</strong></h3>
+<p>En este caso la sintaxis de esta expresión es:</p>
+<blockquote>
+<p><strong>if</strong>(prueba o condición){<br />
+expresión de control o acción si se cumple la condición<br />
+} <strong>else</strong> {<br />
+expresión de control o acción si no se cumple la condición<br />
+}</p>
+</blockquote>
+<p><img src="media/r-if-else-statement.jpg" /></p>
+<p>Ejemplo del uso de <strong>if…else</strong>:</p>
+<pre class="r"><code># dato a probar
+nx &lt;- -7
+# probar si el número es positivo o negativo
+if(nx &gt; 0){
+print(&quot;Número Positivo&quot;)
+} else {
+  print(&quot;Número Negativo&quot;)
+}</code></pre>
+<pre><code>## [1] &quot;Número Negativo&quot;</code></pre>
+</div>
+<div id="uso-combinado-de-ifelse-con-una-función" class="section level3">
+<h3>Uso combinado de <strong>if…else</strong> con una función</h3>
+<p>El resultado de aplicar una función puede condicionarse a la evaluación de los valores de entrada, según una serie de expresiones condicionales. En este ejemplo vamos a aplicar una función a los valores de presión sanguínea (sistólica y diastólica), para evaluar la categoría de diagnóstico que le corresponde, de acuerdo a la tabla de la <a href="https://www.heart.org/-/media/health-topics-images/hbp/blood-pressure-readings-chart-english.jpg?la=en">American Heart Association</a>.</p>
+<pre class="r"><code># creación de función
+PSx &lt;- function(s,d) {
+  if (s &lt;= 90 &amp;&amp; d &lt;= 60) {
+    &quot;Hipotensión&quot;
+  } else if (s &lt; 120 &amp;&amp; d &lt;= 80) {
+      &quot;Presión Normal&quot;
+  } else if (s &gt;= 120 &amp;&amp; s &lt;= 129 &amp;&amp; d &lt;= 80) {
+      &quot;Presión Elevada&quot;
+  } else if ((s &gt;= 130 &amp;&amp; s &lt;= 139) || (d &gt; 80 &amp;&amp; d &lt;= 89)) {
+      &quot;Hipertensión Etapa 1&quot;
+  } else if (s &gt;= 140 || d &gt;= 90) {
+      &quot;Hipertensión Etapa 2&quot;
+  } else if (s &gt;= 180 || d &gt;= 120) {
+      &quot;Crisis Hipertensiva&quot;
+    }
+}</code></pre>
+<p>Una vez creada la función (PSx), podemos aplicarla a valores medidos de presión sistólica y diastólica.</p>
+<pre class="r"><code># función PSx(sistólica, diastólica)
+# paciente 1
+PSx(117, 79)</code></pre>
+<pre><code>## [1] &quot;Presión Normal&quot;</code></pre>
+<pre class="r"><code># paciente 2
+PSx(128,83)</code></pre>
+<pre><code>## [1] &quot;Hipertensión Etapa 1&quot;</code></pre>
+</div>
+</div>
+<div id="controles-tipo-bucle-con-for." class="section level2">
+<h2>2.3.2. Controles tipo bucle con <strong>for</strong>.</h2>
+<p><strong>Al finalizar esta sección podrás aplicar un código a una secuencia de valores o expresiones condicionales</strong></p>
+<p>Los bucles se utilizan en la programación para repetir un bloque de código específico. Existen dos formas principales: <strong>for</strong> y <strong>while</strong>.</p>
+<div id="la-sintaxis-para-un-bucle-for" class="section level3">
+<h3>La sintaxis para un bucle <strong>for</strong></h3>
+<blockquote>
+<p><strong>for</strong> (valor indicador <strong>in</strong> secuencia de valores)<br />
+{<br />
+expresión<br />
+}</p>
+</blockquote>
+<p><img src="media/r-for-loop.jpg" /></p>
+<p>A continuación un ejemplo del uso básico de <strong>for</strong>, para contar los números pares en una secuencia:</p>
+<pre class="r"><code># secuencia x de valores
+x &lt;- c(2,5,3,9,8,11,6)
+# inicio de variable acumuladora
+count &lt;- 0
+# expresión for 
+for (val in x) {
+if(val %% 2 == 0)  count = count+1
+}
+print(count)</code></pre>
+<pre><code>## [1] 3</code></pre>
+</div>
+<div id="uso-del-bucle-while" class="section level3">
+<h3>Uso del bucle <strong>while</strong></h3>
+<p>Los bucles <strong>while</strong> se utilizan para realizar un bucle hasta que se cumple una condición específica.</p>
+<p>Su sintaxis:</p>
+<blockquote>
+<p><strong>while</strong> (expresión de control)<br />
+{<br />
+expresión<br />
+}</p>
+</blockquote>
+<p><img src="media/r-while-loop.jpg" /></p>
+<p>Ejemplo de uso del bucle <strong>while</strong>:</p>
+<pre class="r"><code># variable con un valor inicial
+i &lt;- 1
+# bucle while con un contador e instrucción de salida
+while (i &lt; 6) {
+print(i)
+i = i+1
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5</code></pre>
+</div>
+<div id="uso-combinado-de-for-if-y-else" class="section level3">
+<h3>Uso combinado de <strong>for</strong>, <strong>if</strong> y <strong>else</strong></h3>
+<p>Podemos combinar los diferentes tipos de control de flujo, según la tarea que deseamos realizar con los datos. Usualmente hay varias formas de conseguir un mismo propósito, unas más eficientes que otras. A continuación vamos analizar datos adquiridos en encuestas y mediciones relacionadas a los protocolos de prevención de CoviD-19; el propósito es “leer” los datos tomados al final del día y tomar una decisión de cómo actuar con los individuos para el otro día, de acuerdo a un protocolo de seguridad, traducido a expresiones de decisión dentro de un bucle <strong>for</strong>.</p>
+<pre class="r"><code>## creación de base de datos inicial
+# temperatura máxima registrada en los individuos en un día
+Temp &lt;- c(38.5,38.2,36.8,38.4,37.1,38,36.8,37.5)
+# Indicador de contacto con positivo confirmado
+# 0 = no-contacto, 1 = contacto confirmado
+Contacto &lt;- c(0,1,0,1,1,0,0,0)
+# variable de acción a tomar con individuo - condición inicial &quot;NA&quot;
+Accion &lt;- rep(&quot;NA&quot;,8)
+# número secuencial de identificación
+n &lt;- length(Temp)
+ID &lt;- seq(1:n)
+# data.frame
+Entrada &lt;- data.frame(ID,Temp,Contacto,Accion)
+Entrada</code></pre>
+<pre><code>##   ID Temp Contacto Accion
+## 1  1 38.5        0     NA
+## 2  2 38.2        1     NA
+## 3  3 36.8        0     NA
+## 4  4 38.4        1     NA
+## 5  5 37.1        1     NA
+## 6  6 38.0        0     NA
+## 7  7 36.8        0     NA
+## 8  8 37.5        0     NA</code></pre>
+<p>Procesamos los datos según unas reglas de decisión pre-establecidas, y producimos un nuevo <em>data.frame</em> (Entrada) con las acciones a tomar con los individuos.</p>
+<pre class="r"><code># bucle con decisiones anidadas
+for (i in ID)
+  {
+  if (Entrada$Temp[i] &lt; 38 &amp;&amp; Entrada$Contacto[i] == 0) {
+    Entrada[i,4] &lt;- c(&quot;Acceso&quot;)
+  } else if (Entrada$Temp[i] &gt;= 38 &amp;&amp; Entrada$Contacto[i] != 0) {
+    Entrada[i,4] &lt;- c(&quot;NO-Acceso&quot;)
+  } else if (Entrada$Temp[i] &gt;= 38 || Entrada$Contacto[i] != 0) {
+    Entrada[i,4] &lt;- c(&quot;Vigilancia&quot;)
+  }
+}
+# mostrar datos
+Entrada</code></pre>
+<pre><code>##   ID Temp Contacto     Accion
+## 1  1 38.5        0 Vigilancia
+## 2  2 38.2        1  NO-Acceso
+## 3  3 36.8        0     Acceso
+## 4  4 38.4        1  NO-Acceso
+## 5  5 37.1        1 Vigilancia
+## 6  6 38.0        0 Vigilancia
+## 7  7 36.8        0     Acceso
+## 8  8 37.5        0     Acceso</code></pre>
+<div id="referencias" class="section level4">
+<h4><strong>Referencias</strong></h4>
+<p>R if…else Statement (With Examples), 2017. . DataMentor. URL <a href="https://www.datamentor.io/r-programming/if-else-statement/" class="uri">https://www.datamentor.io/r-programming/if-else-statement/</a> (accessed 2.8.21).</p>
+<p><br />
+</p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
+</div>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

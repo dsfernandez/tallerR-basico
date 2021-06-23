@@ -20,7 +20,7 @@ guardar y ejecutar código, como para generar informes de alta calidad que se pu
 El proceso detrás de la transformación del archivo .Rmd a documentos finales de diversos formatos y estilos, es uno complejo, por los pasos y paquetes y programas que requiere (__rmarkdown__, __knitr__, __Pandoc__), pero RStudio, y R Markdown simplifican ese proceso, en lo que alguien ha descrito como "arte de magia":  
 \
 
-![dibujo por Allison Horst](modulos/media/rmarkdown_wizards.png)
+![dibujo por Allison Horst](media/rmarkdown_wizards.png)
 
 \
 
@@ -33,7 +33,7 @@ __Al finalizar esta sección podrás producir documentos finales en al menos tre
 El paso de un documento R Markdown (.Rmd) a un documento en formato HTML, Word o PDF se realiza de manera directa en RStudio usando el menú __Knit__:  
 \
 
-![](modulos/media/knit-menu.png)
+![](media/knit-menu.png)
 
 \
 
@@ -52,6 +52,6 @@ donde _FORMATO_ puede ser __html__, __word__, o __pdf__.
 El siguiente menú provee diversas formas de modificar el documento de salida y la manera de visualizar el mismo:  
 \
 
-![](modulos/media/output-menu.png)  
+![](media/output-menu.png)  
 
 

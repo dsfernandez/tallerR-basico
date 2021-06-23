@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Tipos de Datos</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Taller R Introductorio</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="home.html">
+    <span class="fa fa-home"></span>
+     
+    Hola
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    AMBIENTE DE TRABAJO y DATOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="unidad1.html">Unidad I</a>
+    </li>
+    <li>
+      <a href="R-RStudio.html">R y RStudio</a>
+    </li>
+    <li>
+      <a href="CompRStudio.html">Componentes de RStudio</a>
+    </li>
+    <li>
+      <a href="ConfigRStudio.html">Configuración de RStudio</a>
+    </li>
+    <li>
+      <a href="CodigoR.html">Archivos de códigos R</a>
+    </li>
+    <li>
+      <a href="OperacionesR.html">Operaciones básicas con R</a>
+    </li>
+    <li>
+      <a href="TiposDatos.html">Tipos de Datos</a>
+    </li>
+    <li>
+      <a href="Data-Struct.html">Estructuras de Datos</a>
+    </li>
+    <li>
+      <a href="DataIntro.html">Entrada de Datos</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    PROCEDIMIENTOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="manejo-datos.html">Manejo de Datos</a>
+    </li>
+    <li>
+      <a href="funcion-uso.html">Creación y Uso de Funciones</a>
+    </li>
+    <li>
+      <a href="controles.html">Controles del Flujo</a>
+    </li>
+    <li>
+      <a href="tablas.html">Tablas de Resultados</a>
+    </li>
+    <li>
+      <a href="graficas.html">Gráficas</a>
+    </li>
+    <li>
+      <a href="hipotesis.html">Pruebas de Hipótesis</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    R Markdown
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="documento-rmd.html">Documento R Markdown</a>
+    </li>
+    <li>
+      <a href="edicion-rmd.html">Edición en R Markdown</a>
+    </li>
+    <li>
+      <a href="chunk-rmd.html">Códigos R en R Markdown</a>
+    </li>
+    <li>
+      <a href="knitr-rmd.html">Producción de Documento</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Tipos de Datos</h1>
+
+</div>
+
+
+<div id="tipos-de-datos" class="section level1">
+<h1>1.6. Tipos de Datos</h1>
+<blockquote>
+<p>R trabaja con una gran diversidad de datos.</p>
+</blockquote>
+<div id="tipos-de-datos-1" class="section level2">
+<h2>1.6.1. Tipos de Datos</h2>
+<p><strong>Al finalizar esta parte reconocerás la diversidad de tipos de datos que se usan en R.</strong></p>
+<p>Los cuatro tipos de datos principales de R son:</p>
+<ul>
+<li><strong>numéricos:</strong> incluye <em>integer</em>, <em>numeric</em><br />
+</li>
+<li><strong>caracteres (texto):</strong> incluye <em>strings</em>, <em>factor</em><br />
+</li>
+<li><strong>tiempo:</strong> incluye <em>Date</em>, <em>POSIXct</em><br />
+</li>
+<li><strong>lógico:</strong> <em>TRUE</em>, <em>FALSE</em></li>
+</ul>
+<p>Para saber el tipo de datos que contiene una variable, usamos la función <em>class</em>.</p>
+<pre class="r"><code>num &lt;- 13
+class(num)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>tex &lt;- &quot;búha&quot;
+class(tex)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div id="datos-numéricos" class="section level3">
+<h3>Datos numéricos</h3>
+<blockquote>
+<p>El tipo de dato más utilizado en R.</p>
+</blockquote>
+<p>Los datos numéricos son de dos clases principales:</p>
+<ul>
+<li><em>numeric</em>: que en otros lenguajes aparecen como <em>float</em> o <em>double</em>. Pueden contener valores enteros y decimales, positivos y negativos, incluyendo 0.<br />
+</li>
+<li><em>integer</em>: sin valores decimales; se pueden asignar a una variable colocando la letra <strong>L</strong> al final del número.</li>
+</ul>
+<pre class="r"><code># el resultado de una operación matemática regular es numérico:
+div &lt;- 13 / 7
+div</code></pre>
+<pre><code>## [1] 1.857143</code></pre>
+<pre class="r"><code>class(div)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code># asignando un entero a una variable:
+ent &lt;- 13L
+ent</code></pre>
+<pre><code>## [1] 13</code></pre>
+<pre class="r"><code>class(ent)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code># las operaciones matemáticas con enteros no necesariamente producen enteros:
+ent_num &lt;- 13L / 7L
+ent_num</code></pre>
+<pre><code>## [1] 1.857143</code></pre>
+<pre class="r"><code>class(ent_num)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p><br />
+<a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+</div>
+<div id="datos-en-texto" class="section level3">
+<h3>Datos en texto</h3>
+<blockquote>
+<p>Importantes en estadísticas como factores.</p>
+</blockquote>
+<p>El tipo de datos en caracteres o texto tiene dos formas de manejarse:</p>
+<ul>
+<li><em>character</em>: es la forma básica de este tipo de dato.<br />
+</li>
+<li><em>factor</em>: es una forma especial, en la que los caracteres son usados como un tipo especial de variable nominal (niveles).</li>
+</ul>
+<pre class="r"><code># asignar texto a variable:
+caract &lt;- &quot;uprh&quot;
+caract</code></pre>
+<pre><code>## [1] &quot;uprh&quot;</code></pre>
+<pre class="r"><code>class(caract)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code># crear factor:
+fact &lt;- factor(&quot;uprh&quot;)
+fact # el contenido aparece sin &quot; &quot;</code></pre>
+<pre><code>## [1] uprh
+## Levels: uprh</code></pre>
+<pre class="r"><code>class(fact)</code></pre>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<p>Con la función <strong>nchar</strong> podemos medir la ‘longitud’ (<em>length</em>) del contenido de una variable con dato en texto (o numérica).</p>
+<pre class="r"><code>nchar(caract)</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>nchar(123456)</code></pre>
+<pre><code>## [1] 6</code></pre>
+<p><br />
+</p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+</div>
+<div id="datos-de-tiempo" class="section level3">
+<h3>Datos de tiempo</h3>
+<blockquote>
+<p>Fechas y horas</p>
+</blockquote>
+<p>Las operaciones con datos de tiempo, fechas u horas, son siempre complicadas en cualquier lenguaje de programación (y hasta en Excel). Dos clases de datos que se usan en R son:</p>
+<ul>
+<li><p><em>Date:</em> almacena el número de días desde el 1 de enero de 1970 (día 0). Se crea con la función <strong>as.Date</strong>.</p></li>
+<li><p><em>POSIXct:</em> almacena el número de segundos desde el 1 de enero de 1970. Se crea con la función <strong>as.POSIXct</strong>.</p></li>
+</ul>
+<pre class="r"><code># una fecha reciente:
+hoy &lt;- as.Date(&quot;2021-02-06&quot;)
+hoy</code></pre>
+<pre><code>## [1] &quot;2021-02-06&quot;</code></pre>
+<pre class="r"><code>class(hoy)</code></pre>
+<pre><code>## [1] &quot;Date&quot;</code></pre>
+<pre class="r"><code># para ver la cantidad de días:
+as.numeric(hoy)</code></pre>
+<pre><code>## [1] 18664</code></pre>
+<pre class="r"><code># una fecha antes de 1970:
+luna &lt;- as.Date(&quot;1969-07-20&quot;)
+as.numeric(luna)</code></pre>
+<pre><code>## [1] -165</code></pre>
+<p>Es muy conveniente para conocer la diferencia en días entre dos fechas.</p>
+<pre class="r"><code># días desde la llegada a la luna:
+dias_luna &lt;- hoy - luna
+dias_luna</code></pre>
+<pre><code>## Time difference of 18829 days</code></pre>
+<p> </p>
+<p>Usamos de manera similar POSIXct.</p>
+<pre class="r"><code># tiempo hasta hoy
+tiempo_hoy &lt;- as.POSIXct(&quot;2021-02-06 13:00&quot;)
+as.numeric(tiempo_hoy)</code></pre>
+<pre><code>## [1] 1612630800</code></pre>
+<pre class="r"><code># diferencias en minutos y segundos:
+difer &lt;- as.POSIXct(&quot;2021-02-06 14:55:00&quot;) - as.POSIXct(&quot;2021-02-06 14:53:23&quot;)
+difer</code></pre>
+<pre><code>## Time difference of 1.616667 mins</code></pre>
+<p><br />
+</p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a><br />
+<br />
+</p>
+</div>
+<div id="datos-lógicos" class="section level3">
+<h3>Datos lógicos</h3>
+<blockquote>
+<p>Principalmente resultado de expresiones lógicas.</p>
+</blockquote>
+<p>Tienen dos valores: <strong>TRUE</strong> o <strong>FALSE</strong>; tienen también valor numérico: <strong>1</strong> o <strong>0</strong>.</p>
+<pre class="r"><code># pueden asignarse a variables:
+verdad &lt;- TRUE
+falso &lt;- FALSE
+# clase de variable lógica:
+class(verdad)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code># valor numérico
+as.numeric(falso)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code># operaciones entre datos lógicos:
+verdad * falso</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p>El resultado de expresiones lógicas es un dato lógico.</p>
+<pre class="r"><code># resultado de una comparación numérica
+comparar &lt;- 2 == 3
+class(comparar)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code>comparar</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code># otra comparación
+menor_que &lt;- 2 &lt; 3
+menor_que</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code># comparación de caracteres
+comp_texto &lt;- &quot;dato&quot; == &quot;data&quot;
+comp_texto</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<p><br />
+<a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a><br />
+<br />
+</p>
+<p><strong>Referencias</strong></p>
+<p>Lander, J. P. (2017). <em>R for everyone: Advanced analytics and graphics</em> (Second edition). Addison-Wesley, Boston, MA.</p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

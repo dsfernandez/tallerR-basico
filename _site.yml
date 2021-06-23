@@ -9,37 +9,37 @@ navbar:
     - text: "AMBIENTE DE TRABAJO y DATOS"
       menu:
       - text: "Unidad I"
-        href: modulos/unidad1.html
+        href: unidad1.html
       - text: "R y RStudio"
-        href: modulos/R-RStudio.html
+        href: R-RStudio.html
       - text: "Componentes de RStudio"
-        href: modulos/CompRStudio.html
+        href: CompRStudio.html
       - text: "Configuración de RStudio"
-        href: modulos/ConfigRStudio.html
+        href: ConfigRStudio.html
       - text: "Archivos de códigos R"
-        href: modulos/CodigoR.html
+        href: CodigoR.html
       - text: "Operaciones básicas con R"
-        href: modulos/OperacionesR.html
+        href: OperacionesR.html
       - text: "Tipos de Datos"
-        href: modulos/TiposDatos.html
+        href: TiposDatos.html
       - text: "Estructuras de Datos"
-        href: modulos/Data-Struct.html
+        href: Data-Struct.html
       - text: "Entrada de Datos"
-        href: modulos/DataIntro.html
+        href: DataIntro.html
     - text: "PROCEDIMIENTOS"
       menu:
       - text: "Manejo de Datos"
-        href: modulos/manejo-datos.html
+        href: manejo-datos.html
       - text: "Creación y Uso de Funciones"
-        href: modulos/funcion-uso.html
+        href: funcion-uso.html
       - text: "Controles del Flujo"
-        href: modulos/controles.html
+        href: controles.html
       - text: "Tablas de Resultados"
-        href: modulos/tablas.html
+        href: tablas.html
       - text: "Gráficas"
-        href: modulos/graficas.html
+        href: graficas.html
       - text: "Pruebas de Hipótesis"
-        href: modulos/hipotesis.html
+        href: hipotesis.html
     - text: "R Markdown"
       menu:
       - text: "Documento R Markdown"

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>R y RStudio</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Taller R Introductorio</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="home.html">
+    <span class="fa fa-home"></span>
+     
+    Hola
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    AMBIENTE DE TRABAJO y DATOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="unidad1.html">Unidad I</a>
+    </li>
+    <li>
+      <a href="R-RStudio.html">R y RStudio</a>
+    </li>
+    <li>
+      <a href="CompRStudio.html">Componentes de RStudio</a>
+    </li>
+    <li>
+      <a href="ConfigRStudio.html">Configuración de RStudio</a>
+    </li>
+    <li>
+      <a href="CodigoR.html">Archivos de códigos R</a>
+    </li>
+    <li>
+      <a href="OperacionesR.html">Operaciones básicas con R</a>
+    </li>
+    <li>
+      <a href="TiposDatos.html">Tipos de Datos</a>
+    </li>
+    <li>
+      <a href="Data-Struct.html">Estructuras de Datos</a>
+    </li>
+    <li>
+      <a href="DataIntro.html">Entrada de Datos</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    PROCEDIMIENTOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="manejo-datos.html">Manejo de Datos</a>
+    </li>
+    <li>
+      <a href="funcion-uso.html">Creación y Uso de Funciones</a>
+    </li>
+    <li>
+      <a href="controles.html">Controles del Flujo</a>
+    </li>
+    <li>
+      <a href="tablas.html">Tablas de Resultados</a>
+    </li>
+    <li>
+      <a href="graficas.html">Gráficas</a>
+    </li>
+    <li>
+      <a href="hipotesis.html">Pruebas de Hipótesis</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    R Markdown
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="documento-rmd.html">Documento R Markdown</a>
+    </li>
+    <li>
+      <a href="edicion-rmd.html">Edición en R Markdown</a>
+    </li>
+    <li>
+      <a href="chunk-rmd.html">Códigos R en R Markdown</a>
+    </li>
+    <li>
+      <a href="knitr-rmd.html">Producción de Documento</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">R y RStudio</h1>
+
+</div>
+
+
+<div id="r-y-rstudio" class="section level2">
+<h2>1.1. R y RStudio</h2>
+<p>En este módulo vamos a definir y diferenciar R y RStudio</p>
+<div class="figure">
+<img src="media/RRStudio.png" alt="" />
+<p class="caption">R y RStudio</p>
+</div>
+<div id="r" class="section level3">
+<h3>1.1.1. R</h3>
+<p>Al finalizar esta sección podrás describir las características de R y al menos dos de sus ventajas para los cursos universitarios.</p>
+<div id="qué-es-r" class="section level4">
+<h4>¿Qué es R?</h4>
+<p><em>La respuesta depende de a quién se le pregunte.</em></p>
+<div class="figure">
+<img src="media/elephant.jpg" alt="" />
+<p class="caption"><a href="https://banner2.cleanpng.com/20180925/tvs/kisspng-blind-men-and-an-elephant-parable-point-of-view-fa-church-baseline-improve-performance-with-assessm-5baad1cfbc6208.9640815215379214877716.jpg" class="uri">https://banner2.cleanpng.com/20180925/tvs/kisspng-blind-men-and-an-elephant-parable-point-of-view-fa-church-baseline-improve-performance-with-assessm-5baad1cfbc6208.9640815215379214877716.jpg</a></p>
+</div>
+<p>Como vemos en la imagen, la respuesta puede depender del tipo de interacción que tengamos con R y sus aplicaciones.</p>
+<p>La respuesta oficial la puede encontrar en el sitio de R: R-project. R es un lenguaje de programación de código abierto (open source) y además un ambiente para realizar procedimientos estadísticos (Beckerman &amp; Petchey, 2012). Incluye facilidades de programación para manejo de datos, realizar cálculos y construir gráficas (Venables et al., 2017).</p>
+<p><strong>Referencias</strong></p>
+<p>Beckerman, A. P., &amp; Petchey, O. L. (2012). Getting Started with R. An Introduction for Biologists (First Edition). Oxford University Press; UK</p>
+<p>Venables, W. N., Smith, D. M., &amp; R Core Team. (2017). An Introduction to R. <a href="http://colinfay.me/intro-to-r/" class="uri">http://colinfay.me/intro-to-r/</a></p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
+</div>
+</div>
+<div id="rstudio" class="section level3">
+<h3>1.1.2. RStudio</h3>
+<p>Al finalizar esta sección podrás describir las características de RStudio y al menos dos ventajas de su uso.</p>
+<div id="rstudio-ide" class="section level4">
+<h4>RStudio IDE</h4>
+<p><em>La interfaz (IDE) más completa y utilizada para R.</em></p>
+<p><strong>RStudio</strong> es un entorno de desarrollo integrado (IDE) para <strong>R</strong>. Incluye una consola, editor inteligente de sintaxis que admite la ejecución directa de código, así como herramientas para mostrar gráficas, llevar el historial de trabajo, la depuración de código y la gestión del espacio de trabajo.</p>
+<div class="figure">
+<img src="media/RStudio.png" alt="" />
+<p class="caption">panel RStudio</p>
+</div>
+<p>Al igual que R, su uso personal es gratis, y facilita el uso (y re-uso) de los códigos en lenguaje R, proveyendo diversas herramientas, que facilitan el trabajo, tanto dentro de la computadora, como conectándose con otros entornos de trabajo y almacenamiento de códigos y datos (RStudio Cloud, GitHub, Rpubs, APIs).</p>
+<p><strong>Referencias</strong></p>
+<p>RStudio. (n.d.). Retrieved July 17, 2020, from <a href="https://rstudio.com/products/rstudio/" class="uri">https://rstudio.com/products/rstudio/</a></p>
+<p><br />
+<a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
+</div>
+</div>
+<div id="instalación-de-r-y-rstudio" class="section level3">
+<h3>1.1.3. Instalación de R y RStudio</h3>
+<p>Al finalizar esta sección tendrás instalados los programas R y RStudio en tu computadora.</p>
+<div id="instrucciones-generales-para-descargar-e-instalar-r-y-rstudio" class="section level4">
+<h4>Instrucciones generales para descargar e instalar R y RStudio</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-sryC9wgHvU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>Para problemas con la instalación o descarga de R y RStudio puede buscar información en los sitios oficiales de apoyo:</p>
+<ul>
+<li><p><a href="https://cran.r-project.org/faqs.html"><strong>R</strong></a></p></li>
+<li><p><a href="https://rstudio.com/products/rstudio/download/"><strong>RStudio</strong></a></p></li>
+</ul>
+<hr />
+<p><br />
+<a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Tablas de Resultados</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Taller R Introductorio</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="home.html">
+    <span class="fa fa-home"></span>
+     
+    Hola
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    AMBIENTE DE TRABAJO y DATOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="unidad1.html">Unidad I</a>
+    </li>
+    <li>
+      <a href="R-RStudio.html">R y RStudio</a>
+    </li>
+    <li>
+      <a href="CompRStudio.html">Componentes de RStudio</a>
+    </li>
+    <li>
+      <a href="ConfigRStudio.html">Configuración de RStudio</a>
+    </li>
+    <li>
+      <a href="CodigoR.html">Archivos de códigos R</a>
+    </li>
+    <li>
+      <a href="OperacionesR.html">Operaciones básicas con R</a>
+    </li>
+    <li>
+      <a href="TiposDatos.html">Tipos de Datos</a>
+    </li>
+    <li>
+      <a href="Data-Struct.html">Estructuras de Datos</a>
+    </li>
+    <li>
+      <a href="DataIntro.html">Entrada de Datos</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    PROCEDIMIENTOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="manejo-datos.html">Manejo de Datos</a>
+    </li>
+    <li>
+      <a href="funcion-uso.html">Creación y Uso de Funciones</a>
+    </li>
+    <li>
+      <a href="controles.html">Controles del Flujo</a>
+    </li>
+    <li>
+      <a href="tablas.html">Tablas de Resultados</a>
+    </li>
+    <li>
+      <a href="graficas.html">Gráficas</a>
+    </li>
+    <li>
+      <a href="hipotesis.html">Pruebas de Hipótesis</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    R Markdown
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="documento-rmd.html">Documento R Markdown</a>
+    </li>
+    <li>
+      <a href="edicion-rmd.html">Edición en R Markdown</a>
+    </li>
+    <li>
+      <a href="chunk-rmd.html">Códigos R en R Markdown</a>
+    </li>
+    <li>
+      <a href="knitr-rmd.html">Producción de Documento</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Tablas de Resultados</h1>
+
+</div>
+
+
+<div id="tablas-de-resultados" class="section level1">
+<h1>2.4. Tablas de Resultados</h1>
+<p>En secciones anteriores, los resultados aparecen tabulados en un formato básico, poco apropiados para una publicación final. En esta sección estaremos utilizando paquetes que permiten la construcción de tablas con más flexibilidad y resultados más elegantes.</p>
+<p>Hay al menos una docena de paquetes especializados para crear tablas; estaremos trabajando con dos de ellos: <a href="https://haozhu233.github.io/kableExtra/">kableExtra</a> y <a href="https://gt.rstudio.com/">gt</a>. A continuación otros más:</p>
+<ul>
+<li><a href="https://renkun-ken.github.io/formattable/">formattable</a><br />
+</li>
+<li><a href="https://rstudio.github.io/DT/">DT</a><br />
+</li>
+<li><a href="https://glin.github.io/reactable/">reactable</a><br />
+</li>
+<li><a href="https://davidgohel.github.io/flextable/">flextable</a></li>
+</ul>
+<div id="tablas-de-resultados-usando-kableextra" class="section level2">
+<h2>2.4.1. Tablas de Resultados usando <strong>kableExtra</strong></h2>
+<p><strong>Al finalizar esta sección podrás construir tablas de resultados en diversos formatos, usando el paquete kableExtra</strong></p>
+<p>El paquete <strong>kableExtra</strong> provee diversos formatos de tablas y funciones para modificarlas. A continuación, tres formatos diferentes con los mismos datos.</p>
+<pre class="r"><code>library(kableExtra)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;kableExtra&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     group_rows</code></pre>
+<pre class="r"><code>covidPR &lt;- read.csv(&quot;data/covid-sex.csv&quot;)
+# formato básico
+kbl(covidPR, caption = &quot;Table 1. CoviD-19 deaths by sex and age groups.  Data up to May 31, 2021&quot;)</code></pre>
+<table>
+<caption>
+Table 1. CoviD-19 deaths by sex and age groups. Data up to May 31, 2021
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+date
+</th>
+<th style="text-align:left;">
+age
+</th>
+<th style="text-align:right;">
+All.Sexes
+</th>
+<th style="text-align:right;">
+Female
+</th>
+<th style="text-align:right;">
+Male
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2020-01-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-02-29
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-03-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-04-30
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-05-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-06-30
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-07-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+91
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-08-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+197
+</td>
+<td style="text-align:right;">
+84
+</td>
+<td style="text-align:right;">
+113
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-09-30
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+233
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+139
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-10-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+173
+</td>
+<td style="text-align:right;">
+79
+</td>
+<td style="text-align:right;">
+94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-11-30
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+342
+</td>
+<td style="text-align:right;">
+144
+</td>
+<td style="text-align:right;">
+198
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-12-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+436
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+257
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-01-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+244
+</td>
+<td style="text-align:right;">
+121
+</td>
+<td style="text-align:right;">
+123
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-02-28
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+131
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+69
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-03-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-04-30
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+195
+</td>
+<td style="text-align:right;">
+84
+</td>
+<td style="text-align:right;">
+111
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-05-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:right;">
+97
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-06-12
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># formato kable_classic
+kbl(covidPR, caption = &quot;Table 1. CoviD-19 deaths by sex and age groups.  Data up to May 31, 2021&quot;) %&gt;%
+  kable_classic(&quot;striped&quot;, full_width = F) %&gt;%
+  add_header_above(c(&quot;&quot;, &quot;&quot;, &quot;Sex&quot; = 3))</code></pre>
+<table class=" lightable-classic lightable-striped" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Table 1. CoviD-19 deaths by sex and age groups. Data up to May 31, 2021
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="TRUE">
+Sex
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+date
+</th>
+<th style="text-align:left;">
+age
+</th>
+<th style="text-align:right;">
+All.Sexes
+</th>
+<th style="text-align:right;">
+Female
+</th>
+<th style="text-align:right;">
+Male
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2020-01-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-02-29
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-03-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-04-30
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-05-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-06-30
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-07-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+91
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-08-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+197
+</td>
+<td style="text-align:right;">
+84
+</td>
+<td style="text-align:right;">
+113
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-09-30
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+233
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+139
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-10-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+173
+</td>
+<td style="text-align:right;">
+79
+</td>
+<td style="text-align:right;">
+94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-11-30
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+342
+</td>
+<td style="text-align:right;">
+144
+</td>
+<td style="text-align:right;">
+198
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-12-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+436
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+257
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-01-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+244
+</td>
+<td style="text-align:right;">
+121
+</td>
+<td style="text-align:right;">
+123
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-02-28
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+131
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+69
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-03-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-04-30
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+195
+</td>
+<td style="text-align:right;">
+84
+</td>
+<td style="text-align:right;">
+111
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-05-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:right;">
+97
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-06-12
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># formato kable_styling
+kbl(covidPR, caption = &quot;Table 1. CoviD-19 deaths by sex and age groups.  Data up to May 31, 2021&quot;) %&gt;%
+  kable_styling(&quot;striped&quot;, full_width = F) %&gt;%
+  add_header_above(c(&quot;&quot;, &quot;&quot;, &quot;Sex&quot; = 3))</code></pre>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Table 1. CoviD-19 deaths by sex and age groups. Data up to May 31, 2021
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sex
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+date
+</th>
+<th style="text-align:left;">
+age
+</th>
+<th style="text-align:right;">
+All.Sexes
+</th>
+<th style="text-align:right;">
+Female
+</th>
+<th style="text-align:right;">
+Male
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2020-01-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-02-29
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-03-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-04-30
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-05-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-06-30
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-07-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+91
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-08-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+197
+</td>
+<td style="text-align:right;">
+84
+</td>
+<td style="text-align:right;">
+113
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-09-30
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+233
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+139
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-10-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+173
+</td>
+<td style="text-align:right;">
+79
+</td>
+<td style="text-align:right;">
+94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-11-30
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+342
+</td>
+<td style="text-align:right;">
+144
+</td>
+<td style="text-align:right;">
+198
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020-12-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+436
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+257
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-01-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+244
+</td>
+<td style="text-align:right;">
+121
+</td>
+<td style="text-align:right;">
+123
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-02-28
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+131
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+69
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-03-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-04-30
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+195
+</td>
+<td style="text-align:right;">
+84
+</td>
+<td style="text-align:right;">
+111
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-05-31
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:right;">
+97
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-06-12
+</td>
+<td style="text-align:left;">
+All Ages
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando una tabla requiere más ajustes y modificaciones, <strong>kableExtra</strong> puede resultar un poco confuso para trabajar.</p>
+<pre class="r"><code># leer los datos de archivo externo
+ca_ratas &lt;- read.csv(&quot;data/calcio-ratas.csv&quot;)
+# activar paquete doBy para aplicar función por grupos
+library(doBy)
+descriptivas &lt;- summaryBy(caplasma ~ list(hormona,sexo), 
+                          data = ca_ratas,
+                          FUN = function(x) {
+                            c(media = mean(x), 
+                              var = var(x), 
+                              de = sd(x), 
+                              es = sd(x)/sqrt(length(x)), 
+                              CV = (sd(x)/mean(x))*100) })
+# resultados sin formato
+descriptivas</code></pre>
+<pre><code>##   hormona   sexo caplasma.media caplasma.var caplasma.de caplasma.es
+## 1      no hembra          14.88       17.107    4.136061    1.849703
+## 2      no  macho          12.12       18.042    4.247588    1.899579
+## 3      si hembra          32.52       21.817    4.670867    2.088875
+## 4      si  macho          27.78       18.382    4.287423    1.917394
+##   caplasma.CV
+## 1    27.79611
+## 2    35.04610
+## 3    14.36306
+## 4    15.43349</code></pre>
+<pre class="r"><code># creación de tabla con kableExtra
+kbl(descriptivas, caption = &quot;Table 2. Niveles de calcio plasmático en ratas hembras y machos tratadas con estrógeno o no. n = 5&quot;, 
+    col.names = c(&quot;Hormona&quot;, &quot;Sexo&quot;, &quot;Media&quot;, &quot;Varianza&quot;, &quot;Desv. Estándar&quot;, &quot;Error Estándar&quot;, &quot;CV %&quot;),
+    digits = c(2,2,2,2,2)) %&gt;%
+  kable_classic(full_width = T) %&gt;%
+  add_header_above(c(&quot;Tratamientos&quot; = 2, &quot;Estadísticos Ca-plasma, mg/dl&quot; = 5))</code></pre>
+<table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
+<caption>
+Table 2. Niveles de calcio plasmático en ratas hembras y machos tratadas con estrógeno o no. n = 5
+</caption>
+<thead>
+<tr>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+Tratamientos
+</div>
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="5">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+Estadísticos Ca-plasma, mg/dl
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Hormona
+</th>
+<th style="text-align:left;">
+Sexo
+</th>
+<th style="text-align:right;">
+Media
+</th>
+<th style="text-align:right;">
+Varianza
+</th>
+<th style="text-align:right;">
+Desv. Estándar
+</th>
+<th style="text-align:right;">
+Error Estándar
+</th>
+<th style="text-align:right;">
+CV %
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:left;">
+hembra
+</td>
+<td style="text-align:right;">
+14.88
+</td>
+<td style="text-align:right;">
+17.11
+</td>
+<td style="text-align:right;">
+4.14
+</td>
+<td style="text-align:right;">
+1.85
+</td>
+<td style="text-align:right;">
+27.80
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:left;">
+macho
+</td>
+<td style="text-align:right;">
+12.12
+</td>
+<td style="text-align:right;">
+18.04
+</td>
+<td style="text-align:right;">
+4.25
+</td>
+<td style="text-align:right;">
+1.90
+</td>
+<td style="text-align:right;">
+35.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+si
+</td>
+<td style="text-align:left;">
+hembra
+</td>
+<td style="text-align:right;">
+32.52
+</td>
+<td style="text-align:right;">
+21.82
+</td>
+<td style="text-align:right;">
+4.67
+</td>
+<td style="text-align:right;">
+2.09
+</td>
+<td style="text-align:right;">
+14.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+si
+</td>
+<td style="text-align:left;">
+macho
+</td>
+<td style="text-align:right;">
+27.78
+</td>
+<td style="text-align:right;">
+18.38
+</td>
+<td style="text-align:right;">
+4.29
+</td>
+<td style="text-align:right;">
+1.92
+</td>
+<td style="text-align:right;">
+15.43
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<hr />
+</div>
+<div id="tablas-de-resultados-usando-gt" class="section level2">
+<h2>2.4.2. Tablas de Resultados usando <strong>gt</strong></h2>
+<p><strong>Al finalizar esta sección podrás construir tablas de resultados en diversos formatos, usando el paquete gt</strong></p>
+<p>Este paquete provee las funcionalidades de <strong>kableExtra</strong>, pero se aplican de una manera más organizada.</p>
+<pre class="r"><code>library(gt)
+gt(descriptivas) %&gt;%
+  tab_header(
+    title = &quot;Table 2. Niveles de calcio plasmático en ratas hembra y macho tratadas con estrógeno o no&quot;,
+    subtitle = &quot;Cálculos mediante función en doBy, n = 5&quot;
+  ) %&gt;%
+  cols_label(
+    hormona = html(&quot;Hormona&quot;),
+    sexo = html(&quot;Sexo&quot;),
+    caplasma.media = html(&quot;Media&quot;),
+    caplasma.var = html(&quot;Varianza&quot;),
+    caplasma.de = html(&quot;Desv. Estándar&quot;),
+    caplasma.es = html(&quot;Error Estándar&quot;),
+    caplasma.CV = html(&quot;Coef. Var. %&quot;)
+  ) %&gt;%
+  tab_spanner(
+    label = &quot;Tratamientos&quot;,
+    columns = vars(hormona, sexo)
+  ) %&gt;%
+  tab_spanner(
+    label = &quot;Estadísticos&quot;,
+    columns = vars(caplasma.media, caplasma.var, caplasma.de, caplasma.es, caplasma.CV)
+  ) %&gt;%
+  fmt_number(
+    columns = vars(caplasma.media, caplasma.var, caplasma.de, caplasma.es, caplasma.CV),
+    decimals = 2
+  )</code></pre>
+<pre><code>## Warning: `columns = vars(...)` has been deprecated in gt 0.3.0:
+## * please use `columns = c(...)` instead
+
+## Warning: `columns = vars(...)` has been deprecated in gt 0.3.0:
+## * please use `columns = c(...)` instead
+
+## Warning: `columns = vars(...)` has been deprecated in gt 0.3.0:
+## * please use `columns = c(...)` instead
+
+## Warning: `columns = vars(...)` has been deprecated in gt 0.3.0:
+## * please use `columns = c(...)` instead</code></pre>
+<div id="pvrpboeaud" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#pvrpboeaud .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pvrpboeaud .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pvrpboeaud .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pvrpboeaud .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pvrpboeaud .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pvrpboeaud .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pvrpboeaud .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pvrpboeaud .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pvrpboeaud .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pvrpboeaud .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pvrpboeaud .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pvrpboeaud .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pvrpboeaud .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pvrpboeaud .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pvrpboeaud .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pvrpboeaud .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pvrpboeaud .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#pvrpboeaud .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pvrpboeaud .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#pvrpboeaud .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pvrpboeaud .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pvrpboeaud .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pvrpboeaud .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pvrpboeaud .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pvrpboeaud .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pvrpboeaud .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pvrpboeaud .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pvrpboeaud .gt_left {
+  text-align: left;
+}
+
+#pvrpboeaud .gt_center {
+  text-align: center;
+}
+
+#pvrpboeaud .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pvrpboeaud .gt_font_normal {
+  font-weight: normal;
+}
+
+#pvrpboeaud .gt_font_bold {
+  font-weight: bold;
+}
+
+#pvrpboeaud .gt_font_italic {
+  font-style: italic;
+}
+
+#pvrpboeaud .gt_super {
+  font-size: 65%;
+}
+
+#pvrpboeaud .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="7" class="gt_heading gt_title gt_font_normal" style>Table 2. Niveles de calcio plasmático en ratas hembra y macho tratadas con estrógeno o no</th>
+    </tr>
+    <tr>
+      <th colspan="7" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Cálculos mediante función en doBy, n = 5</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2">
+        <span class="gt_column_spanner">Tratamientos</span>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5">
+        <span class="gt_column_spanner">Estadísticos</span>
+      </th>
+    </tr>
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Hormona</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Sexo</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Media</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Varianza</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Desv. Estándar</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Error Estándar</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Coef. Var. %</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">no</td>
+<td class="gt_row gt_left">hembra</td>
+<td class="gt_row gt_right">14.88</td>
+<td class="gt_row gt_right">17.11</td>
+<td class="gt_row gt_right">4.14</td>
+<td class="gt_row gt_right">1.85</td>
+<td class="gt_row gt_right">27.80</td></tr>
+    <tr><td class="gt_row gt_left">no</td>
+<td class="gt_row gt_left">macho</td>
+<td class="gt_row gt_right">12.12</td>
+<td class="gt_row gt_right">18.04</td>
+<td class="gt_row gt_right">4.25</td>
+<td class="gt_row gt_right">1.90</td>
+<td class="gt_row gt_right">35.05</td></tr>
+    <tr><td class="gt_row gt_left">si</td>
+<td class="gt_row gt_left">hembra</td>
+<td class="gt_row gt_right">32.52</td>
+<td class="gt_row gt_right">21.82</td>
+<td class="gt_row gt_right">4.67</td>
+<td class="gt_row gt_right">2.09</td>
+<td class="gt_row gt_right">14.36</td></tr>
+    <tr><td class="gt_row gt_left">si</td>
+<td class="gt_row gt_left">macho</td>
+<td class="gt_row gt_right">27.78</td>
+<td class="gt_row gt_right">18.38</td>
+<td class="gt_row gt_right">4.29</td>
+<td class="gt_row gt_right">1.92</td>
+<td class="gt_row gt_right">15.43</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

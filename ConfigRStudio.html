@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Configuración de RStudio</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Taller R Introductorio</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="home.html">
+    <span class="fa fa-home"></span>
+     
+    Hola
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    AMBIENTE DE TRABAJO y DATOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="unidad1.html">Unidad I</a>
+    </li>
+    <li>
+      <a href="R-RStudio.html">R y RStudio</a>
+    </li>
+    <li>
+      <a href="CompRStudio.html">Componentes de RStudio</a>
+    </li>
+    <li>
+      <a href="ConfigRStudio.html">Configuración de RStudio</a>
+    </li>
+    <li>
+      <a href="CodigoR.html">Archivos de códigos R</a>
+    </li>
+    <li>
+      <a href="OperacionesR.html">Operaciones básicas con R</a>
+    </li>
+    <li>
+      <a href="TiposDatos.html">Tipos de Datos</a>
+    </li>
+    <li>
+      <a href="Data-Struct.html">Estructuras de Datos</a>
+    </li>
+    <li>
+      <a href="DataIntro.html">Entrada de Datos</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    PROCEDIMIENTOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="manejo-datos.html">Manejo de Datos</a>
+    </li>
+    <li>
+      <a href="funcion-uso.html">Creación y Uso de Funciones</a>
+    </li>
+    <li>
+      <a href="controles.html">Controles del Flujo</a>
+    </li>
+    <li>
+      <a href="tablas.html">Tablas de Resultados</a>
+    </li>
+    <li>
+      <a href="graficas.html">Gráficas</a>
+    </li>
+    <li>
+      <a href="hipotesis.html">Pruebas de Hipótesis</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    R Markdown
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="documento-rmd.html">Documento R Markdown</a>
+    </li>
+    <li>
+      <a href="edicion-rmd.html">Edición en R Markdown</a>
+    </li>
+    <li>
+      <a href="chunk-rmd.html">Códigos R en R Markdown</a>
+    </li>
+    <li>
+      <a href="knitr-rmd.html">Producción de Documento</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Configuración de RStudio</h1>
+
+</div>
+
+
+<div id="configuración-de-rstudio" class="section level1">
+<h1>1.3. Configuración de RStudio</h1>
+<p>Configuración de directorios de trabajo y proyectos. </p>
+<div id="directorio-de-trabajo" class="section level2">
+<h2>1.3.1. Directorio de trabajo</h2>
+<p>Al finalizar esta sección habrás creado un directorio de trabajo, y sabrás cómo cambiarlo.</p>
+<div id="creando-un-directorio-de-trabajo" class="section level3">
+<h3>Creando un Directorio de Trabajo</h3>
+<p>Preparando el lugar para futuros proyectos.</p>
+<p>Estamos listo/as para empezar a trabajar con RStudio, y correr códigos R, en un nuevo archivo de edición R Script. Este nuevo archivo tiene como nombre <em>Untitled1</em> y eventualmente debemos guardarlo con un nombre relacionado a la actividad que estemos trabajando. Pero antes de empezar a crear y guardar archivos, debemos estar seguro/as de dónde vamos a hacerlo, para luego recuperarlos sin problema.</p>
+<p>En la ventana de usos múltiples (usualmente abajo, a la derecha), en la pestaña de <strong>Files</strong>, pueden ver el directorio que estarían usando, y generalmente es Home, que se refiere al directorio base o raíz ( <em>root directory</em>) de acuerdo a la configuración de su computadora, donde usualmente se encuentran los diversos directorios del usuario.</p>
+<p>Mi recomendación es crear una carpeta ( <em>folder</em>) dentro de un directorio de fácil acceso (por ejemplo: MyDocuments, Documents, dependiendo del sistema operativo), pero sugiero evitar el Desktop. Pueden llamarla R simplemente o miR.</p>
+<p>Luego de crear su carpeta de trabajo, puede guardar en ella sus archivos de trabajo relacionados a R, sin embargo, luego de terminar su trabajo en RStudio y cerrar el programa, no queda grabada la dirección de la carpeta o sub-directorio. Esto de puede arreglar, y aqui les indico dos maneras de hacerlo:</p>
+<ul>
+<li><p>A. Cada vez que entren a RStudio nuevamente, ir en la parte de arriba al menú <strong>Session</strong>, hacer clic, y llegar a <strong>Set Working Directory</strong>, se abrirá un menú y harán clic en <strong>Choose Directory</strong>, lo cual abrirá el mapa de directorios de su computadora y deberán seleccionar el directorio creado para R, y abrirlo. Esto lo tendrán que hacer cada vez que corran el programa nuevamente.</p></li>
+<li><p>B. Una manera que preserva el directorio de trabajo en la memoria del programa, es mediante las opciones globales del sistema. Para esto deben ir al menú general y buscar <strong>Tools</strong>, y hacer clic en <strong>Global Options</strong> (en MacOS también puedes hacerlo con el menú de <strong>RStudio</strong>, hacer un clic en <strong>Preferences</strong>), y seleccionar el ícono de <strong>R General</strong>. Luego de oprimir el botón de <strong>Browse…</strong>, localiza la carpeta creada como directorio, y haz clic en <strong>Apply</strong> y luego <strong>OK</strong>. Para que esta selección entre en efecto, deben cerrar el programa y volverlo a abrir.</p></li>
+</ul>
+<p>Luego de abrir nuevamente el programa, en la ventana de Files debe aparecer la dirección de tu directorio de trabajo, y ahora todos los archivos que guarden estarán en esa carpeta y cada vez que vuelvan a abrir RStudio los encontrarán allí.</p>
+<p>El siguiente video muestra los pasos anteriores, pero deben tomar en cuenta las diferencias que hay de acuerdo a la computadora y sistema operativo que estén utilizando (en mi caso es una MacBookPro con macOS Mojave).</p>
+<p> </p>
+<iframe width="640" height="456" frameborder="0" scrolling="no" src="https://screencast-o-matic.com/embed?sc=cYiOqLEaVB&amp;v=6&amp;ff=1&amp;title=0&amp;controls=1" allowfullscreen="true">
+</iframe>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
+</div>
+</div>
+<div id="proyectos" class="section level2">
+<h2>1.3.2. Proyectos</h2>
+<p>Al finalizar esta sección habrás creado un proyecto, y sabrás cómo crear otros.</p>
+<div id="proyectos-en-rstudio" class="section level3">
+<h3>Proyectos en RStudio</h3>
+<p>Terminando de organizar tu directorio de trabajo.</p>
+<p>Una vez que contamos con un directorio de trabajo, tenemos un sitio en el cual se guardarán los archivos que estaremos creando o trayendo para trabajar proyectos con R. Si tenemos proyectos muy diferentes (varios cursos, investigación), puede ser confuso tener todos los archivos juntos en un mismo <em>folder</em> (nuestro directorio de trabajo). En este caso es mejor crear proyectos para cada tipo de trabajo.</p>
+<p>Un proyecto es simplemente un directorio de trabajo designado con un archivo <em>.RProj</em>. Para crearlo puedes ir al menú principal y hacer clic en <strong>File</strong>, o en el menú de <strong>Project</strong>: (en el panel, arriba a la derecha), y hacer clic en <strong>New Project</strong>. Cuando se abra el menú <strong>Create Project</strong>, seleccionar <strong>New Directory</strong>. En el menú de <strong>Project Type</strong>, seleccionar <strong>New Project</strong>. Ahora debes darle un nombre a tu nuevo proyecto, pero antes debes verificar que en el rectángulo que dice <strong>Create project as subdirectory of:</strong>, aparezca el directorio general que creaste anteriormente (miR, por ejemplo); si no lo es, usa <strong>Browse</strong> para localizarlo y hacer que aparezca en el rectángulo. Finalmente haz un clic en <strong>Create Project</strong>, y habrás creado un proyecto con nombre. Puedes repetir este proceso para todos los proyectos que quieras.</p>
+<p>Cuando abres un proyecto (usando <strong>File / Open Project</strong> en RStudio o haciendo doble clic en el archivo .Rproj fuera de R), el directorio de trabajo se establecerá automáticamente en el directorio en el que se encuentra el archivo .RProj.</p>
+<p>Una vez que hayas creado un nuevo proyecto R, puedes crear inmediatamente carpetas ( <em>folders</em>) en el directorio, que contendrán tu código R, archivos de datos, imágenes y otro material relevante para tu proyecto (puedes hacerlo fuera de R en tu computadora, o en la ventana de archivos (<strong>Files</strong>) de RStudio). Por ejemplo, podrías crear una carpeta llamada <strong>codigo</strong> (no usar tildes, para evitar posibles problemas entre sistemas operativos) que contenga todo tu código R, una carpeta llamada <strong>datos</strong> que contenga todos sus datos, una para <strong>imagenes</strong>, y otra para <strong>referencias</strong>.<br />
+<br />
+</p>
+<iframe width="640" height="399" frameborder="0" scrolling="no" src="https://screencast-o-matic.com/embed?sc=cYjDr6GHSL&amp;v=6&amp;ff=1&amp;title=0&amp;controls=1" allowfullscreen="true">
+</iframe>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
+</div>
+</div>
+<div id="paquetes" class="section level2">
+<h2>1.3.3. Paquetes</h2>
+<p>Al finalizar esta sección podrás localizar, descargar, instalar y activar paquetes R.</p>
+<div id="descarga-e-instalación-de-paquetes" class="section level3">
+<h3>Descarga e Instalación de Paquetes</h3>
+<p>Los paquetes ( <em>packages</em>) añaden funcionalidades al R básico o son aplicaciones completas con sus propias funciones.</p>
+<p>Los paquetes R son una colección de funciones R, código compilado y datos de ejemplos. Se almacenan en un directorio llamado " <em>library</em>" en el entorno R. Por defecto, R instala un conjunto de paquetes durante la instalación inicial. Más paquetes se agregan más tarde, cuando se necesitan para algún propósito específico. Cuando iniciamos la consola R, solo los paquetes predeterminados están disponibles por defecto. Otros paquetes que ya están instalados deben cargarse explícitamente para ser utilizados por el programa R que los va a usar.</p>
+<p>El directorio (o directorios) en el que se encuentran los paquetes es uno especial del sistema, y podemos localizarlo con el comando: </p>
+<p><strong>.libPaths( )</strong></p>
+<p>Dentro de este directorio se encuentran los paquetes básicos del sistema, y los que estaremos instalando, según las necesidades de cada proyecto. Para ver que paquetes tenemos disponibles, podemos usar el comando: </p>
+<p><strong>library( )</strong></p>
+<p>o seleccionar la pestaña <strong>Packages</strong>, en la ventana de usos múltiples.</p>
+<p>Para hacer prácticamente cualquier cosa en R, podemos aprovechar algunos de los miles de paquetes adicionales disponibles para R en CRAN (Comprehensive R Archive Network). Los paquetes se pueden instalar desde la consola de R o el editor de códigos. El comando para instalar un paquete es: </p>
+<p><strong>install.packages(“aqui-el-nombre-del-paquete”)</strong></p>
+<p>Si no deseas escribir el comando, en RStudio, usamos la pestaña <strong>Packages</strong>, en la ventana inferior derecha; haz clic en ella y verás un botón de <strong>Install</strong>. (También hay un comando del menú principal en <strong>Tools</strong>; aunque la ubicación varía según el sistema operativo). En estos casos, se abre una ventana en la que debemos seleccionar de donde queremos bajar o cargar el paquete, y buscarlo por su nombre. Durante la instalación del paquete es posible que se instalen otros paquetes necesarios, o que la consola solicite decisiones sobre la instalación.</p>
+<p>Para usar un paquete en tu proyecto, una vez que está instalado, debe activarlo, usando el siguiente comando:<br />
+</p>
+<p><strong>library(“nombre-del-paquete”)</strong></p>
+<p>Con el menú de <strong>Packages</strong>, puede realizar las funciones anteriores y otras relacionadas con el manejo de los paquetes.</p>
+<iframe width="640" height="408" frameborder="0" scrolling="no" src="https://screencast-o-matic.com/embed?sc=cYjDr4GJeG&amp;v=6&amp;ff=1&amp;title=0&amp;controls=1" allowfullscreen="true">
+</iframe>
+<p><br />
+</p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

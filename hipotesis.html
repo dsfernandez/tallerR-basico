@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Pruebas de Hipótesis</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Taller R Introductorio</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="home.html">
+    <span class="fa fa-home"></span>
+     
+    Hola
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    AMBIENTE DE TRABAJO y DATOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="unidad1.html">Unidad I</a>
+    </li>
+    <li>
+      <a href="R-RStudio.html">R y RStudio</a>
+    </li>
+    <li>
+      <a href="CompRStudio.html">Componentes de RStudio</a>
+    </li>
+    <li>
+      <a href="ConfigRStudio.html">Configuración de RStudio</a>
+    </li>
+    <li>
+      <a href="CodigoR.html">Archivos de códigos R</a>
+    </li>
+    <li>
+      <a href="OperacionesR.html">Operaciones básicas con R</a>
+    </li>
+    <li>
+      <a href="TiposDatos.html">Tipos de Datos</a>
+    </li>
+    <li>
+      <a href="Data-Struct.html">Estructuras de Datos</a>
+    </li>
+    <li>
+      <a href="DataIntro.html">Entrada de Datos</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    PROCEDIMIENTOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="manejo-datos.html">Manejo de Datos</a>
+    </li>
+    <li>
+      <a href="funcion-uso.html">Creación y Uso de Funciones</a>
+    </li>
+    <li>
+      <a href="controles.html">Controles del Flujo</a>
+    </li>
+    <li>
+      <a href="tablas.html">Tablas de Resultados</a>
+    </li>
+    <li>
+      <a href="graficas.html">Gráficas</a>
+    </li>
+    <li>
+      <a href="hipotesis.html">Pruebas de Hipótesis</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    R Markdown
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="documento-rmd.html">Documento R Markdown</a>
+    </li>
+    <li>
+      <a href="edicion-rmd.html">Edición en R Markdown</a>
+    </li>
+    <li>
+      <a href="chunk-rmd.html">Códigos R en R Markdown</a>
+    </li>
+    <li>
+      <a href="knitr-rmd.html">Producción de Documento</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Pruebas de Hipótesis</h1>
+
+</div>
+
+
+<div id="pruebas-de-hipótesis" class="section level1">
+<h1>2.6. Pruebas de Hipótesis</h1>
+<p>Un principio fundamental de la investigación científica y la adquisición de datos por medio de observaciones y experimentos, es que debemos realizar pruebas estadísticas, no para probar si los datos validan nuestra hipótesis, sino para probar la hipótesis nula que invalida la nuestra. En esta sección utilizarán algunas pruebas de hipótesis de uso común:</p>
+<ul>
+<li>hipótesis sobre la media de una o dos muestras<br />
+</li>
+<li>hipótesis sobre la independencia de variables categóricas<br />
+</li>
+<li>hipótesis sobre el efecto de factores o tratamientos<br />
+</li>
+<li>hipótesis sobre la relación entre dos variables</li>
+</ul>
+<div id="prueba-de-hipótesis-sobre-la-diferencia-entre-dos-muestras" class="section level2">
+<h2>2.6.1. Prueba de Hipótesis sobre la Diferencia entre Dos Muestras</h2>
+<p><strong>Al finalizar esta sección podrás realizar una prueba <em>t</em> e interpretarla</strong></p>
+<div id="prueba-t-para-dos-muestras" class="section level3">
+<h3>Prueba <em>t</em> para dos muestras</h3>
+<p>Su uso principal es la comparación de las medias de dos muestra. Asume que las dos muestras provienen de poblaciones con una distribución normal para la variable medida. La hipótesis nula a probar y la alterna son las siguientes: <span class="math display">\[H_0 : \mu_a = \mu_b\]</span><br />
+<span class="math display">\[H_A : \mu_a \neq \mu_b\]</span> En R esta prueba se puede realizar con la función <strong>t.test</strong>. A continuación vamos a probar si los efectos de dos drogas, en el tiempo de coagulación sanguínea en conejos, son iguales (<span class="math inline">\(H_0\)</span>).</p>
+<pre class="r"><code>#datos
+drogaA &lt;- c(8.8,8.4,7.9,8.7,9.1,9.6)
+drogaB &lt;- c(9.9,9.0,11.1,9.6,8.7,10.4,9.5)
+#prueba
+pruebat &lt;- t.test(drogaA,drogaB)
+print(pruebat)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  drogaA and drogaB
+## t = -2.5454, df = 10.701, p-value = 0.02774
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -1.8543048 -0.1314095
+## sample estimates:
+## mean of x mean of y 
+##  8.750000  9.742857</code></pre>
+<p>El valor de <em>p</em> (<em>p-value</em>) es suficientemente bajo (menor de <span class="math inline">\(\alpha = 0.05\)</span>) para rechazar la hipótesis nula, de que las medias son iguales.</p>
+<p><br />
+</p>
+</div>
+</div>
+<div id="prueba-de-hipótesis-sobre-la-independencia-entre-dos-variables-categóricas" class="section level2">
+<h2>2.6.2. Prueba de Hipótesis sobre la Independencia entre Dos Variables Categóricas</h2>
+<p><strong>Al finalizar esta sección podrás realizar una prueba de chi-cuadrado e interpretarla</strong></p>
+<div id="tabla-de-contingencia-y-prueba-chi2-de-independencia" class="section level3">
+<h3>Tabla de contingencia y prueba <span class="math inline">\(\chi^2\)</span> de independencia</h3>
+<p>Queremos probar la independencia entre la característica color de pelo y sexo, en 300 humanos, seleccionando al azar 100 hombres y 200 mujeres. En primer lugar, creamos lo que se conoce como una <strong>tabla de contingencia</strong>:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">color de pelo</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>sexo</strong></td>
+<td align="center">NEGRO</td>
+<td align="center">MARRON</td>
+<td align="center">RUBIO</td>
+<td align="center">ROJO</td>
+<td><strong>total</strong></td>
+</tr>
+<tr class="even">
+<td>HOMBRE</td>
+<td align="center">32</td>
+<td align="center">43</td>
+<td align="center">16</td>
+<td align="center">9</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>MUJER</td>
+<td align="center">55</td>
+<td align="center">65</td>
+<td align="center">64</td>
+<td align="center">16</td>
+<td>200</td>
+</tr>
+<tr class="even">
+<td><strong>total</strong></td>
+<td align="center">87</td>
+<td align="center">108</td>
+<td align="center">80</td>
+<td align="center">25</td>
+<td>300</td>
+</tr>
+</tbody>
+</table>
+<p>La forma más general de plantear las hipótesis es:<br />
+<span class="math inline">\(H_0\)</span>: <em>el color del pelo es independiente del sexo en la población muestreada</em>, y<br />
+<span class="math inline">\(H_A\)</span>: <em>el color del pelo no es independiente del sexo en la población muestreada</em>.</p>
+<p>Con los valores de la tabla de contingencia completa, podemos realizar la prueba <span class="math inline">\(\chi^2\)</span> en R (<strong>chisq.test</strong>).</p>
+<pre class="r"><code>#definimos matriz frecuencias observadas
+mfo &lt;- matrix(c(32,43,16,9,55,65,64,16), ncol = 4, byrow = TRUE)
+#data frame desde matriz de datos
+pelo_sexo &lt;- as.data.frame(mfo)
+# prueba
+chisq.test(pelo_sexo)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  pelo_sexo
+## X-squared = 8.9872, df = 3, p-value = 0.02946</code></pre>
+<p>El valor de <em>p</em> (<em>p-value</em>) es suficientemente bajo (menor de <span class="math inline">\(\alpha = 0.05\)</span>) para rechazar la hipótesis nula, de que el color del pelo y el sexo, son independientes.</p>
+</div>
+<div id="gráfica-de-mosaico-para-tabla-de-contingencia" class="section level3">
+<h3>Gráfica de mosaico para tabla de contingencia</h3>
+<p>Ahora bien, la prueba estadística solo nos indica si se acepta o rechaza la hipótesis nula, pero no nos específica dónde están las principales discrepancias entre las frecuencias, por efecto de la no-independencia entre los variables nominales. Una gráfica de mosaico puede ayudarnos a identificar las categorías entre las que se producen las mayores discrepancias.</p>
+<pre class="r"><code>library(vcd)
+mosaic(mfo, shade = TRUE, legend = FALSE, 
+       labeling_args = list(set_varnames = c(A = &quot;Sexo&quot;, B = &quot;Color Pelo&quot;)), 
+       set_labels = list(A = c(&quot;Hombre&quot;,&quot;Mujer&quot;), B = c(&quot;Negro&quot;,&quot;Marrón&quot;,&quot;Rubio&quot;,&quot;Rojo&quot;)))</code></pre>
+<p><img src="hipotesis_files/figure-html/mosaico-1.png" width="672" /> <strong>Figura 1</strong> Gráfica de mosaico para la tabla de contingencia sobre la independencia del color del pelo y el sexo. <span class="math inline">\(\chi^2\)</span> = 8.9872, p-value = 0.02946</p>
+<p><br />
+</p>
+</div>
+</div>
+<div id="prueba-de-hipótesis-sobre-las-diferencias-entre-varias-muestras-análisis-de-varianza" class="section level2">
+<h2>2.6.3. Prueba de Hipótesis sobre las Diferencias entre Varias Muestras (Análisis de Varianza)</h2>
+<p><strong>Al finalizar esta sección podrás realizar un análisis de varianza de un factor (<em>One Way ANOVA</em>) e interpretarlo</strong></p>
+<p>En una investigación, 19 cerdos jóvenes fueron asignados, al azar, a cuatro grupos experimentales. Cada grupo se alimentó con una dieta diferente (D1, D2, D3, D4). Luego de ser criados hasta adultos, se midió la masa corporal (kg) de cada animal. Queremos saber si la masa corporal resultó ser igual (<span class="math inline">\(H_0\)</span>) para las cuatro dietas. <span class="math display">\[H_0: \mu_1 = \mu_2 = \mu_3 = \mu_4\]</span> <span class="math display">\[H_A: la\ masa\ promedio\ de\ los\ cerdos\ no\ resultó\ igual\ en\ todas\ las\ dietas.\]</span></p>
+<pre class="r"><code># datos
+D1 &lt;- c(60.8,67,65,68.6,61.7)
+D2 &lt;- c(68.7,67.7,75,73.3,71.8)
+D3 &lt;- c(69.6,77.1,75.2,71.5)
+D4 &lt;- c(61.9,64.2,63.1,66.7,60.3)
+#tabla de datos - creación de lista
+cerdos &lt;- list(Dieta_1 = D1, Dieta_2 = D2, Dieta_3 = D3, Dieta_4 = D4)
+# ajuste por n diferente de cada tratamiento
+cerditos &lt;- as.data.frame(lapply(cerdos, `length&lt;-`, max(sapply(cerdos, length))))
+cerditos</code></pre>
+<pre><code>##   Dieta_1 Dieta_2 Dieta_3 Dieta_4
+## 1    60.8    68.7    69.6    61.9
+## 2    67.0    67.7    77.1    64.2
+## 3    65.0    75.0    75.2    63.1
+## 4    68.6    73.3    71.5    66.7
+## 5    61.7    71.8      NA    60.3</code></pre>
+<div id="visualización-de-los-tratamientos-con-gráficas-de-boxwhisker" class="section level3">
+<h3>Visualización de los tratamientos con gráficas de <em>box&amp;whisker</em></h3>
+<pre class="r"><code># arreglo de datos en un data frame
+#data frame de dos columnas con factor Dieta
+df.cerdos &lt;- data.frame(Dieta=c(rep(&quot;D1&quot;, times=length(D1)),
+                        rep(&quot;D2&quot;, times=length(D2)),
+                        rep(&quot;D3&quot;, times=length(D3)),
+                        rep(&quot;D4&quot;, times=length(D4))),
+                   masa=c(D1, D2, D3, D4))
+# box-plot para cada tratamiento
+library(ggplot2)
+ggplot(df.cerdos, aes(x=Dieta, y=masa)) +
+  geom_boxplot(fill=&quot;cornflowerblue&quot;) +
+  stat_summary(fun=mean, geom=&quot;point&quot;, shape=10, size=5,
+               color=&quot;red&quot;, fill=&quot;red&quot;) +
+  labs(x = &quot;Dietas&quot;, y = &quot;Masa corporal, kg&quot;)</code></pre>
+<p><img src="hipotesis_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><strong>Figura 2</strong> Gráficas de <em>box&amp;whisker</em> de la masa corporal (kg), de cuatro grupos de cerdos (n =4,5), luego de estar en cuatro dietas diferentes.</p>
+</div>
+<div id="estadísticos-del-análisis-de-varianza" class="section level3">
+<h3>Estadísticos del análisis de varianza</h3>
+<pre class="r"><code>analisis &lt;- aov(masa ~ Dieta, df.cerdos)
+summary(analisis)</code></pre>
+<pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Dieta        3  338.9  112.98   12.04 0.000283 ***
+## Residuals   15  140.8    9.38                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>El valor de <strong>P</strong> para el estadístico <strong>F</strong> (<em>Pr(&gt;F)</em>) es significativo para rechazar la hipótesis nula. Sin embargo, este análisis no nos indica cuál o cuáles tratamientos son diferentes entre sí, para esto hay que realizar pruebas <em>post-hoc</em>, como la <strong>prueba Tukey</strong>.</p>
+<p><br />
+</p>
+</div>
+</div>
+<div id="prueba-de-hipótesis-sobre-la-relación-entre-dos-variables-análisis-de-regresión" class="section level2">
+<h2>2.6.4. Prueba de Hipótesis sobre la Relación entre dos Variables (Análisis de Regresión)</h2>
+<p><strong>Al finalizar esta sección podrás realizar una análisis de regresión lineal simple e interpretarlo</strong></p>
+<p>Una <strong>regresión lineal simple</strong> modela el efecto de una <strong>variable predictora</strong> continua sobre una <strong>variable de respuesta</strong> continua. La <strong>ecuación de regresión</strong> resultante se puede representar gráficamente como una <strong>línea de regresión</strong>, que representa los valores esperados de la variable de respuesta para todos los valores de la variable predictora.</p>
+<p>En la regresión lineal simple, la relación funcional entre la variable dependiente (<em>y</em>) y la independiente (<em>x</em>) se representa:<br />
+<span class="math display">\[\mu_y = \alpha + \beta x\]</span></p>
+<p>donde:</p>
+<blockquote>
+<p><span class="math inline">\(\mu_y\)</span>: es la media poblacional de <em>y</em> para cualquier valor de <em>x</em>,<br />
+<span class="math inline">\(\alpha\)</span>: es el <strong>intercepto</strong> y<br />
+<span class="math inline">\(\beta\)</span>: es la <strong>pendiente</strong>.</p>
+</blockquote>
+<p>Tenemos datos de individuos entre 21 y 79 años, a los cuales se le midió el perímetro a nivel de la cintura y la concentración plasmática de triglicéridos, y establecimos un modelo de regresión, en el cual el nivel de triglicéridos depende del valor de cintura. Vamos a probar si la pendiente de la ecuación de regresión tiene un valor diferente de 0, por lo tanto nuestra hipótesis nula será:<br />
+<span class="math display">\[\beta = 0\]</span></p>
+<pre class="r"><code># datos
+trigli &lt;- read.csv(&quot;data/triglicerido.csv&quot;)
+# gráfica exploratoria
+plot(trigli$cintura, trigli$trigliceridos,
+     xlab = &quot;Cintura, pulgadas&quot;, ylab = &quot;Triglicéridos en sangre, mg/dl&quot;)</code></pre>
+<p><img src="hipotesis_files/figure-html/regdata-1.png" width="672" /></p>
+<p><strong>Figura 3</strong> Triglicéridos en sangre (mg/dl) en relación al perímetro de la cintura (pulgadas), en individuos entre 21 y 79 años.</p>
+<div id="análisis-de-regresión-lineal-simple" class="section level3">
+<h3>Análisis de regresión lineal simple</h3>
+<pre class="r"><code>regrtest &lt;- lm(trigliceridos ~ cintura, data = trigli)
+summary(regrtest)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = trigliceridos ~ cintura, data = trigli)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -21.814 -11.236  -4.454  10.281  37.349 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -188.4947    33.3154  -5.658 2.29e-05 ***
+## cintura        7.2324     0.8508   8.501 1.02e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 15.94 on 18 degrees of freedom
+## Multiple R-squared:  0.8006, Adjusted R-squared:  0.7895 
+## F-statistic: 72.27 on 1 and 18 DF,  p-value: 1.021e-07</code></pre>
+<pre class="r"><code>alfa &lt;- regrtest$coefficients[1]
+alfa &lt;- round(alfa[[1]], digits = 2)
+beta &lt;- regrtest$coefficients[2]
+beta &lt;- round(beta[[1]], digits = 2)</code></pre>
+<p>La <strong>ecuación de regresión</strong> será:</p>
+<p>Triglicéridos = -188.49 + 7.23*cintura</p>
+</div>
+<div id="gráfica-de-la-línea-de-regresión-y-el-intervalo-de-confianza" class="section level3">
+<h3>Gráfica de la línea de regresión y el intervalo de confianza</h3>
+<pre class="r"><code>library(ggplot2)
+ggplot(data=trigli, aes(x=cintura, y=trigliceridos)) +
+  geom_point(pch=19, color=&quot;blue&quot;, size=2) +
+  geom_smooth(method=&quot;lm&quot;, color=&quot;red&quot;, linetype=2) +
+  labs(x=&quot;Cintura, pulgadas&quot;, y=&quot;Triglicéridos en sangre, mg/dl&quot;)</code></pre>
+<p><img src="hipotesis_files/figure-html/linea-1.png" width="672" /></p>
+<p><strong>Figura 4</strong> Línea de regresión e intervalo de confianza (95%) para la relación entre el nivel de triglicéridos en la sangre y el perímetro de la cintura.</p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

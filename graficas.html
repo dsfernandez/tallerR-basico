@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Gráficas</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="site_libs/rglWebGL-binding-0.106.8/rglWebGL.js"></script>
+<link href="site_libs/rglwidgetClass-0.106.8/rgl.css" rel="stylesheet" />
+<script src="site_libs/rglwidgetClass-0.106.8/rglClass.min.js"></script>
+<script src="site_libs/CanvasMatrix4-0.106.8/CanvasMatrix.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Taller R Introductorio</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="home.html">
+    <span class="fa fa-home"></span>
+     
+    Hola
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    AMBIENTE DE TRABAJO y DATOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="unidad1.html">Unidad I</a>
+    </li>
+    <li>
+      <a href="R-RStudio.html">R y RStudio</a>
+    </li>
+    <li>
+      <a href="CompRStudio.html">Componentes de RStudio</a>
+    </li>
+    <li>
+      <a href="ConfigRStudio.html">Configuración de RStudio</a>
+    </li>
+    <li>
+      <a href="CodigoR.html">Archivos de códigos R</a>
+    </li>
+    <li>
+      <a href="OperacionesR.html">Operaciones básicas con R</a>
+    </li>
+    <li>
+      <a href="TiposDatos.html">Tipos de Datos</a>
+    </li>
+    <li>
+      <a href="Data-Struct.html">Estructuras de Datos</a>
+    </li>
+    <li>
+      <a href="DataIntro.html">Entrada de Datos</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    PROCEDIMIENTOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="manejo-datos.html">Manejo de Datos</a>
+    </li>
+    <li>
+      <a href="funcion-uso.html">Creación y Uso de Funciones</a>
+    </li>
+    <li>
+      <a href="controles.html">Controles del Flujo</a>
+    </li>
+    <li>
+      <a href="tablas.html">Tablas de Resultados</a>
+    </li>
+    <li>
+      <a href="graficas.html">Gráficas</a>
+    </li>
+    <li>
+      <a href="hipotesis.html">Pruebas de Hipótesis</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    R Markdown
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="documento-rmd.html">Documento R Markdown</a>
+    </li>
+    <li>
+      <a href="edicion-rmd.html">Edición en R Markdown</a>
+    </li>
+    <li>
+      <a href="chunk-rmd.html">Códigos R en R Markdown</a>
+    </li>
+    <li>
+      <a href="knitr-rmd.html">Producción de Documento</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Gráficas</h1>
+
+</div>
+
+
+<div id="gráficas." class="section level1">
+<h1>2.5. Gráficas.</h1>
+<p>Una parte fundamental del proceso de análisis de datos es la presentación visual de los datos y los resultados de análisis de los mismos. Las tablas cumplen parte de ese objetivo, sin embargo se ven limitadas cuando se quieren presentar gran cantidad de datos o cuando los resultados de un análisis necesitan una representación gráfica (en un análisis de regresión, por ejemplo).</p>
+<p>R provee excelente capacidades de graficación, tanto en su instalación base, como mediante paquetes como <strong>lattice</strong> y <strong>ggplot2</strong>. En esta sección estaremos usando las gráficas de la instalación base y el paquete <strong>ggplot2</strong>.</p>
+<div id="gráficas-con-la-instalación-base-de-r." class="section level2">
+<h2>2.5.1. Gráficas con la instalación base de R.</h2>
+<p><strong>Al finalizar esta sección podrás construir gráficas de puntos y líneas, de cajón, de barras e histogramas.</strong></p>
+<p>Con la instalación base de R podemos realizar las gráficas más comunes para la visualización de datos y resultados, aunque con algunas limitaciones de edición y en las alternativas de diseño.</p>
+<div id="gráficas-de-puntos-scatter-plots" class="section level3">
+<h3>Gráficas de puntos (<em>scatter plots</em>)</h3>
+<p>Este tipo de gráfica puede ser utilizado para representar la relación entre dos variables numéricas. En este ejemplo vamos a construir una gráfica para visualizar la posible relación entre las muertes anuales y la disponibilidad de camas de hospital, en ciudades pequeñas de los Estados Unidos. Utilizaremos el comando <strong>plot( )</strong> y algunos de sus argumentos de diseño.</p>
+<pre class="r"><code># leer datos de archivo csv
+deaths_hosp &lt;- read.csv(&quot;data/death_small_cities.csv&quot;)
+# construir la gráfica
+scatter &lt;- plot(x = deaths_hosp$hosp100K, y = deaths_hosp$death1K, # selección de variables en los ejes
+     pch = 16, # tamaño de los puntos
+     frame = FALSE, # dibujar recuadro
+     xlab = &quot;Camas disponibles/100K habitantes &quot;, # nombre eje X 
+     ylab = &quot;Muertes anuales/1K habitantes&quot;, # nombre eje Y
+     col = &quot;blue&quot;) # color de los puntos</code></pre>
+<p><img src="graficas_files/figure-html/scatter-1.png" width="672" /></p>
+<p><strong>Figura 1</strong> Relación entre la cantidad de muertes anuales por mil habitantes y la disponibilidad de camas por cien mil habitantes, en 53 ciudades pequeñas de los Estados Unidos.</p>
+<blockquote>
+<p><strong>Guardar gráfica en archivo .jpg</strong></p>
+</blockquote>
+<p>Las gráficas se pueden guardar automáticamente desde el código, en un archivo, <em>.jpeg</em> por ejemplo; para esto usamos el comando <strong>jpeg(“nombre_del_archivo.jpg”)</strong>, justo antes de la construcción de la gráfica, y colocando <strong>dev.off()</strong> justo después del código de la gráfica.</p>
+<pre class="r"><code># abrir archivo jpg
+jpeg(&quot;scatter.jpg&quot;)
+# gráfica
+scatter &lt;- plot(x = deaths_hosp$hosp100K, y = deaths_hosp$death1K, # selección de variables en los ejes
+     pch = 16, # tamaño de los puntos
+     frame = FALSE, # dibujar recuadro
+     xlab = &quot;Camas disponibles/100K habitantes &quot;, # nombre eje X 
+     ylab = &quot;Muertes anuales/1K habitantes&quot;, # nombre eje Y
+     col = &quot;blue&quot;) # color de los puntos
+# cerrar archivo jpg
+dev.off()</code></pre>
+<blockquote>
+<p><strong>Construir gráfica en archivo .R y guardarla desde [Plots]</strong></p>
+</blockquote>
+<p>Si el código para construir la gráfica se corre en un archivo de edición .R, la gráfica, por defecto, aparece en la ventana de <strong>Plots</strong> de RStudio; desde allí puede ser exportada, usando <strong>Export</strong>, en diferentes formatos o copiada.</p>
+<p>VIDEO</p>
+</div>
+<div id="gráfica-de-líneas-line-plots-y-series-de-tiempo-time-series" class="section level3">
+<h3>Gráfica de líneas (<strong>line plots</strong>) y series de tiempo (<strong>time series</strong>)</h3>
+<p>Cuando la variable en el eje Y cambia de manera continua con respecto a la variable X, podemos unir los puntos con líneas; este es el caso de las gráficas de <strong>series de tiempo</strong>. En este ejemplo vamos a graficar el cambio en el tiempo de casos de CoviD-19 y hospitalizaciones en Australia.</p>
+<pre class="r"><code># cargar datos al sistema
+covid_aussie &lt;- read.csv(&quot;data/CoviD-19 Australia.csv&quot;)
+# cambiar NA por 0 en hospitalizados
+covid_aussie$hospitalizados[is.na(covid_aussie$hospitalizados)] &lt;- 0
+# transformar fechas en texto a datos tipo fecha
+new_date &lt;- as.Date(covid_aussie$date, &quot;%d-%b&quot;)
+# construir gráfica base con primera Y
+plot(new_date, covid_aussie$contagiados,
+     type = &quot;l&quot;, 
+     frame = FALSE, 
+     pch = 12, 
+     col = &quot;red&quot;, 
+     xlab = &quot;Fecha&quot;, 
+     ylab = &quot;Individuos&quot;)
+# Añadir segunda Y
+lines(new_date, covid_aussie$hospitalizados, 
+      pch = 12, 
+      col = &quot;blue&quot;, 
+      type = &quot;l&quot;, 
+      lty = 2)
+# Añadir leyenda
+legend(&quot;topleft&quot;, legend=c(&quot;Contagiados&quot;, &quot;Hospitalizados&quot;),
+       col=c(&quot;red&quot;, &quot;blue&quot;), 
+       lty = 1:2, 
+       cex=0.8)</code></pre>
+<p><img src="graficas_files/figure-html/serie-1.png" width="672" /></p>
+<p><strong>Figura 2</strong> Casos de contagios detectados de CoviD-19 y cantidad de hospitalizaciones entre Febrero y Junio de 2020, en Australia.</p>
+</div>
+<div id="gráficas-de-barras" class="section level3">
+<h3>Gráficas de barras</h3>
+<p>Las gráficas de barras pueden ser una alternativa a una tabla, y sirven tanto para valores de estadísticos, como para frecuencias de variables categóricas o discretas.</p>
+<blockquote>
+<p><strong>Barras de valores promedios con segmentos para medidas de dispersión</strong></p>
+</blockquote>
+<p>En el R base se utiliza el comando <strong>barplot</strong>, asociado a otras funciones para incluir diversos elementos gráficos. En este ejemplo usaremos los datos y estadísticos calculados de la sección 2.2.2.</p>
+<pre class="r"><code># cargar datos
+ca_ratas &lt;- read.csv(&quot;data/calcio-ratas.csv&quot;)
+# cálculo de los estadísticos
+library(doBy)
+descriptivas &lt;- summaryBy(caplasma ~ list(hormona,sexo), 
+                          data = ca_ratas,
+                          FUN = function(x) {
+                            c(media = mean(x), 
+                              var = var(x), 
+                              de = sd(x), 
+                              es = sd(x)/sqrt(length(x)), 
+                              CV = (sd(x)/mean(x))*100) })
+barC &lt;- barplot(height = descriptivas$caplasma.media,
+                      names.arg = c(&quot;NO-H/F&quot;, &quot;NO-H/M&quot;, &quot;SI-H/F&quot;, &quot;SI-H/M&quot;),
+                      ylim = c(0, 40),
+                      cex.names = 0.75,
+                      xlab = &quot;Tratamientos&quot;,
+                      ylab = &quot;Ca-plasma, mg/dl&quot;,
+                      border = &quot;black&quot;,
+                      col = &quot;tan&quot;,
+                      axes = TRUE)
+segments(barC, descriptivas$caplasma.media - descriptivas$caplasma.es, barC,
+         descriptivas$caplasma.media + descriptivas$caplasma.es, lwd = 1.5)</code></pre>
+<p><img src="graficas_files/figure-html/bar-1.png" width="672" /></p>
+<p><strong>Figura 3</strong> Efecto de tratamientos con hormona y el factor sexo, en la concentración de calcio plasmático en ratas.</p>
+</div>
+<div id="gráficas-para-mostrar-distribución-de-frecuencias-de-datos-continuos" class="section level3">
+<h3>Gráficas para mostrar distribución de frecuencias de datos continuos</h3>
+<p>Cuando tenemos variables numéricas nos interesa conocer la distribución de sus valores, como parte de un análisis preliminar de los datos, antes de realizar pruebas estadísticas.</p>
+<blockquote>
+<p><strong>Gráfica de caja y bigotes (<em>box &amp; whisker plot</em>)</strong></p>
+</blockquote>
+<p>La gráfica de <em>box &amp; whisker</em> permite mostrar los cuartiles primero (borde inferior de la caja), mediana (línea central) y tercero (borde superior de la caja), además de los límites superiores e inferiores (“bigotes”) de los cuartiles más y menos 1.5 veces la distancia intercuartil (<em>ICD</em>), equivalente a aproximadamente las percentilas 90% y 10%, respectivamente; además se puede mostrar la media. Usaremos el comando <strong>boxplot</strong> para su construcción.</p>
+<pre class="r"><code># cargar datos
+triglicerido &lt;- read.csv(&quot;data/triglicerido.csv&quot;)
+# gráfica box&amp;whisker
+x &lt;- triglicerido$trigliceridos
+boxplot(x,
+        ylab = &quot;Triglicéridos, mg/dl&quot;,
+        xlab = &quot;&quot;,
+        col = &quot;orange&quot;,
+        border = &quot;brown&quot;,
+        horizontal = FALSE
+)
+points(mean(x), col=&quot;blue&quot;)</code></pre>
+<p><img src="graficas_files/figure-html/boxplot-1.png" width="672" /></p>
+<p><strong>Figura 4</strong> Cuartiles (primero, mediana y tercero), percentilas +/- DIC y media (círculo azul), para valores de triglicéridos en sangre (mg/dl) en humanos, entre 21 y 79 años.</p>
+<blockquote>
+<p><strong>Histograma</strong></p>
+</blockquote>
+<p>El histograma es la manera clásica de representar la distribución de frecuencia para clases (<em>bins</em>) de una variable continua. El comando <strong>hist</strong> se usa para construirlo, pero como veremos es muy limitado su diseño al compararlo con el paquete <strong>ggplot2</strong>.</p>
+<pre class="r"><code>hist(x, 
+     xlab=&quot;Triglicéridos, mg/dl&quot;,
+     ylab = &quot;Frecuencia&quot;,
+     main = NULL,
+     border=&quot;blue&quot;, 
+     col=&quot;green&quot;,
+     xlim=c(0, 200),
+     las=1, 
+     breaks=8)</code></pre>
+<p><img src="graficas_files/figure-html/histo-1.png" width="672" /></p>
+<p><strong>Figura 5</strong> Histograma (frecuencia) para niveles de triglicéridos en sangre (mg/dl) en humanos, entre 21 y 79 años.</p>
+<p><br />
+</p>
+</div>
+</div>
+<div id="gráficas-con-el-paquete-ggplot2." class="section level2">
+<h2>2.5.2. Gráficas con el paquete <strong>ggplot2</strong>.</h2>
+<p><strong>Al finalizar esta sección podrás construir gráficas de puntos y líneas, de cajón, de barras e histogramas, utilizando el paquete ggplot2.</strong></p>
+<div id="gráfica-de-puntos-con-ggplot2" class="section level3">
+<h3>Gráfica de puntos con ggplot2</h3>
+<pre class="r"><code>library(ggplot2)
+# Basic scatter plot
+ggplot(deaths_hosp, aes(x=hosp100K, y=death1K)) +
+  geom_point(size=2, shape=1, colour = &quot;blue&quot;) +
+  labs(x = &quot;Disponibilidad de camas en hospitales/100K habitantes&quot;,
+       y = &quot;Cantidad de muertes anuales/mil habitantes&quot;)</code></pre>
+<p><img src="graficas_files/figure-html/scattergg-1.png" width="672" /></p>
+<p><strong>Figura 1g</strong> Relación entre la cantidad de muertes anuales por mil habitantes y la disponibilidad de camas por cien mil habitantes, en 53 ciudades pequeñas de los Estados Unidos.<br />
+</p>
+</div>
+<div id="gráfica-de-líneas-line-plots-y-series-de-tiempo-time-series-con-ggplot2" class="section level3">
+<h3>Gráfica de líneas (<strong>line plots</strong>) y series de tiempo (<strong>time series</strong>) con ggplot2</h3>
+<pre class="r"><code># cargar datos al sistema
+covid_aussie &lt;- read.csv(&quot;data/CoviD-19 Australia.csv&quot;)
+# cambiar NA por 0 en hospitalizados
+covid_aussie$hospitalizados[is.na(covid_aussie$hospitalizados)] &lt;- 0
+# cambio de texto a formato de fecha
+new_date &lt;- as.Date(covid_aussie$date, &quot;%d-%b&quot;)
+# Gráfica básica
+ggplot() +
+  geom_line(data = covid_aussie, 
+            aes(x=new_date, y=contagiados, 
+                color = &quot;Contagiados&quot;)) + 
+  geom_line(data = covid_aussie, 
+            aes(x=new_date, y=hospitalizados, 
+                color = &quot;Hospitalizados&quot;)) +
+  xlab(&quot;Fecha&quot;) + 
+  ylab(&quot;Cantidad de individuos&quot;) +
+  labs(color=&quot;Pacientes&quot;)</code></pre>
+<p><img src="graficas_files/figure-html/lineagg-1.png" width="672" /></p>
+<p><strong>Figura 2g</strong> Casos de contagios detectados de CoviD-19 y cantidad de hospitalizaciones entre Febrero y Junio de 2020, en Australia.<br />
+<br />
+</p>
+</div>
+<div id="gráficas-de-barras-1" class="section level3">
+<h3>Gráficas de barras</h3>
+<blockquote>
+<p><strong>Barras de estadísticas descriptivas por tratamiento</strong></p>
+</blockquote>
+<pre class="r"><code># Gráfica de barras con errores
+ggplot(descriptivas, aes(x=hormona, y=caplasma.media, fill=sexo)) + 
+  geom_bar(stat=&quot;identity&quot;, color=&quot;black&quot;, 
+           position=position_dodge()) +
+  geom_errorbar(aes(ymin=caplasma.media-caplasma.es,
+                    ymax=caplasma.media+caplasma.es), 
+                width=.2,
+                position=position_dodge(.9)) +
+  labs(x = &quot;Tratamiento con hormona&quot;, y = &quot;Ca plasmático, mg/dl&quot;)</code></pre>
+<p><img src="graficas_files/figure-html/bar1gg-1.png" width="672" /></p>
+<p><strong>Figura 3g</strong> Efecto de tratamientos con hormona y el factor sexo, en la concentración de calcio plasmático en ratas.</p>
+<blockquote>
+<p><strong>Barras de frecuencia por tratamiento</strong></p>
+</blockquote>
+<pre class="r"><code># cargar datos de archivo .Rdata
+load(&quot;./data/Arthr.Rdata&quot;)
+# gráfica de barras separadas
+ggplot(Arthritis, aes(x=Treatment, fill=Improved)) +
+     geom_bar(position=&quot;dodge&quot;)</code></pre>
+<p><img src="graficas_files/figure-html/bar2gg-1.png" width="672" /></p>
+<p><strong>Figura 3gg</strong> Efecto del tratamiento con una droga nueva, en pacientes con artritis, a los que se les suministró un placebo y una dosis de la droga.</p>
+<p><br />
+</p>
+</div>
+<div id="gráficas-para-mostrar-distribución-de-frecuencias-de-datos-continuos-con-ggplot2" class="section level3">
+<h3>Gráficas para mostrar distribución de frecuencias de datos continuos con ggplot2</h3>
+<blockquote>
+<p><strong>Box &amp; Whisker plot</strong></p>
+</blockquote>
+<pre class="r"><code># cargar datos
+triglicerido &lt;- read.csv(&quot;data/triglicerido.csv&quot;)
+# box &amp; whisker plot  
+ggplot(triglicerido, aes(x = &quot;&quot;,y = trigliceridos)) +
+  geom_boxplot(outlier.shape = NA, colour = &quot;tan&quot;) + 
+  geom_jitter(width = 0.2) +
+  stat_summary(fun=mean, geom=&quot;point&quot;, shape=10, size=5, color=&quot;red&quot;, fill=&quot;red&quot;) +
+  labs(y = &quot;Triglicéridos en sangre, mg/dl&quot;)</code></pre>
+<p><img src="graficas_files/figure-html/boxg-1.png" width="672" /></p>
+<p><strong>Figura 4g</strong> Cuartiles (primero, mediana y tercero), percentilas +/- DIC y media (círculo rojo), para valores de triglicéridos en sangre (mg/dl) en humanos, entre 21 y 79 años.</p>
+<blockquote>
+<p><strong>Histograma con distribución normal</strong></p>
+</blockquote>
+<pre class="r"><code>library(tidyverse)
+## histograma con curva de densidad normal
+# cálculo de media y desviación estándar
+m_sd &lt;- triglicerido %&gt;%
+  summarise(means = mean(trigliceridos), sd=sd(trigliceridos))
+# histograma con curva distribución normal
+ggplot(triglicerido, aes(x=trigliceridos)) +
+  geom_histogram(aes(y=..density..), position=&quot;identity&quot;, binwidth=15, color=&quot;blue&quot;, fill=&quot;gray&quot;) +
+  stat_function(fun = dnorm, color=&quot;red&quot;, size=1, args=list(mean=m_sd$means, sd=m_sd$sd)) +
+  labs(x=&quot;Triglicéridos en sangre, mg/dl&quot;, y=&quot;densidad&quot;)</code></pre>
+<p><img src="graficas_files/figure-html/histg-1.png" width="672" /></p>
+<p><strong>Figura 5g</strong> Histograma (densidad) para niveles de triglicéridos en sangre (mg/dl) en humanos, entre 21 y 79 años. Curva de distribución normal teórica para la muestra.</p>
+<p><br />
+</p>
+</div>
+<div id="extra-gráfica-en-tres-dimensiones." class="section level3">
+<h3>EXTRA: Gráfica en Tres Dimensiones.</h3>
+<p>A continuación un ejemplo de una gráfica de tres ejes, para las variables largo de sépalo (X), ancho de sépalo (Y) y largo de pétalo (Z), de los datos ‘iris’ en R.</p>
+<pre class="r"><code># paquete 3D
+library(rgl)
+# Datos &#39;iris&#39; en R
+data &lt;- iris
+# Añadir columna de colores para diferenciar especies de iris
+mycolors &lt;- c(&#39;royalblue1&#39;, &#39;darkcyan&#39;, &#39;oldlace&#39;)
+data$color &lt;- mycolors[ as.numeric(data$Species) ]
+# gráfica 3D
+par(mar=c(0,0,0,0))
+plot3d( 
+  x=data$`Sepal.Length`, y=data$`Sepal.Width`, z=data$`Petal.Length`, 
+  col = data$color, 
+  type = &#39;s&#39;, 
+  radius = .1,
+  xlab=&quot;Sepal Length&quot;, ylab=&quot;Sepal Width&quot;, zlab=&quot;Petal Length&quot;)
+rglwidget()</code></pre>
+<div id="rgl74873" style="width:672px;height:480px;" class="rglWebGL html-widget"></div>
+<script type="application/json" data-for="rgl74873">{"x":{"material":{"color":"#000000","alpha":1,"lit":true,"ambient":"#000000","specular":"#FFFFFF","emission":"#000000","shininess":50,"smooth":true,"front":"filled","back":"filled","size":3,"lwd":1,"fog":true,"point_antialias":false,"line_antialias":false,"texture":null,"textype":"rgb","texmipmap":false,"texminfilter":"linear","texmagfilter":"linear","texenvmap":false,"depth_mask":true,"depth_test":"less","isTransparent":false,"polygon_offset":[0,0]},"rootSubscene":7,"objects":{"13":{"id":13,"type":"spheres","material":{},"vertices":[[5.09999990463257,3.5,1.39999997615814],[4.90000009536743,3,1.39999997615814],[4.69999980926514,3.20000004768372,1.29999995231628],[4.59999990463257,3.09999990463257,1.5],[5,3.59999990463257,1.39999997615814],[5.40000009536743,3.90000009536743,1.70000004768372],[4.59999990463257,3.40000009536743,1.39999997615814],[5,3.40000009536743,1.5],[4.40000009536743,2.90000009536743,1.39999997615814],[4.90000009536743,3.09999990463257,1.5],[5.40000009536743,3.70000004768372,1.5],[4.80000019073486,3.40000009536743,1.60000002384186],[4.80000019073486,3,1.39999997615814],[4.30000019073486,3,1.10000002384186],[5.80000019073486,4,1.20000004768372],[5.69999980926514,4.40000009536743,1.5],[5.40000009536743,3.90000009536743,1.29999995231628],[5.09999990463257,3.5,1.39999997615814],[5.69999980926514,3.79999995231628,1.70000004768372],[5.09999990463257,3.79999995231628,1.5],[5.40000009536743,3.40000009536743,1.70000004768372],[5.09999990463257,3.70000004768372,1.5],[4.59999990463257,3.59999990463257,1],[5.09999990463257,3.29999995231628,1.70000004768372],[4.80000019073486,3.40000009536743,1.89999997615814],[5,3,1.60000002384186],[5,3.40000009536743,1.60000002384186],[5.19999980926514,3.5,1.5],[5.19999980926514,3.40000009536743,1.39999997615814],[4.69999980926514,3.20000004768372,1.60000002384186],[4.80000019073486,3.09999990463257,1.60000002384186],[5.40000009536743,3.40000009536743,1.5],[5.19999980926514,4.09999990463257,1.5],[5.5,4.19999980926514,1.39999997615814],[4.90000009536743,3.09999990463257,1.5],[5,3.20000004768372,1.20000004768372],[5.5,3.5,1.29999995231628],[4.90000009536743,3.59999990463257,1.39999997615814],[4.40000009536743,3,1.29999995231628],[5.09999990463257,3.40000009536743,1.5],[5,3.5,1.29999995231628],[4.5,2.29999995231628,1.29999995231628],[4.40000009536743,3.20000004768372,1.29999995231628],[5,3.5,1.60000002384186],[5.09999990463257,3.79999995231628,1.89999997615814],[4.80000019073486,3,1.39999997615814],[5.09999990463257,3.79999995231628,1.60000002384186],[4.59999990463257,3.20000004768372,1.39999997615814],[5.30000019073486,3.70000004768372,1.5],[5,3.29999995231628,1.39999997615814],[7,3.20000004768372,4.69999980926514],[6.40000009536743,3.20000004768372,4.5],[6.90000009536743,3.09999990463257,4.90000009536743],[5.5,2.29999995231628,4],[6.5,2.79999995231628,4.59999990463257],[5.69999980926514,2.79999995231628,4.5],[6.30000019073486,3.29999995231628,4.69999980926514],[4.90000009536743,2.40000009536743,3.29999995231628],[6.59999990463257,2.90000009536743,4.59999990463257],[5.19999980926514,2.70000004768372,3.90000009536743],[5,2,3.5],[5.90000009536743,3,4.19999980926514],[6,2.20000004768372,4],[6.09999990463257,2.90000009536743,4.69999980926514],[5.59999990463257,2.90000009536743,3.59999990463257],[6.69999980926514,3.09999990463257,4.40000009536743],[5.59999990463257,3,4.5],[5.80000019073486,2.70000004768372,4.09999990463257],[6.19999980926514,2.20000004768372,4.5],[5.59999990463257,2.5,3.90000009536743],[5.90000009536743,3.20000004768372,4.80000019073486],[6.09999990463257,2.79999995231628,4],[6.30000019073486,2.5,4.90000009536743],[6.09999990463257,2.79999995231628,4.69999980926514],[6.40000009536743,2.90000009536743,4.30000019073486],[6.59999990463257,3,4.40000009536743],[6.80000019073486,2.79999995231628,4.80000019073486],[6.69999980926514,3,5],[6,2.90000009536743,4.5],[5.69999980926514,2.59999990463257,3.5],[5.5,2.40000009536743,3.79999995231628],[5.5,2.40000009536743,3.70000004768372],[5.80000019073486,2.70000004768372,3.90000009536743],[6,2.70000004768372,5.09999990463257],[5.40000009536743,3,4.5],[6,3.40000009536743,4.5],[6.69999980926514,3.09999990463257,4.69999980926514],[6.30000019073486,2.29999995231628,4.40000009536743],[5.59999990463257,3,4.09999990463257],[5.5,2.5,4],[5.5,2.59999990463257,4.40000009536743],[6.09999990463257,3,4.59999990463257],[5.80000019073486,2.59999990463257,4],[5,2.29999995231628,3.29999995231628],[5.59999990463257,2.70000004768372,4.19999980926514],[5.69999980926514,3,4.19999980926514],[5.69999980926514,2.90000009536743,4.19999980926514],[6.19999980926514,2.90000009536743,4.30000019073486],[5.09999990463257,2.5,3],[5.69999980926514,2.79999995231628,4.09999990463257],[6.30000019073486,3.29999995231628,6],[5.80000019073486,2.70000004768372,5.09999990463257],[7.09999990463257,3,5.90000009536743],[6.30000019073486,2.90000009536743,5.59999990463257],[6.5,3,5.80000019073486],[7.59999990463257,3,6.59999990463257],[4.90000009536743,2.5,4.5],[7.30000019073486,2.90000009536743,6.30000019073486],[6.69999980926514,2.5,5.80000019073486],[7.19999980926514,3.59999990463257,6.09999990463257],[6.5,3.20000004768372,5.09999990463257],[6.40000009536743,2.70000004768372,5.30000019073486],[6.80000019073486,3,5.5],[5.69999980926514,2.5,5],[5.80000019073486,2.79999995231628,5.09999990463257],[6.40000009536743,3.20000004768372,5.30000019073486],[6.5,3,5.5],[7.69999980926514,3.79999995231628,6.69999980926514],[7.69999980926514,2.59999990463257,6.90000009536743],[6,2.20000004768372,5],[6.90000009536743,3.20000004768372,5.69999980926514],[5.59999990463257,2.79999995231628,4.90000009536743],[7.69999980926514,2.79999995231628,6.69999980926514],[6.30000019073486,2.70000004768372,4.90000009536743],[6.69999980926514,3.29999995231628,5.69999980926514],[7.19999980926514,3.20000004768372,6],[6.19999980926514,2.79999995231628,4.80000019073486],[6.09999990463257,3,4.90000009536743],[6.40000009536743,2.79999995231628,5.59999990463257],[7.19999980926514,3,5.80000019073486],[7.40000009536743,2.79999995231628,6.09999990463257],[7.90000009536743,3.79999995231628,6.40000009536743],[6.40000009536743,2.79999995231628,5.59999990463257],[6.30000019073486,2.79999995231628,5.09999990463257],[6.09999990463257,2.59999990463257,5.59999990463257],[7.69999980926514,3,6.09999990463257],[6.30000019073486,3.40000009536743,5.59999990463257],[6.40000009536743,3.09999990463257,5.5],[6,3,4.80000019073486],[6.90000009536743,3.09999990463257,5.40000009536743],[6.69999980926514,3.09999990463257,5.59999990463257],[6.90000009536743,3.09999990463257,5.09999990463257],[5.80000019073486,2.70000004768372,5.09999990463257],[6.80000019073486,3.20000004768372,5.90000009536743],[6.69999980926514,3.29999995231628,5.69999980926514],[6.69999980926514,3,5.19999980926514],[6.30000019073486,2.5,5],[6.5,3,5.19999980926514],[6.19999980926514,3.40000009536743,5.40000009536743],[5.90000009536743,3,5.09999990463257]],"colors":[[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0.282352954149246,0.462745100259781,1,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0,0.545098066329956,0.545098066329956,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1],[0.992156863212585,0.960784316062927,0.901960790157318,1]],"radii":[[0.100000001490116]],"centers":[[5.09999990463257,3.5,1.39999997615814],[4.90000009536743,3,1.39999997615814],[4.69999980926514,3.20000004768372,1.29999995231628],[4.59999990463257,3.09999990463257,1.5],[5,3.59999990463257,1.39999997615814],[5.40000009536743,3.90000009536743,1.70000004768372],[4.59999990463257,3.40000009536743,1.39999997615814],[5,3.40000009536743,1.5],[4.40000009536743,2.90000009536743,1.39999997615814],[4.90000009536743,3.09999990463257,1.5],[5.40000009536743,3.70000004768372,1.5],[4.80000019073486,3.40000009536743,1.60000002384186],[4.80000019073486,3,1.39999997615814],[4.30000019073486,3,1.10000002384186],[5.80000019073486,4,1.20000004768372],[5.69999980926514,4.40000009536743,1.5],[5.40000009536743,3.90000009536743,1.29999995231628],[5.09999990463257,3.5,1.39999997615814],[5.69999980926514,3.79999995231628,1.70000004768372],[5.09999990463257,3.79999995231628,1.5],[5.40000009536743,3.40000009536743,1.70000004768372],[5.09999990463257,3.70000004768372,1.5],[4.59999990463257,3.59999990463257,1],[5.09999990463257,3.29999995231628,1.70000004768372],[4.80000019073486,3.40000009536743,1.89999997615814],[5,3,1.60000002384186],[5,3.40000009536743,1.60000002384186],[5.19999980926514,3.5,1.5],[5.19999980926514,3.40000009536743,1.39999997615814],[4.69999980926514,3.20000004768372,1.60000002384186],[4.80000019073486,3.09999990463257,1.60000002384186],[5.40000009536743,3.40000009536743,1.5],[5.19999980926514,4.09999990463257,1.5],[5.5,4.19999980926514,1.39999997615814],[4.90000009536743,3.09999990463257,1.5],[5,3.20000004768372,1.20000004768372],[5.5,3.5,1.29999995231628],[4.90000009536743,3.59999990463257,1.39999997615814],[4.40000009536743,3,1.29999995231628],[5.09999990463257,3.40000009536743,1.5],[5,3.5,1.29999995231628],[4.5,2.29999995231628,1.29999995231628],[4.40000009536743,3.20000004768372,1.29999995231628],[5,3.5,1.60000002384186],[5.09999990463257,3.79999995231628,1.89999997615814],[4.80000019073486,3,1.39999997615814],[5.09999990463257,3.79999995231628,1.60000002384186],[4.59999990463257,3.20000004768372,1.39999997615814],[5.30000019073486,3.70000004768372,1.5],[5,3.29999995231628,1.39999997615814],[7,3.20000004768372,4.69999980926514],[6.40000009536743,3.20000004768372,4.5],[6.90000009536743,3.09999990463257,4.90000009536743],[5.5,2.29999995231628,4],[6.5,2.79999995231628,4.59999990463257],[5.69999980926514,2.79999995231628,4.5],[6.30000019073486,3.29999995231628,4.69999980926514],[4.90000009536743,2.40000009536743,3.29999995231628],[6.59999990463257,2.90000009536743,4.59999990463257],[5.19999980926514,2.70000004768372,3.90000009536743],[5,2,3.5],[5.90000009536743,3,4.19999980926514],[6,2.20000004768372,4],[6.09999990463257,2.90000009536743,4.69999980926514],[5.59999990463257,2.90000009536743,3.59999990463257],[6.69999980926514,3.09999990463257,4.40000009536743],[5.59999990463257,3,4.5],[5.80000019073486,2.70000004768372,4.09999990463257],[6.19999980926514,2.20000004768372,4.5],[5.59999990463257,2.5,3.90000009536743],[5.90000009536743,3.20000004768372,4.80000019073486],[6.09999990463257,2.79999995231628,4],[6.30000019073486,2.5,4.90000009536743],[6.09999990463257,2.79999995231628,4.69999980926514],[6.40000009536743,2.90000009536743,4.30000019073486],[6.59999990463257,3,4.40000009536743],[6.80000019073486,2.79999995231628,4.80000019073486],[6.69999980926514,3,5],[6,2.90000009536743,4.5],[5.69999980926514,2.59999990463257,3.5],[5.5,2.40000009536743,3.79999995231628],[5.5,2.40000009536743,3.70000004768372],[5.80000019073486,2.70000004768372,3.90000009536743],[6,2.70000004768372,5.09999990463257],[5.40000009536743,3,4.5],[6,3.40000009536743,4.5],[6.69999980926514,3.09999990463257,4.69999980926514],[6.30000019073486,2.29999995231628,4.40000009536743],[5.59999990463257,3,4.09999990463257],[5.5,2.5,4],[5.5,2.59999990463257,4.40000009536743],[6.09999990463257,3,4.59999990463257],[5.80000019073486,2.59999990463257,4],[5,2.29999995231628,3.29999995231628],[5.59999990463257,2.70000004768372,4.19999980926514],[5.69999980926514,3,4.19999980926514],[5.69999980926514,2.90000009536743,4.19999980926514],[6.19999980926514,2.90000009536743,4.30000019073486],[5.09999990463257,2.5,3],[5.69999980926514,2.79999995231628,4.09999990463257],[6.30000019073486,3.29999995231628,6],[5.80000019073486,2.70000004768372,5.09999990463257],[7.09999990463257,3,5.90000009536743],[6.30000019073486,2.90000009536743,5.59999990463257],[6.5,3,5.80000019073486],[7.59999990463257,3,6.59999990463257],[4.90000009536743,2.5,4.5],[7.30000019073486,2.90000009536743,6.30000019073486],[6.69999980926514,2.5,5.80000019073486],[7.19999980926514,3.59999990463257,6.09999990463257],[6.5,3.20000004768372,5.09999990463257],[6.40000009536743,2.70000004768372,5.30000019073486],[6.80000019073486,3,5.5],[5.69999980926514,2.5,5],[5.80000019073486,2.79999995231628,5.09999990463257],[6.40000009536743,3.20000004768372,5.30000019073486],[6.5,3,5.5],[7.69999980926514,3.79999995231628,6.69999980926514],[7.69999980926514,2.59999990463257,6.90000009536743],[6,2.20000004768372,5],[6.90000009536743,3.20000004768372,5.69999980926514],[5.59999990463257,2.79999995231628,4.90000009536743],[7.69999980926514,2.79999995231628,6.69999980926514],[6.30000019073486,2.70000004768372,4.90000009536743],[6.69999980926514,3.29999995231628,5.69999980926514],[7.19999980926514,3.20000004768372,6],[6.19999980926514,2.79999995231628,4.80000019073486],[6.09999990463257,3,4.90000009536743],[6.40000009536743,2.79999995231628,5.59999990463257],[7.19999980926514,3,5.80000019073486],[7.40000009536743,2.79999995231628,6.09999990463257],[7.90000009536743,3.79999995231628,6.40000009536743],[6.40000009536743,2.79999995231628,5.59999990463257],[6.30000019073486,2.79999995231628,5.09999990463257],[6.09999990463257,2.59999990463257,5.59999990463257],[7.69999980926514,3,6.09999990463257],[6.30000019073486,3.40000009536743,5.59999990463257],[6.40000009536743,3.09999990463257,5.5],[6,3,4.80000019073486],[6.90000009536743,3.09999990463257,5.40000009536743],[6.69999980926514,3.09999990463257,5.59999990463257],[6.90000009536743,3.09999990463257,5.09999990463257],[5.80000019073486,2.70000004768372,5.09999990463257],[6.80000019073486,3.20000004768372,5.90000009536743],[6.69999980926514,3.29999995231628,5.69999980926514],[6.69999980926514,3,5.19999980926514],[6.30000019073486,2.5,5],[6.5,3,5.19999980926514],[6.19999980926514,3.40000009536743,5.40000009536743],[5.90000009536743,3,5.09999990463257]],"ignoreExtent":false,"fastTransparency":true,"flags":32771},"15":{"id":15,"type":"text","material":{"lit":false},"vertices":[[6.10000038146973,1.51712286472321,-0.187072828412056]],"colors":[[0,0,0,1]],"texts":[["Sepal Length"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[6.10000038146973,1.51712286472321,-0.187072828412056]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"flags":33808},"16":{"id":16,"type":"text","material":{"lit":false},"vertices":[[3.57568454742432,3.20000028610229,-0.187072828412056]],"colors":[[0,0,0,1]],"texts":[["Sepal Width"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[3.57568454742432,3.20000028610229,-0.187072828412056]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"flags":33808},"17":{"id":17,"type":"text","material":{"lit":false},"vertices":[[3.57568454742432,1.51712286472321,3.95000028610229]],"colors":[[0,0,0,1]],"texts":[["Petal Length"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[3.57568454742432,1.51712286472321,3.95000028610229]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"flags":33808},"11":{"id":11,"type":"light","vertices":[[0,0,1]],"colors":[[1,1,1,1],[1,1,1,1],[1,1,1,1]],"viewpoint":true,"finite":false},"10":{"id":10,"type":"background","material":{},"colors":[[0.298039227724075,0.298039227724075,0.298039227724075,1]],"centers":[[0,0,0]],"sphere":false,"fogtype":"none","fogscale":1,"flags":32768},"12":{"id":12,"type":"background","material":{"lit":false,"back":"lines"},"colors":[[1,1,1,1]],"centers":[[0,0,0]],"sphere":false,"fogtype":"none","fogscale":1,"flags":32768},"14":{"id":14,"type":"bboxdeco","material":{"front":"lines","back":"lines"},"vertices":[[5,"NA","NA"],[6,"NA","NA"],[7,"NA","NA"],["NA",2,"NA"],["NA",2.5,"NA"],["NA",3,"NA"],["NA",3.5,"NA"],["NA",4,"NA"],["NA","NA",1],["NA","NA",2],["NA","NA",3],["NA","NA",4],["NA","NA",5],["NA","NA",6],["NA","NA",7]],"colors":[[0,0,0,1]],"draw_front":true,"newIds":[25,26,27,28,29,30,31]},"7":{"id":7,"type":"subscene","par3d":{"antialias":8,"FOV":30,"ignoreExtent":false,"listeners":7,"mouseMode":{"left":"trackball","right":"zoom","middle":"fov","wheel":"pull"},"observer":[0,0,18.7510375976562],"modelMatrix":[[1.17337131500244,0,0,-7.15756559371948],[0,0.601974904537201,0.672778010368347,-4.58379316329956],[0,-1.65391230583191,0.244871184229851,-14.4257583618164],[0,0,0,1]],"projMatrix":[[3.73205065727234,0,0,0],[0,3.73205065727234,0,0],[0,0,-3.86370301246643,-67.5953140258789],[0,0,-1,0]],"skipRedraw":false,"userMatrix":[[1,0,0,0],[0,0.342020143325668,0.939692620785909,0],[0,-0.939692620785909,0.342020143325668,0],[0,0,0,1]],"userProjection":[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]],"scale":[1.17337131500244,1.76005673408508,0.715955436229706],"viewport":{"x":0,"y":0,"width":1,"height":1},"zoom":1,"bbox":[4.21477556228638,7.98522472381592,1.9431836605072,4.45681667327881,0.860326528549194,7.03967380523682],"windowRect":[0,45,256,301],"family":"sans","font":1,"cex":1,"useFreeType":true,"fontname":"/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rgl/fonts/FreeSans.ttf","maxClipPlanes":6,"glVersion":2.1,"activeSubscene":0},"embeddings":{"viewport":"replace","projection":"replace","model":"replace","mouse":"replace"},"objects":[12,14,13,15,16,17,11,25,26,27,28,29,30,31],"subscenes":[],"flags":34131},"25":{"id":25,"type":"lines","material":{"lit":false},"vertices":[[5,1.90547919273376,0.767636299133301],[7,1.90547919273376,0.767636299133301],[5,1.90547919273376,0.767636299133301],[5,1.84075307846069,0.608518123626709],[6,1.90547919273376,0.767636299133301],[6,1.84075307846069,0.608518123626709],[7,1.90547919273376,0.767636299133301],[7,1.84075307846069,0.608518123626709]],"colors":[[0,0,0,1]],"centers":[[6,1.90547919273376,0.767636299133301],[5,1.87311613559723,0.688077211380005],[6,1.87311613559723,0.688077211380005],[7,1.87311613559723,0.688077211380005]],"ignoreExtent":true,"origId":14,"flags":32832},"26":{"id":26,"type":"text","material":{"lit":false},"vertices":[[5,1.71130096912384,0.290281742811203],[6,1.71130096912384,0.290281742811203],[7,1.71130096912384,0.290281742811203]],"colors":[[0,0,0,1]],"texts":[["5"],["6"],["7"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[5,1.71130096912384,0.290281742811203],[6,1.71130096912384,0.290281742811203],[7,1.71130096912384,0.290281742811203]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"origId":14,"flags":33808},"27":{"id":27,"type":"lines","material":{"lit":false},"vertices":[[4.15821886062622,2,0.767636299133301],[4.15821886062622,4,0.767636299133301],[4.15821886062622,2,0.767636299133301],[4.06112957000732,2,0.608518123626709],[4.15821886062622,2.5,0.767636299133301],[4.06112957000732,2.5,0.608518123626709],[4.15821886062622,3,0.767636299133301],[4.06112957000732,3,0.608518123626709],[4.15821886062622,3.5,0.767636299133301],[4.06112957000732,3.5,0.608518123626709],[4.15821886062622,4,0.767636299133301],[4.06112957000732,4,0.608518123626709]],"colors":[[0,0,0,1]],"centers":[[4.15821886062622,3,0.767636299133301],[4.10967445373535,2,0.688077211380005],[4.10967445373535,2.5,0.688077211380005],[4.10967445373535,3,0.688077211380005],[4.10967445373535,3.5,0.688077211380005],[4.10967445373535,4,0.688077211380005]],"ignoreExtent":true,"origId":14,"flags":32832},"28":{"id":28,"type":"text","material":{"lit":false},"vertices":[[3.86695170402527,2,0.290281742811203],[3.86695170402527,2.5,0.290281742811203],[3.86695170402527,3,0.290281742811203],[3.86695170402527,3.5,0.290281742811203],[3.86695170402527,4,0.290281742811203]],"colors":[[0,0,0,1]],"texts":[["2"],["2.5"],["3"],["3.5"],["4"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[3.86695170402527,2,0.290281742811203],[3.86695170402527,2.5,0.290281742811203],[3.86695170402527,3,0.290281742811203],[3.86695170402527,3.5,0.290281742811203],[3.86695170402527,4,0.290281742811203]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"origId":14,"flags":33808},"29":{"id":29,"type":"lines","material":{"lit":false},"vertices":[[4.15821886062622,1.90547919273376,1],[4.15821886062622,1.90547919273376,7],[4.15821886062622,1.90547919273376,1],[4.06112957000732,1.84075307846069,1],[4.15821886062622,1.90547919273376,2],[4.06112957000732,1.84075307846069,2],[4.15821886062622,1.90547919273376,3],[4.06112957000732,1.84075307846069,3],[4.15821886062622,1.90547919273376,4],[4.06112957000732,1.84075307846069,4],[4.15821886062622,1.90547919273376,5],[4.06112957000732,1.84075307846069,5],[4.15821886062622,1.90547919273376,6],[4.06112957000732,1.84075307846069,6],[4.15821886062622,1.90547919273376,7],[4.06112957000732,1.84075307846069,7]],"colors":[[0,0,0,1]],"centers":[[4.15821886062622,1.90547919273376,4],[4.10967445373535,1.87311613559723,1],[4.10967445373535,1.87311613559723,2],[4.10967445373535,1.87311613559723,3],[4.10967445373535,1.87311613559723,4],[4.10967445373535,1.87311613559723,5],[4.10967445373535,1.87311613559723,6],[4.10967445373535,1.87311613559723,7]],"ignoreExtent":true,"origId":14,"flags":32832},"30":{"id":30,"type":"text","material":{"lit":false},"vertices":[[3.86695170402527,1.71130096912384,1],[3.86695170402527,1.71130096912384,2],[3.86695170402527,1.71130096912384,3],[3.86695170402527,1.71130096912384,4],[3.86695170402527,1.71130096912384,5],[3.86695170402527,1.71130096912384,6],[3.86695170402527,1.71130096912384,7]],"colors":[[0,0,0,1]],"texts":[["1"],["2"],["3"],["4"],["5"],["6"],["7"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[3.86695170402527,1.71130096912384,1],[3.86695170402527,1.71130096912384,2],[3.86695170402527,1.71130096912384,3],[3.86695170402527,1.71130096912384,4],[3.86695170402527,1.71130096912384,5],[3.86695170402527,1.71130096912384,6],[3.86695170402527,1.71130096912384,7]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"origId":14,"flags":33808},"31":{"id":31,"type":"lines","material":{"lit":false},"vertices":[[4.15821886062622,1.90547919273376,0.767636299133301],[4.15821886062622,4.49452114105225,0.767636299133301],[4.15821886062622,1.90547919273376,7.13236379623413],[4.15821886062622,4.49452114105225,7.13236379623413],[4.15821886062622,1.90547919273376,0.767636299133301],[4.15821886062622,1.90547919273376,7.13236379623413],[4.15821886062622,4.49452114105225,0.767636299133301],[4.15821886062622,4.49452114105225,7.13236379623413],[4.15821886062622,1.90547919273376,0.767636299133301],[8.04178142547607,1.90547919273376,0.767636299133301],[4.15821886062622,1.90547919273376,7.13236379623413],[8.04178142547607,1.90547919273376,7.13236379623413],[4.15821886062622,4.49452114105225,0.767636299133301],[8.04178142547607,4.49452114105225,0.767636299133301],[4.15821886062622,4.49452114105225,7.13236379623413],[8.04178142547607,4.49452114105225,7.13236379623413],[8.04178142547607,1.90547919273376,0.767636299133301],[8.04178142547607,4.49452114105225,0.767636299133301],[8.04178142547607,1.90547919273376,7.13236379623413],[8.04178142547607,4.49452114105225,7.13236379623413],[8.04178142547607,1.90547919273376,0.767636299133301],[8.04178142547607,1.90547919273376,7.13236379623413],[8.04178142547607,4.49452114105225,0.767636299133301],[8.04178142547607,4.49452114105225,7.13236379623413]],"colors":[[0,0,0,1]],"centers":[[4.15821886062622,3.20000028610229,0.767636299133301],[4.15821886062622,3.20000028610229,7.13236379623413],[4.15821886062622,1.90547919273376,3.95000004768372],[4.15821886062622,4.49452114105225,3.95000004768372],[6.10000038146973,1.90547919273376,0.767636299133301],[6.10000038146973,1.90547919273376,7.13236379623413],[6.10000038146973,4.49452114105225,0.767636299133301],[6.10000038146973,4.49452114105225,7.13236379623413],[8.04178142547607,3.20000028610229,0.767636299133301],[8.04178142547607,3.20000028610229,7.13236379623413],[8.04178142547607,1.90547919273376,3.95000004768372],[8.04178142547607,4.49452114105225,3.95000004768372]],"ignoreExtent":true,"origId":14,"flags":32832}},"crosstalk":{"key":[],"group":[],"id":[],"options":[]},"width":672,"height":480,"context":{"shiny":false,"rmarkdown":"html_document"},"players":[],"webGLoptions":{"preserveDrawingBuffer":true}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

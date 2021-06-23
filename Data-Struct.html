@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Estructuras de Datos</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Taller R Introductorio</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="home.html">
+    <span class="fa fa-home"></span>
+     
+    Hola
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    AMBIENTE DE TRABAJO y DATOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="unidad1.html">Unidad I</a>
+    </li>
+    <li>
+      <a href="R-RStudio.html">R y RStudio</a>
+    </li>
+    <li>
+      <a href="CompRStudio.html">Componentes de RStudio</a>
+    </li>
+    <li>
+      <a href="ConfigRStudio.html">Configuración de RStudio</a>
+    </li>
+    <li>
+      <a href="CodigoR.html">Archivos de códigos R</a>
+    </li>
+    <li>
+      <a href="OperacionesR.html">Operaciones básicas con R</a>
+    </li>
+    <li>
+      <a href="TiposDatos.html">Tipos de Datos</a>
+    </li>
+    <li>
+      <a href="Data-Struct.html">Estructuras de Datos</a>
+    </li>
+    <li>
+      <a href="DataIntro.html">Entrada de Datos</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    PROCEDIMIENTOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="manejo-datos.html">Manejo de Datos</a>
+    </li>
+    <li>
+      <a href="funcion-uso.html">Creación y Uso de Funciones</a>
+    </li>
+    <li>
+      <a href="controles.html">Controles del Flujo</a>
+    </li>
+    <li>
+      <a href="tablas.html">Tablas de Resultados</a>
+    </li>
+    <li>
+      <a href="graficas.html">Gráficas</a>
+    </li>
+    <li>
+      <a href="hipotesis.html">Pruebas de Hipótesis</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    R Markdown
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="documento-rmd.html">Documento R Markdown</a>
+    </li>
+    <li>
+      <a href="edicion-rmd.html">Edición en R Markdown</a>
+    </li>
+    <li>
+      <a href="chunk-rmd.html">Códigos R en R Markdown</a>
+    </li>
+    <li>
+      <a href="knitr-rmd.html">Producción de Documento</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Estructuras de Datos</h1>
+
+</div>
+
+
+<div id="estructuras-de-datos" class="section level1">
+<h1>1.7. Estructuras de Datos</h1>
+<blockquote>
+<p>Diversas estructuras de datos para diferentes usos y paquetes del sistema.</p>
+</blockquote>
+<p><br />
+</p>
+<p><img src="media/data-estruct.png" alt="Estructuras de Datos" /><br />
+<br />
+</p>
+<div id="vectores" class="section level2">
+<h2>1.7.1. Vectores</h2>
+<p><strong>Al completar esta sección podrás crear vectores y manipular los datos contenidos en ellos.</strong></p>
+<p>Un vector es un arreglo unidimensional que puede contener datos numéricos, textuales, y lógicos. Para construirlos se utiliza la función de construcción <strong>c</strong>.</p>
+<pre class="r"><code># datos numéricos
+vec.num &lt;- c(1, 2, 5, 3, 6, -2, 2.3)
+vec.num</code></pre>
+<pre><code>## [1]  1.0  2.0  5.0  3.0  6.0 -2.0  2.3</code></pre>
+<pre class="r"><code>class(vec.num)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code># datos caracteres
+vec.car &lt;- c(&quot;uno&quot;, &quot;dos&quot;, &quot;tres&quot;)
+vec.car</code></pre>
+<pre><code>## [1] &quot;uno&quot;  &quot;dos&quot;  &quot;tres&quot;</code></pre>
+<pre class="r"><code># combinando números y texto, todos se convierten a texto:
+vec.combo &lt;- c(3, 5, 7, &quot;tres&quot;, &quot;cinco&quot;, &quot;siete&quot;)
+vec.combo</code></pre>
+<pre><code>## [1] &quot;3&quot;     &quot;5&quot;     &quot;7&quot;     &quot;tres&quot;  &quot;cinco&quot; &quot;siete&quot;</code></pre>
+<pre class="r"><code>class(vec.combo)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code># los datos se mantienen numéricos si se combinan números y operadores lógicos:
+vec.oper &lt;- c(2/5, 3, 5+3, 4-7, 4 == 4.01, 3.5 &lt; 3.5001, &quot;data&quot; &lt; &quot;2data&quot;)
+vec.oper</code></pre>
+<pre><code>## [1]  0.4  3.0  8.0 -3.0  0.0  1.0  0.0</code></pre>
+<pre class="r"><code># vectors can be created with the content of variables:
+vec.var &lt;- c(vec.num, vec.oper, vec.combo)
+vec.var</code></pre>
+<pre><code>##  [1] &quot;1&quot;     &quot;2&quot;     &quot;5&quot;     &quot;3&quot;     &quot;6&quot;     &quot;-2&quot;    &quot;2.3&quot;   &quot;0.4&quot;   &quot;3&quot;    
+## [10] &quot;8&quot;     &quot;-3&quot;    &quot;0&quot;     &quot;1&quot;     &quot;0&quot;     &quot;3&quot;     &quot;5&quot;     &quot;7&quot;     &quot;tres&quot; 
+## [19] &quot;cinco&quot; &quot;siete&quot;</code></pre>
+<pre class="r"><code># la función seq(...) se puede usar para crear vectores numéricos:
+vec.seq &lt;- seq(3, 4.5, 0.2) # c(...) no es necesaria
+vec.seq</code></pre>
+<pre><code>## [1] 3.0 3.2 3.4 3.6 3.8 4.0 4.2 4.4</code></pre>
+<p><br />
+Para extraer valores específicos de los datos en un vector, usamos corchetes <strong>[..]</strong> que contienen las posiciones que nos interesa extraer.</p>
+<pre class="r"><code># creamos un vector con una secuencia numérica: 
+vec.ref &lt;- c(3:11) #secuencia de 3 a 11, de uno en uno
+vec.ref</code></pre>
+<pre><code>## [1]  3  4  5  6  7  8  9 10 11</code></pre>
+<pre class="r"><code># queremos conocer los valores de los tres primeros elementos y del penúltimo elemento
+length(vec.ref) # para saber cuantos elementos tiene</code></pre>
+<pre><code>## [1] 9</code></pre>
+<pre class="r"><code># localizamos los valores:
+vec.ref[c(1:3, 8)] </code></pre>
+<pre><code>## [1]  3  4  5 10</code></pre>
+<pre class="r"><code># lo podemos hacer también por eliminación:
+vec.ref[c(-(4:7), -9)]</code></pre>
+<pre><code>## [1]  3  4  5 10</code></pre>
+<p><br />
+</p>
+<p>Con los vectores podemos realizar operaciones matemáticas.</p>
+<pre class="r"><code># multiplicar por un escalar
+vec.ref * 10</code></pre>
+<pre><code>## [1]  30  40  50  60  70  80  90 100 110</code></pre>
+<pre class="r"><code># suma de vectores
+vec.sum &lt;- seq(1:9)
+vec.ref + vec.sum</code></pre>
+<pre><code>## [1]  4  6  8 10 12 14 16 18 20</code></pre>
+<pre class="r"><code># ajuste (y aviso) cuando tienen tamaños diferentes
+vec.su &lt;- seq(1:6)
+vec.sum * vec.su</code></pre>
+<pre><code>## Warning in vec.sum * vec.su: longer object length is not a multiple of shorter
+## object length</code></pre>
+<pre><code>## [1]  1  4  9 16 25 36  7 16 27</code></pre>
+<p><br />
+</p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
+</div>
+<div id="matrices" class="section level2">
+<h2>1.7.2. Matrices</h2>
+<p><strong>Al terminar esta sección podrás construir matrices a partir de vectores.</strong></p>
+<p>Una matriz es un arreglo en dos dimensiones, que contiene una sola clase de datos (numérico, caracter, o lógico). Las matrices se construyen con la función <strong>matrix</strong>.</p>
+<pre class="r"><code># vector de datos para crear la matriz:
+vec.diabetes &lt;- c(32,90,160,26,130,200,40,200,180,55,150,260)
+# nombres de filas (casos) y columnas (variables):
+RowN &lt;- c(&quot;patient 1&quot;,&quot;patient 2&quot;,&quot;patient 3&quot;,&quot;patient 4&quot;)
+ColN &lt;- c(&quot;Age&quot;,&quot;Glucose&quot;,&quot;Cholesterol&quot;)
+# matriz con la función matrix:
+mtx.diabetes &lt;- matrix(vec.diabetes,
+                       ncol = 3,
+                       byrow = TRUE,
+                       dimnames = list(RowN,ColN)
+                       )
+mtx.diabetes</code></pre>
+<pre><code>##           Age Glucose Cholesterol
+## patient 1  32      90         160
+## patient 2  26     130         200
+## patient 3  40     200         180
+## patient 4  55     150         260</code></pre>
+<pre class="r"><code># verificando si es una matriz:
+class(mtx.diabetes)</code></pre>
+<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
+<p><br />
+</p>
+<p>La extracción de valores de una matriz es también por posición, pero hay que especificar filas y columnas.</p>
+<pre class="r"><code># selección de todas las filas y columnas 2 y 3
+new.matrix1 &lt;- mtx.diabetes[ ,2:3]
+new.matrix1</code></pre>
+<pre><code>##           Glucose Cholesterol
+## patient 1      90         160
+## patient 2     130         200
+## patient 3     200         180
+## patient 4     150         260</code></pre>
+<pre class="r"><code># seleccionando el primero y cuarto paciente y edad y colesterol
+new.matrix2 &lt;- mtx.diabetes[c(1,4),c(1,3)]
+new.matrix2</code></pre>
+<pre><code>##           Age Cholesterol
+## patient 1  32         160
+## patient 4  55         260</code></pre>
+<hr />
+</div>
+<div id="data-frames" class="section level2">
+<h2>1.7.3. <em>Data frames</em></h2>
+<p><strong>Al finalizar esta sección producirás y manipularás <em>data frames</em>.</strong></p>
+<p>Un <em>data frame</em> es un tipo de matriz, en la cual las columnas pueden ser de distintas clases de datos (numéricos, texto, lógicos). Es la estructura de datos de uso común en R. Se crean utilizando la función <strong>data.frame</strong>, usualmente a partir de vectores, o importando datos, como veremos más adelante.</p>
+<pre class="r"><code># vectores columnas
+ID &lt;- c(1L,2L,3L,4L)
+chol &lt;- c(160, 200, 180, 260)
+glu &lt;- c(90, 130, 200, 150)
+age &lt;- c(32,26,40,55)
+sex &lt;- c(&quot;M&quot;,&quot;F&quot;,&quot;M&quot;,&quot;M&quot;)
+diabetes &lt;- c(&quot;neg&quot;,&quot;pos&quot;,&quot;pos&quot;,&quot;neg&quot;)
+# data frame a partir de vectores
+patient_data &lt;- data.frame(ID, age, sex, glu, chol, diabetes)
+class(patient_data)</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>patient_data</code></pre>
+<pre><code>##   ID age sex glu chol diabetes
+## 1  1  32   M  90  160      neg
+## 2  2  26   F 130  200      pos
+## 3  3  40   M 200  180      pos
+## 4  4  55   M 150  260      neg</code></pre>
+<p><br />
+Podemos cambiar el nombre a las columnas.</p>
+<pre class="r"><code># cambio de nombre de las columnas
+new.patient_data &lt;- setNames(patient_data, c(&quot;Patient ID&quot;,&quot;Age&quot;,&quot;Birth Sex&quot;,&quot;Blood Glucose&quot;,&quot;Cholesterol&quot;,&quot;Diabetes Diagnosis&quot;))
+new.patient_data</code></pre>
+<pre><code>##   Patient ID Age Birth Sex Blood Glucose Cholesterol Diabetes Diagnosis
+## 1          1  32         M            90         160                neg
+## 2          2  26         F           130         200                pos
+## 3          3  40         M           200         180                pos
+## 4          4  55         M           150         260                neg</code></pre>
+<p><br />
+La selección y extracción de datos de un <em>data frame</em> es similar a hacerlo de una matriz, pero además se pueden usar operadores lógicos, usando columnas como factores.</p>
+<pre class="r"><code># selección de columnas por nombre
+select.df1 &lt;- new.patient_data[ ,c(&quot;Blood Glucose&quot;,&quot;Diabetes Diagnosis&quot;)]
+select.df1</code></pre>
+<pre><code>##   Blood Glucose Diabetes Diagnosis
+## 1            90                neg
+## 2           130                pos
+## 3           200                pos
+## 4           150                neg</code></pre>
+<pre class="r"><code># selección usando un operador lógico
+select.df2 &lt;- new.patient_data[new.patient_data$&#39;Diabetes Diagnosis&#39; == &quot;pos&quot;,]
+select.df2</code></pre>
+<pre><code>##   Patient ID Age Birth Sex Blood Glucose Cholesterol Diabetes Diagnosis
+## 2          2  26         F           130         200                pos
+## 3          3  40         M           200         180                pos</code></pre>
+<p><br />
+Una estructura de uso más reciente, es la que se conoce como <em>tibble</em>, muy parecida a un <em>data.frame</em> pero con algunas peculiaridades que la hacen más práctica para el manejo de datos.<br />
+</p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
+</div>
+<div id="listas" class="section level2">
+<h2>1.7.4. Listas</h2>
+<p><strong>Al finalizar esta sección conocerás la estructura de una lista y cómo extraer datos de ella.</strong></p>
+<p>Una lista es una colección ordenada de diversos objetos (vectores, matrices, data.frames, arreglos, otras listas). Es la estructura de datos más compleja usada en R, y muchas funciones estadísticas producen resultados en forma de listas, de las cuales se pueden extraer resultados específicos. Se crean usando la función <strong>list</strong>, y para seleccionar objetos o valores específicos, se utilizan corchetes dobles, <strong>[[…]]</strong>.</p>
+<pre class="r"><code># diferentes objetos
+g &lt;- &quot;My First List&quot;
+h &lt;- c(25, 26, 18, 39)
+j &lt;- matrix(1:10, nrow=5)
+k &lt;- c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;)
+# creando una lista
+mylist &lt;- list(title=g, ages=h, j, k)   # algunos con nombre
+class(mylist)</code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<pre class="r"><code>mylist</code></pre>
+<pre><code>## $title
+## [1] &quot;My First List&quot;
+## 
+## $ages
+## [1] 25 26 18 39
+## 
+## [[3]]
+##      [,1] [,2]
+## [1,]    1    6
+## [2,]    2    7
+## [3,]    3    8
+## [4,]    4    9
+## [5,]    5   10
+## 
+## [[4]]
+## [1] &quot;one&quot;   &quot;two&quot;   &quot;three&quot;</code></pre>
+<pre class="r"><code># otra forma de ver el contenido de la lista
+str(mylist)</code></pre>
+<pre><code>## List of 4
+##  $ title: chr &quot;My First List&quot;
+##  $ ages : num [1:4] 25 26 18 39
+##  $      : int [1:5, 1:2] 1 2 3 4 5 6 7 8 9 10
+##  $      : chr [1:3] &quot;one&quot; &quot;two&quot; &quot;three&quot;</code></pre>
+<pre class="r"><code># para seleccionar contenido dentro de la lista
+mylist[[2]] # usando la posición</code></pre>
+<pre><code>## [1] 25 26 18 39</code></pre>
+<pre class="r"><code>mylist[[&quot;ages&quot;]] # usando el nombre si lo tiene</code></pre>
+<pre><code>## [1] 25 26 18 39</code></pre>
+<p>Podemos asignar a una variable algún contenido (objeto) de una lista.</p>
+<pre class="r"><code># extrayendo la matriz
+matriz &lt;- mylist[[3]]
+matriz</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    6
+## [2,]    2    7
+## [3,]    3    8
+## [4,]    4    9
+## [5,]    5   10</code></pre>
+<p><br />
+</p>
+<hr />
+<p><strong>Referencias</strong></p>
+<p>Kabacoff, R. I. (2015). <em>R in Action: Data analysis and graphics with R</em> (Second Edition). Manning, Shelter Island, NY.</p>
+<p>Lander, J. P. (2017). <em>R for everyone: Advanced analytics and graphics</em> (Second edition). Addison-Wesley, Boston, MA.<br />
+</p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a><br />
+<br />
+</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

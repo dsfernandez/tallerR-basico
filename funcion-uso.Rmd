@@ -1,0 +1,135 @@
+---
+title: "Creación de Funciones"
+output:
+  html_document:
+    css:  !expr here::here("styles/styles.css")
+    toc: true
+    toc_depth:  3
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options("yaml.eval.expr" = TRUE)
+```
+
+# 2.2. Creación de Funciones  
+
+Si tenemos que repetir un código varias veces, es probable que estemos necesitando crear una función.  En R hay una forma conveniente de crearla, y es lo que estaremos haciendo en este módulo.  
+
+## 2.2.1. Construcción de una Función  
+__Al finalizar esta sección podrás crear tus propias funciones__  
+
+La estructura básica de una función es la siguiente:  
+
+> NOMBRE <- function(arg_1, arg_2, ...) {  
+   CUERPO DE LA FUNCIÓN   
+}  
+
+Dónde:  
+
+* el nombre es cualquiera aceptable en la gramática de R,    
+* __function(...)__ es el comando R para crear una función,  
+* _arg_ son argumentos opcionales para indicar los grupos de datos a los que se aplicará la función (puede indicarse con una __x__),  
+* en el cuerpo de la función se indican las operaciones y funciones del sistema que se aplicarán a los datos y también se indica que ocurrirá con el resultado, usando por ejemplo __return__.    
+
+### Función aplicada a uno o más valores de entrada    
+
+Los datos para los argumentos de una función pueden ser individuales o un objeto R.  A continuación veremos el caso de entrada de un valor y un vector, como argumento para la función.
+```{r funcion}
+# crear función F_to_C con argumento temperatura en grados Fahrenheit
+# calcula grados Celsius (centígrados)
+F_to_C <- function(temp_F) {
+  temp_C <- (temp_F - 32) * 5 / 9
+  return(temp_C)
+}
+# entrada de grados Fahrenheit
+F_to_C(212)
+# entrada de varios datos en vector
+gf <- c(-40, 32, 80, 104, 212)
+gc <- F_to_C(gf)
+```
+
+Temperatura en ºC:  `r gc`  
+
+### Entrada manual de datos  
+
+Es posible detener el procesamiento de una función, para que pida la entrada de su argumento.  La función __readline__ permite detener el procesamiento y esperar por la entrada de un dato; la entrada se realiza en la consola, y el procesamiento continúa.
+```{r funcion-manual}
+F_to_C_manual <- function() {
+  temp_F <- as.numeric(readline(prompt="Temperatura en F: "))
+  temp_C <- (temp_F - 32) * 5 / 9
+  return(temp_C)
+}
+```
+
+Si ahora escribimos:  
+
+__F_to_C_manual( )__
+
+en la consola, nos aparecerá el siguiente mensaje:
+
+__Temperatura en F:  __  
+
+Luego de entrar un valor, digamos 212, obtenemos:  
+
+__[1] 100__
+
+\
+
+[  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html) 
+
+## 2.2.2. Aplicación de Funciones Usando _sapply_ y _aggregate_  
+__Al finalizar esta sección podrás aplicar una función a diversos objetos y agrupar por categorías__  
+
+### Usando función con _sapply_ en un data.frame o matriz  
+
+Una función puede requerir más de un argumento para obtener el resultado.  Vamos a usar una función que requiere dos argumentos (masa y altura) y aplicarla a un _data.frame_ con los datos individuales.  Para aplicar la función al data.frame, utilizaremos la función __sapply__.  El ejemplo consistirá en el cálculo del índice masa corporal (_BMI_).
+```{r apply}
+# crear la función BMI para el cálculo del índice de masa corporal
+BMI <- function(m,a) {
+  bmi <- m/a^2
+  res <- list(bmi=bmi)
+  return(res)
+}
+# crear un data.frame a partir de dos vectores
+# datos de masa corporal, en kg
+masa <- c(60, 58, 66, 69)
+# datos de altura, en m
+alt <- c(1.65, 1.68, 1.8, 1.60)
+# data.frame
+datos <- data.frame(masa,alt)
+# aplicar función BMI con sapply
+rBMI <- sapply(datos, FUN = BMI, datos$alt)
+# extraer los resultados de BMI y redondear
+rBMI <- round(as.vector(rBMI[[1]]),1)
+```
+
+BMI de los individuos:  `r rBMI`  
+\  
+
+### Usando función con _aggregate_ en un data.frame   
+
+La función __aggregate__ añade otra funcionalidad a la aplicación de una función: se pueden separar los datos en grupos, mediante el parámetro __by__.  Vamos a crear una función que calcula algunos estadísticos: tamaño de la muestra, promedio, mediana, y desviación estándar.  Los datos son de niveles de Ca plasmático, en ratas macho y hembras, tratadas o no con estrógeno.  
+```{r aggregate}
+# leemos los datos de un archivo externo .csv
+ca_rata <- read.csv("data/calcio-ratas.csv")
+# creamos la función 'stats'
+stats <- function(x){
+  m <- mean(x)
+  md <- median(x)
+  n <- length(x)
+  s <- sd(x)
+  return(c(n=n, Media=m, Mediana=md, DS=s))
+}
+# utilizamos aggregate para aplicar la función, por sexo y tratamiento
+aggdata <- aggregate(ca_rata$caplasma, 
+                     by = list(ca_rata$sexo,ca_rata$hormona),
+                     FUN = stats)
+# agregamos nombres a las columnas
+aggdata <- setNames(aggdata, c("Sexo","Hormona",""))
+aggdata
+```
+
+
+

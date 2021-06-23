@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Entrada de Datos</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Taller R Introductorio</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="home.html">
+    <span class="fa fa-home"></span>
+     
+    Hola
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    AMBIENTE DE TRABAJO y DATOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="unidad1.html">Unidad I</a>
+    </li>
+    <li>
+      <a href="R-RStudio.html">R y RStudio</a>
+    </li>
+    <li>
+      <a href="CompRStudio.html">Componentes de RStudio</a>
+    </li>
+    <li>
+      <a href="ConfigRStudio.html">Configuración de RStudio</a>
+    </li>
+    <li>
+      <a href="CodigoR.html">Archivos de códigos R</a>
+    </li>
+    <li>
+      <a href="OperacionesR.html">Operaciones básicas con R</a>
+    </li>
+    <li>
+      <a href="TiposDatos.html">Tipos de Datos</a>
+    </li>
+    <li>
+      <a href="Data-Struct.html">Estructuras de Datos</a>
+    </li>
+    <li>
+      <a href="DataIntro.html">Entrada de Datos</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    PROCEDIMIENTOS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="manejo-datos.html">Manejo de Datos</a>
+    </li>
+    <li>
+      <a href="funcion-uso.html">Creación y Uso de Funciones</a>
+    </li>
+    <li>
+      <a href="controles.html">Controles del Flujo</a>
+    </li>
+    <li>
+      <a href="tablas.html">Tablas de Resultados</a>
+    </li>
+    <li>
+      <a href="graficas.html">Gráficas</a>
+    </li>
+    <li>
+      <a href="hipotesis.html">Pruebas de Hipótesis</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    R Markdown
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="documento-rmd.html">Documento R Markdown</a>
+    </li>
+    <li>
+      <a href="edicion-rmd.html">Edición en R Markdown</a>
+    </li>
+    <li>
+      <a href="chunk-rmd.html">Códigos R en R Markdown</a>
+    </li>
+    <li>
+      <a href="knitr-rmd.html">Producción de Documento</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Entrada de Datos</h1>
+
+</div>
+
+
+<div id="entrada-de-datos-al-sistema" class="section level1">
+<h1>1.8. Entrada de Datos al Sistema</h1>
+<blockquote>
+<p>R es muy versátil en cuanto a las fuentes de datos que pueden traerse al ambiente de computación.</p>
+</blockquote>
+<p>Aparte de la entrada manual de datos, por ejemplo utilizando vectores para crear luego matrices o <em>data frames</em>, hay procedimientos para importar datos de diferentes fuentes y sus formatos.<br />
+RStudio provee el menú <strong>Import Dataset</strong> para diversos tipos de archivos desde los cuales importar datos al sistema. Más adelante utilizaremos uno de ellos.</p>
+<div class="figure">
+<img src="media/import-dataset-menu.png" alt="" />
+<p class="caption">Menú Import Dataset</p>
+</div>
+<div id="entrada-de-datos-manuales-con-un-editor-del-sistema" class="section level2">
+<h2>1.8.1. Entrada de datos manuales con un editor del sistema</h2>
+<p><strong>Al finalizar esta sección podrás entrar y editar datos usando un editor del sistema.</strong></p>
+<p>Una manera de realizar la entrada manual de datos en R, es usando un editor mediante la función <strong>edit</strong>. Esta función trabaja en R solamente, por lo cual debemos usarla en la <strong>Console</strong>.</p>
+<pre class="r"><code># creamos la estructura del data frame sin datos
+misdatos &lt;- data.frame(id = character(0), altura = numeric(0))
+# para iniciar la entrada de datos manuales podemos escribir en la consola:
+# misdatos &lt;- edit(misdatos)
+# al terminar se hace clic en Quit
+# revisamos si tenemos los datos
+misdatos</code></pre>
+<pre><code>## [1] id     altura
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<pre class="r"><code># si queremos continuar entrando datos o editando usamos:
+# misdatos &lt;- edit(misdatos) en la consola</code></pre>
+<p>Este método es fácil y rápido cuando se tienen pocos datos y no están en un documento digital. Cuando los datos son muchos, y se encuentran en un documento digital, es conveniente usar los procedimientos que se describen a continuación, para algunos formatos digitales.</p>
+<p><br />
+</p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
+</div>
+<div id="datos-contenidos-en-paquetes." class="section level2">
+<h2>1.8.2. Datos contenidos en paquetes.</h2>
+<p><strong>Al completar esta sección podrás traer al sistema datos que se encuentran encapsulados en paquetes.</strong></p>
+<p>Algunos paquetes pueden contener datos para ser utilizados como ejemplos para conocer las funcionalidades del paquete o simplemente son paquetes de datos reusables. A continuación utilizaremos el paquete <strong>healthcareai</strong> para mostrar como obtener los datos contenidos en el mismo. Los datos a utilizar corresponden a un estudio de salud, realizado en 768 mujeres de más de 21 años, del grupo indígena Pima ( <em>Akimel O’odham</em>) del sur de Arizona y noroeste de México.</p>
+<pre class="r"><code># activar el paquete healthcareai previamente instalado
+library(healthcareai)
+# obtener la lista de datos que contiene el paquete
+data(package = &quot;healthcareai&quot;)</code></pre>
+<p>Data sets in package ‘healthcareai’:</p>
+<p>pima_diabetes Patient diabetes dataset<br />
+pima_meds Patient medications dataset</p>
+<p>Una vez activado el paquete con <strong>library</strong>, los datos del mismo están disponibles, y podemos visualizarlo y usarlos para análisis.</p>
+<pre class="r"><code># la función head muestra las primeras 6 filas de datos
+head(pima_diabetes)</code></pre>
+<pre><code>## # A tibble: 6 x 10
+##   patient_id pregnancies plasma_glucose diastolic_bp skinfold insulin
+##        &lt;int&gt;       &lt;int&gt;          &lt;int&gt;        &lt;int&gt;    &lt;int&gt;   &lt;int&gt;
+## 1          1           6            148           72       35      NA
+## 2          2           1             85           66       29      NA
+## 3          3           8            183           64       NA      NA
+## 4          4           1             89           66       23      94
+## 5          5           0            137           40       35     168
+## 6          6           5            116           74       NA      NA
+## # … with 4 more variables: weight_class &lt;chr&gt;, pedigree &lt;dbl&gt;, age &lt;int&gt;,
+## #   diabetes &lt;chr&gt;</code></pre>
+<p><br />
+</p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
+</div>
+<div id="datos-en-archivos-del-sistema-.rdata" class="section level2">
+<h2>1.8.3. Datos en archivos del sistema (.Rdata)</h2>
+<p><strong>Al finalizar esta sección podrás guardar y cargar al sistema el contenido de un archivo .Rdata</strong></p>
+<p>R provee una manera muy práctica de guardar varios objetos del sistema en un solo archivo usando la función <strong>save</strong>. Este tipo de archivo puede luego ser cargado al sistema en un solo paso usando la función <strong>load</strong>. A continuación vamos a crear un archivo .Rdata y luego cargarlo al sistema.</p>
+<pre class="r"><code># vector vc
+vc &lt;- c(1:20)
+# matriz mx
+mx &lt;- matrix(1:9, nrow = 3, byrow = TRUE)
+# resultado de función trigonométrica
+ft &lt;- sin(pi/2)
+# guardar como .Rdata
+save(mx, vc, ft, file = &quot;data/archivo.Rdata&quot;)
+# borramos los objetos guardados en la memoria del sistema
+rm(mx,vc,ft)
+# cargamos el archivo creado y vemos su contenido
+print(load(&quot;data/archivo.Rdata&quot;))</code></pre>
+<pre><code>## [1] &quot;mx&quot; &quot;vc&quot; &quot;ft&quot;</code></pre>
+<p><br />
+</p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
+</div>
+<div id="importar-datos-desde-un-archivo-en-formato-de-texto-delimitado." class="section level2">
+<h2>1.8.4. Importar datos desde un archivo en formato de texto delimitado.</h2>
+<p><strong>Al completar esta sección podrás importar datos de documentos en formato .csv y similares</strong></p>
+<p>Una manera de guardar datos, que puedan ser utilizados por diferentes programas o lenguajes, es mediante archivos de texto delimitado. Este tipo de archivo utiliza menos memoria y no tienen incorporadas peculiaridades de formato, específicas de los programas que los generan.<br />
+Para importar datos de estos archivos podemos utilizar la función genérica <strong>read.table</strong>, usando el argumento <strong>sep = “,”</strong> para indicar que se trata de datos separados por coma. El objeto resultante es un <em>data frame</em>. El archivo que vamos a usar en este ejemplo es: <a href="https://drive.google.com/file/d/1WrSYD5i9W4WggWtFdfhH2capF8tRD98R/view?usp=sharing">death_small_cities.csv</a></p>
+<pre class="r"><code># usamos read.table y los parámetros header y sep
+mort_ciudades &lt;- read.table(&quot;data/death_small_cities.csv&quot;,
+                            header = TRUE,
+                            sep = &quot;,&quot;)
+# para ver las primeras 10 filas de datos en el archivo
+head(mort_ciudades, 10)</code></pre>
+<pre><code>##    death1K doctor100K hosp100K income1K density
+## 1      8.0         78      284      9.1     109
+## 2      9.3         68      433      8.7     144
+## 3      7.5         70      739      7.2     113
+## 4      8.9         96     1792      8.9      97
+## 5     10.2         74      477      8.3     206
+## 6      8.3        111      362     10.9     124
+## 7      8.8         77      671     10.0     152
+## 8      8.8        168      636      9.1     162
+## 9     10.7         82      329      8.7     150
+## 10    11.7         89      634      7.6     134</code></pre>
+<p><br />
+</p>
+<p>Para separar datos delimitados por tabuladores ( <em>tabs</em>), usamos <strong>sep = "</strong>. Si el archivo no contiene nombres de las variables en la primera línea, se pueden agregar usando el argumento <strong>col.names = vector-con-los-nombres</strong>.<br />
+La función <strong>read.csv</strong> también se usa para importar datos delimitados, y está basada en <strong>read.table</strong>, pero es exclusiva para datos separados por coma (archivos que tienen la extensión <em>.csv</em>).</p>
+<pre class="r"><code>mort_ciudades2 &lt;- read.csv(&quot;data/death_small_cities.csv&quot;)
+# para ver las primeras 10 líneas de datos
+head(mort_ciudades2, 10)</code></pre>
+<pre><code>##    death1K doctor100K hosp100K income1K density
+## 1      8.0         78      284      9.1     109
+## 2      9.3         68      433      8.7     144
+## 3      7.5         70      739      7.2     113
+## 4      8.9         96     1792      8.9      97
+## 5     10.2         74      477      8.3     206
+## 6      8.3        111      362     10.9     124
+## 7      8.8         77      671     10.0     152
+## 8      8.8        168      636      9.1     162
+## 9     10.7         82      329      8.7     150
+## 10    11.7         89      634      7.6     134</code></pre>
+<p><br />
+</p>
+<div id="copiar-datos-desde-una-tabla" class="section level3">
+<h3>Copiar datos desde una tabla</h3>
+<blockquote>
+<p>Al estilo <em>Copy &amp; Paste</em></p>
+</blockquote>
+<p>La función <strong>read.table</strong> permite pegar ( <em>paste</em>) la información que se encuentra en el <em>clipboard</em> luego de copiar ( <em>copy</em>) desde una tabla u hoja de cálculo, Excel por ejemplo.</p>
+<pre class="r"><code>pegar &lt;- read.table(file = &quot;clipboard&quot;, 
+                    sep = &quot;\t&quot;, 
+                    header = TRUE)</code></pre>
+<p><br />
+</p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a><br />
+<br />
+</p>
+<hr />
+</div>
+</div>
+<div id="importar-desde-hojas-de-cálculos." class="section level2">
+<h2>1.8.5. Importar desde hojas de cálculos.</h2>
+<p><strong>Al finalizar esta sección podrás importar datos de hojas de cálculo, como Excel, usando menú y códigos R.</strong></p>
+<p>Para importar datos de algún programa de hoja de cálculo (Excel, OpenOffice, Google Sheets) la manera estándar consiste en exportar los datos a un archivo en formato .csv <em>(comma separated values)</em>, y luego importarlo a R usando <strong>read.csv</strong>. Existen paquetes que proveen funciones para importar datos desde archivos Excel, uno de ellos, y asociado a RStudio es <strong>readxl</strong>; se puede usar en código o mediante el menú <strong>Import Dataset</strong>.</p>
+<div id="paquete-readxl-y-función-read_excel.." class="section level3">
+<h3>Paquete readxl y función read_excel(..)</h3>
+<blockquote>
+<p>Combinación de menú y código para importar datos desde Excel</p>
+</blockquote>
+<p>Antes de iniciar el proceso de importar debe estar instalado el paquete <strong>readxl</strong>, siguiendo el procedimiento que se describió anteriormente. En una página <em>R Script</em> o en la consola, activamos el paquete usando <strong>library(readxl)</strong>.</p>
+<p>Debemos asegurar que el archivo que vamos a importar se encuentre en el directorio de trabajo o uno conocido. A continuación un enlace para descargar el archivo del ejemplo de esta sección:</p>
+<p><a href="https://drive.google.com/file/d/1JRiaetErrpQVG5ZKNEeoH8rxleH8iDB5/view?usp=sharing">death_small_cities.xlsx</a></p>
+<p>Ahora utilizaremos el menú <strong>Import Dataset</strong> en la ventana <strong>Environment</strong>:</p>
+<ul>
+<li><p>Hacer clic en <strong>From Excel…</strong> y se abrirá la ventana de importación.</p></li>
+<li><p>Lo primero es localizar el archivo a importar, usando <strong>Browse…</strong>, y si el archivo se encuentra en el directorio de trabajo, este debe aparecer en la lista de archivos disponibles, o dentro de una de las carpetas de este directorio.</p></li>
+<li><p>Una vez seleccionado el archivo, tus datos deben aparecer dentro de la ventana de importación. Si no aparecen los datos que esperas, verifica en <strong>Sheet:</strong> si tienes seleccionada la hoja de datos que deseas.</p></li>
+<li><p>Verifica si aparecen los nombres de las columnas, y si los datos son de la clase que se esperan ( <em>numeric</em> y <em>double</em>, o <em>character</em>). Si los nombres de la columnas no aparecen como se esperan, verificar que <strong>First Row as Names</strong> esté marcado.</p></li>
+<li><p>Puedes cambiar el nombre del <em>data.frame</em> que vas a crear, usando <strong>Name:</strong>.</p></li>
+<li><p>Quita la marca de <strong>Open Data Viewer</strong>, y copia el código que se encuentra en la ventana de <strong>Code Preview:</strong>, y pégalo en tu <em>R Script</em>.</p></li>
+<li><p>Corre el código copiado, y usando <strong>head(nombre_de_data.frame)</strong> debes poder ver las seis primeras filas de datos de tu <em>data frame</em>.</p></li>
+</ul>
+<p>VIDEO<br />
+<br />
+</p>
+<pre class="r"><code># activación del paquete
+library(readxl)
+# código de carga de datos del archivo
+mort_ciudades3 &lt;- read_excel(&quot;data/death_small_cities.xlsx&quot;, 
+    sheet = &quot;data&quot;)
+head(mort_ciudades3, 10)</code></pre>
+<pre><code>## # A tibble: 10 x 5
+##    death1K doctor100K hosp100K income1K density
+##      &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+##  1    8            78      284     9.10     109
+##  2    9.30         68      433     8.70     144
+##  3    7.5          70      739     7.20     113
+##  4    8.90         96     1792     8.90      97
+##  5   10.2          74      477     8.30     206
+##  6    8.30        111      362    10.9      124
+##  7    8.80         77      671    10        152
+##  8    8.80        168      636     9.10     162
+##  9   10.7          82      329     8.70     150
+## 10   11.7          89      634     7.60     134</code></pre>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a><br />
+<br />
+</p>
+<hr />
+</div>
+</div>
+<div id="importar-datos-de-la-web" class="section level2">
+<h2>1.8.6. Importar datos de la <em>web</em></h2>
+<p><strong>Al finalizar esta sección podrás importar datos de sitios en la <em>web</em> que provean acceso a archivos de datos</strong></p>
+<p>Algunos sitios públicos de la <em>web</em> permiten descargar algunos de sus datos. Podemos utilizar el enlace ( <em>URL</em>) para descargar los datos directamente a nuestro ambiente de trabajo. Usaremos como ejemplo, datos disponibles en la página del CDC - National Center for Health Statistics (<a href="https://data.cdc.gov/NCHS/" class="uri">https://data.cdc.gov/NCHS/</a>), y específicamente los datos provisionales de muertes asociadas a COVID-19, por edad, sexo y estado o territorio. El paquete <strong>rio</strong> provee la función <strong>download.file</strong> para realizar la descarga de un archivo en formato .csv, que luego podemos cargar al sistema con <strong>read.csv</strong></p>
+<pre class="r"><code># activar rio
+library(rio)
+# copiar la dirección del archivo obtenidad de la página web
+covid &lt;- &quot;https://data.cdc.gov/api/views/9bhg-hcku/rows.csv?accessType=DOWNLOAD&quot;
+# descargar los datos con download.file
+download.file(covid, &quot;data/coviddata.csv&quot;)
+# importar los datos al sistema usando read.csv
+coviddeath &lt;- read.csv(&quot;data/coviddata.csv&quot;)
+# primeras 6 filas de los datos
+head(coviddeath)</code></pre>
+<pre><code>##   Data.As.Of Start.Date   End.Date    Group Year Month         State       Sex
+## 1 06/16/2021 01/01/2020 06/12/2021 By Total   NA    NA United States All Sexes
+## 2 06/16/2021 01/01/2020 06/12/2021 By Total   NA    NA United States All Sexes
+## 3 06/16/2021 01/01/2020 06/12/2021 By Total   NA    NA United States All Sexes
+## 4 06/16/2021 01/01/2020 06/12/2021 By Total   NA    NA United States All Sexes
+## 5 06/16/2021 01/01/2020 06/12/2021 By Total   NA    NA United States All Sexes
+## 6 06/16/2021 01/01/2020 06/12/2021 By Total   NA    NA United States All Sexes
+##      Age.Group COVID.19.Deaths Total.Deaths Pneumonia.Deaths
+## 1     All Ages          590091      4791858           520776
+## 2 Under 1 year              81        26746              288
+## 3   0-17 years             322        46977              773
+## 4    1-4 years              37         4859              156
+## 5   5-14 years             112         7811              222
+## 6  15-24 years             962        50406             1084
+##   Pneumonia.and.COVID.19.Deaths Influenza.Deaths
+## 1                        289584             9161
+## 2                            12               21
+## 3                            61              183
+## 4                             6               64
+## 5                            24               77
+## 6                           381               81
+##   Pneumonia..Influenza..or.COVID.19.Deaths Footnote
+## 1                                   829164         
+## 2                                      378         
+## 3                                     1217         
+## 4                                      251         
+## 5                                      387         
+## 6                                     1741</code></pre>
+<p><br />
+</p>
+<p><a href="https://dsfernandez.github.io/tallerR-basico/index.html"><strong>Home</strong></a></p>
+<hr />
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

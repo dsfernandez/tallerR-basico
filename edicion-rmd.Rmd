@@ -116,9 +116,9 @@ Dentro del documento R Markdown podemos incluir una línea de comando que crear�
 
 Para insertar una imágen, que se encuentra en el directorio de trabajo, usamos el siguiente código:  
 
-`![Micro-Animal](modulos/media/micro-animal.jpg)`  
+`![Micro-Animal](media/micro-animal.jpg)`  
 
-![Micro-Animal](modulos/media/micro-animal.jpg)  
+![Micro-Animal](media/micro-animal.jpg)  
 
 El nombre de la imagen se puede eliminar, pero deben quedar los corchetes: __[] __. 
 \
@@ -127,10 +127,10 @@ El nombre de la imagen se puede eliminar, pero deben quedar los corchetes: __[] 
 
 `![](modulos/media/micro-animal.jpg){width=50px}`  
 
-![](modulos/media/micro-animal.jpg){width=50px}
+![](media/micro-animal.jpg){width=50px}
 
 También se puede usar:  
 
 `![Micro-Animal](modulos/media/micro-animal.jpg){width=50%}`  
 
-![Micro-Animal](modulos/media/micro-animal.jpg){width=50%} 
+![Micro-Animal](media/micro-animal.jpg){width=50%} 
