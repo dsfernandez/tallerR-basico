@@ -24,14 +24,14 @@ __Al finalizar esta sección podrás crear tus propias secciones de código R (_
 Puedes insertar un fragmento de código R usando la barra de herramientas RStudio (el botón __Insert__) o el atajo de teclado _Ctrl + Alt + I_ (_Cmd + Opción + I_ en macOS).    
 \
 
-![](modulos/media/insert-chunkR.png)  
+![](media/insert-chunkR.png)  
 \  
 ### Partes de un _chunk_  
 
 Un _chunk_ está delimitado por tres acentos graves (__``` __), al inicio y final del mismo.  
 \
 
-![](modulos/media/chunk.png)  
+![](media/chunk.png)  
 \  
 
 Además de los indicadores de inicio y fin, el _chunk_ posee otros componentes:  
@@ -52,7 +52,7 @@ __Al finalizar esta sección podrás correr de diferentes maneras y controlar la
 Para correr todo el código contenido en el _chunk_ puedes usar la cabeza de flecha verde (parte superior derecha del _chunk_).  Para correr solo una parte del código, puedes marcar el código a correr y usar el menú __Run__, en la barra de herramientas del documento R Markdown.  Este menú también tiene otras opciones para correr el código.  
 \
 
-![](modulos/media/run-chunk.png)  
+![](media/run-chunk.png)  
 
 \
 
@@ -61,7 +61,7 @@ Para correr todo el código contenido en el _chunk_ puedes usar la cabeza de fle
 El comportamiento y producción de resultados y mensajes del _chunk_ puede controlarse mediante opciones escritas en la zona entre llaves (__{r "opciones"}__) o usando el menú del ícono de engranaje del _chunk_:  
 \
 
-![](modulos/media/control-chunk.png)  
+![](media/control-chunk.png)  
 
 \
 
