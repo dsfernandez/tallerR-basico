@@ -25,7 +25,8 @@ Puedes insertar un fragmento de código R usando la barra de herramientas RStudi
 \
 
 ![](media/insert-chunkR.png)  
-\  
+\ 
+
 ### Partes de un _chunk_  
 
 Un _chunk_ está delimitado por tres acentos graves (__``` __), al inicio y final del mismo.  
