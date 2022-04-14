@@ -76,6 +76,9 @@ Para problemas con la instalación o descarga de R y RStudio puede buscar inform
 
 *** 
 
+### 1.1.4. RStudio Cloud
+Otra manera de trabajar con R/RStudio, que no requiere las instalaciones de R ni RStudio, es mediante una cuenta en el sitio [RStudio Cloud](https://rstudio.cloud/).
+
 \
 [  __Home__](https://dsfernandez.github.io/tallerR-basico/index.html)
 
